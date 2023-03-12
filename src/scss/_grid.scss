@@ -1,0 +1,168 @@
+#gridcontainer {
+    grid-area: gridcontainer;
+    grid-template-areas:
+    "right1"
+    "left1";
+}
+
+#left1 {
+    grid-area: left1;
+    grid-template-areas:
+    "header1" 
+    "utilities";
+}
+
+#right1 {
+    grid-area: right1;
+    grid-template-areas:
+    "todos";
+}
+
+#listfooter {
+    display: grid;
+    grid-area: utilities;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "tasks"
+    "sortitems"
+    "filters"
+    "srchbar"
+    "addbar";
+}
+z
+
+#header1 {
+    grid-area: header1;
+}
+
+#todos, #dtodos {
+    grid-area: todos;
+    grid-template-areas:
+    "listitem"
+    ;
+}
+
+.padit {
+    padding: 4vw;
+    margin: 1vh auto;
+} 
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.listitem {
+    grid-area: listitem;
+    display: grid;
+    grid-template-areas: "markbtn editbtn delbtn task";
+}
+
+.markbtn {
+    grid-area: markbtn;
+}
+
+p.todo-text.cat {
+    grid-area: cat;
+}
+
+.task {
+    grid-area: task;
+}
+
+.delbtn {
+    grid-area: delbtn;
+}
+
+.editbtn {
+    grid-area: editbtn;
+}
+
+#filters {
+    grid-area: filters;
+    display: flex;
+    flex-direction: row;
+}
+
+#tasks {
+    grid-area: tasks;
+}
+
+#allbtn {
+    grid-area: allbtn;
+}
+
+#actbtn {
+    grid-area: actbtn;
+}
+
+#donebtn {
+    grid-area: donebtn;
+}
+
+#srchbar {
+    display: grid;
+    grid-area: srchbar;
+    grid-template-areas:
+    "srchinput srchbtn";
+}
+
+#srchbtn {
+    grid-area: srchbtn;
+}
+
+#srchinput {
+    grid-area: srchinput;
+}
+
+#addbar {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+    padding: .5vh;
+    grid-area: addbar;
+    grid-template-areas:
+    "catinput" 
+    "goalinput"
+    "addbtn";
+}
+
+#goalinput {
+    grid-area: goalinput;
+}
+
+#catinput {
+    grid-area: catinput;
+}
+
+#catinput, #goalinput, #addbtn, #srchbtn, #srchinput, .sharer {
+    height: 1.5rem;
+    padding: 0 1vh;
+}
+
+#goalinput, #catinput {
+    width: 100%;
+}
+
+#addbtn {
+    grid-area: addbtn;
+}
+
+@media screen and (min-width: 300px) { 
+    
+    .listitem {
+        padding: .5rem;
+        grid-template-columns: 2fr 2fr 2fr 8fr;
+    }
+}
+
+@media screen and (min-width: 600px) { 
+
+    .listitem {
+        padding: .5rem;
+    }
+}

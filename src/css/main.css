@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+
+    .navbar .nav-brand, ul.navbar-nav {
+        @apply bg-umedblue text-uyellow font-semibold;
+    }
+
+    .title {
+        @apply px-3 py-2 rounded-md text-uyellow bg-ublack ;
+    }
+
+    .grid-2 {
+        @apply grid grid-cols-2;
+    }
+
+    .grids {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+    }
+
+    .todo-buttons {
+        @apply rounded-sm p-2 bg-uroyalblue text-uwhite;
+    }
+
+    .centered {
+        @apply text-center;
+    }
+
+    .icons {
+        @apply w-8 h-8 ;
+    }
+
+    .autoheaderhome {
+        @apply bg-umedblue text-uyellow border-uyellow;
+    }
+
+    .hover {
+        @apply hover:text-uhotpink;
+    }
+
+    .editicon {
+      @apply bg-uwhite text-ublack;
+    }
+
+    .inputs {
+        @apply bg-upurple text-uyellow;
+    }
+
+    .card-container {
+        @apply rounded-lg shadow-lg bg-uyellow w-full flex flex-row flex-wrap p-3 antialiased;
+    }
+
+    .normal-text {
+        @apply bg-ublack text-uwhite;
+    }
+
+    .normal-text {
+        @apply font-medium;
+    }
+
+    #addbtn {
+        @apply text-5xl text-uyellow;
+    }
+
+    a.linkhover {
+        @apply text-uwhite;
+    }
+
+    .page-container {
+        @apply min-h-screen p-10 pt-32;
+    }
+
+}
+
+@layer utilities {
+}
+
+
+
+@layer base {
+
+    body {
+        @apply text-uyellow font-bold h-full bg-gradient-to-b via-ugray-200 from-umedblue to-uyellow;
+    }
+
+    footer, header, main {
+        @apply px-3 py-2 m-4 text-uyellow bg-ublack rounded-lg;
+    }
+
+    main, nav, header {
+        @apply bg-ublack text-uyellow rounded;
+    }
+
+    a {
+        @apply text-uwhite hover:text-uhotpink-200 hover:font-bold;
+    }
+
+    h1 {
+        @apply text-5xl;
+    }
+
+    div {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
+    }
+
+}

@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Hubballi');
+
+@import "variables";
+@import "colors";
+@import "checkbox";
+@import "grid";
+@import "large";
+
+body {
+    max-height: 100vh;
+    max-width: 100vw;
+    margin: 1vh auto;
+    color: white;
+    font-size: 20px;
+    font-family: $fontsecond;
+    background: $background;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.goalbordered {
+    border: 2px solid $uYellow;
+}
+
+label {
+    font-size: medium;
+}
+
+div {
+    margin: .5rem auto;
+}
+
+div.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+  }
+
+footer {
+    background: black;
+    margin: 0 auto;
+}
+
+.div-width {
+    width: 10rem;
+    padding: 1rem;
+    margin: 1rem auto;
+    font-weight: bold;
+    font-size: large;
+    color: white;
+}
+
+.bublue {
+    background: $uBlue !important;
+}
+
+.bmedblue {
+    background: $medblue !important;
+}
+
+.buyellow {
+    background: $uYellow !important;
+}
+
+.byellow {
+    background: $yellow !important;
+}
+
+.buorange {
+    background: $uOrange !important;
+}
+
+.borange {
+    background: $orange !important;
+}
+
+.bredorange {
+    background: $redorange;
+}
+
+.bdksalmon {
+    background: $dksalmon;
+}
+
+.broyalblue {
+    background: $royalblue;
+}
+
+.bhotpink {
+    background: $hotpink;
+}
+
+.bpurple {
+    background: $purple;
+}
+
+.bchartreuse {
+    background: $chartreuse;
+}
+
+.blimegreen {
+    background: $limegreen;
+}
+
+.bseafoam {
+    background: $seafoam;
+}
+
+.baqua {
+    background: $aqua;
+}
+
+.bskyblue {
+    background: $skyblue;
+}
+
+.bnewblue {
+    background: $newblue;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.centered {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.showborder {
+    border: $goalborder;
+    border-radius: $radius;
+}
+
+.sharer {
+    margin: 0 auto;
+    background: black;
+    border: none;
+    & img {
+        height: 3vh;
+        width: 3vh;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $uYellow;
+    font-family: $fontsecond;
+}
+
+h1 {
+    font-size: $font6;
+}
+
+h2 {
+    font-size: $font3;
+}
+
+h3 {
+    font-size: $font3;
+}
+
+h4 {
+    font-size: $font3;
+}
+
+h5 {
+    font-size: $font2;
+    font-weight: bold;
+    background: $uBlue;
+}
+
+h6 {
+    font-size: $font3;
+    font-weight: bold;
+    font-family: $fontsecond;
+    background: $uBlue;
+}
+
+figcaption { color: $uYellow; }
+
+div,
+form,
+footer,
+p,
+header,
+section {
+    font-family: $fontsecond;
+}
+
+.morespc { line-height: 1.5; }
+
+.centerimg {
+    display: block;
+    max-width: 100%;
+    margin: auto;
+}
+
+.listdots {
+    list-style: square;
+}
+
+.f1 {
+    font-family: $fontfirst;
+}
+
+.f2 {
+    font-family: $fontsecond;
+}
+
+.color3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    padding: 2vw;
+    border-radius: $radius;
+    margin: 4vw;
+    font-weight: bold;
+}
+
+.lighthover { color: lighten($hotpink, 10%) }
+
+.title {
+  color: $yellow;
+  margin: 0 auto;
+  padding: 1vw;
+}
+
+a {
+    color: lighten($dksalmon, 10%);
+    text-decoration: none;
+    & a:hover {
+        color: lighten($hotpink, 20%);
+    }
+}
+
+a:visited {
+    color: lighten($orange, 20%);
+}
+
+a:hover {
+    color: lighten($hotpink, 20%);
+}
+
+#siteTitle2 {
+    color: $accent;
+    font-family: $fontsecond;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+.bgblack { background: black; border: none; }
+
+#social-share, #left1, #right1 {
+    text-align: left;
+    background: black;
+    padding: .5rem;
+    margin: 0;
+}
+
+.inputs {
+    color: lighten($royalblue, 20%);
+    background: $yellow;
+    padding: .5rem;
+    height: 1.5rem;
+    border: 1px solid white;
+    border-radius: $radius;
+}
+
+::placeholder {
+    color: lighten(black, 45%);
+    font-size: small;
+}
+
+#autofooter {
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 6vh;
+    background: black !important;
+}
+
+.source {
+    text-align: center;
+    color: $hotpink;
+}
+
+.sources {
+    text-align: left;
+    color: $seafoam;
+    font-weight: bold;
+    margin: 2vh auto;
+    & a {
+        text-decoration: none;
+        color: $seafoam;
+    }
+}
+
+.icons {
+    background: black;
+}
+
+.socialicons {
+    width: 1rem;
+    height: 1rem;
+}
+
+
+.italic {
+    font-style: italic;
+}
+
+#todo-error {
+    font-weight: bold;
+    color: $redorange;
+}
+
+#root a {
+    color: $accent;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#root a:visited {
+    color: $limegreen;
+}
+
+.btns {
+    max-height: 1.5rem;
+    border: $goalborder;
+    border-radius: $radius                    
+}
+
+.todobtn {
+    color: $yellow;
+    background: $contrast;
+    margin: 0 .5rem;
+    font-size: $font2;
+    & a {
+      text-decoration: none;
+      color: $royalblue;
+      text-align: center;
+      & :hover {
+          border: 5px solid $hotpink;
+      }
+    }
+}
+
+#right1, #left1 {
+    padding: .5%; 
+}
+
+.todo-bordered {
+    border: $goalborder;
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}
+
+#addbtn {
+    color: $yellow;
+    background: $medblue;
+    font-size: $font2;
+    width: 35%;
+    margin: .25rem;
+    margin: .25rem;
+    max-width: 3rem;
+}
+
+.warning {
+    color: $warning;
+    padding: .5rem;
+}
+
+.white {
+    color: white;
+}
+
+.todo-scratch {
+    text-decoration: line-through;
+}
+
+.nodots {
+    list-style-type: none;
+}
+
+.todo-text, p.todo-text {
+    width: 100%;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.todo-bordered {
+    border: 2px solid $uYellow;
+}
+
+div#tasks, div#sortitems, div#filters { padding: 0 .5rem; } 
+
+.todo-text {
+    color: white;
+}
+
+.itembtns {
+    max-height: 2rem;
+    background: black;
+    font-weight: bold;
+    margin: 0 .25rem;
+}
+
+.editbtn, .markbtn, .delbtn {
+    border-radius: $radius;
+}
+
+.editbtn {    
+    color: $skyblue;
+    border: 1px solid $skyblue;
+}
+
+.markbtn {    
+    color: $hotpink;
+    border: 1px solid $hotpink;
+}
+
+.delbtn {  
+    color: $redorange;
+    border: 1px solid $redorange;
+}
+
+.undone {   
+    color: $uYellow;
+    border: 1px solid $uYellow;
+
+}
+
+#srchbar {
+    display: flex;
+    flex-direction: row;
+    & #srchinput {
+        width: 12rem;
+        height: 1.5rem;
+        margin: 0 .5rem 0;
+        font-weight: bold;
+        background: $limegreen;
+        color: black;
+    }
+}
+
+#todocontainer { margin: 0 auto; }
+
+p { padding: 0;  margin: 4px; }
+
+#todocontainer {
+    background: black;
+    text-align: center;
+    margin: 0 auto;
+    & #header1 {
+        margin-bottom: 0;
+    }
+    & #todos, #dtodos {
+        color: white;
+        margin: auto;
+        & li.listitem {
+            max-height: 10rem;
+            margin: 0 auto;
+            padding: .5rem;
+            max-width: 100%;
+            border: $goalborder;
+            & .task {
+                height: 3vh;
+                text-align: left;
+                max-width: 100%;
+                padding: .5vw;
+                margin: 0;
+            }
+        }
+    }
+    & #addbar {
+        cursor: pointer;
+        height: 8vw;
+        padding: 0;
+        margin: 0 auto;
+        height: 2rem;
+        & #goalinput, #catinput {
+            background: $yellow;
+            margin: 0 .5rem ;
+        }
+    }
+    & #listfooter {
+        max-height: 10rem;
+        padding: .25rem;
+        margin: 2vw;
+        justify-content: space-around;
+        
+        & #filters {
+            margin: 0;
+            display: flex; 
+            flex-direction: row;
+        }
+        & p#tasks {
+            font-size: $font2;
+            text-align: left;
+            margin: 1vw auto;
+            max-height: 6vh;
+            width: 100%;
+        }
+        & #allbtn, #actbtn, #donebtn {
+            border: $dotborder;
+            
+        }
+    }
+    &  {
+        padding: 1vh;
+        text-align: center;
+        font-weight: bolder;
+    }
+}
+
+.scroll-container {
+    position: fixed;
+}
+
+.js-scroll {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+   
+  .js-scroll.scrolled {
+    opacity: 1;
+  }
+
+  .js-scroll {
+    width: 50%;
+    height: 300px;
+    background-color: #DADADA;
+    transition: background-color 500ms;
+  }
+   
+  .js-scroll.scrolled {
+    background-color: aquamarine;
+  }
+
+// .mobileShow { display: inline; }
+
+// .mobileHide { display: none; }
+
+/* Smartphone Portrait and Landscape */
+
+h1.title, li.cert-text { font-size: $font5; }
+h2.title, .sources { font-size: $font4; }
+h3.title { font-size: $font3; }
+h4.title { font-size: $font2; }
+h6.title { font-size: $font2; }
+p.normal-text, li a, #autofooter a, .source, li.title, h5.title { font-size: $font2; }
