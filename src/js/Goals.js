@@ -1,5 +1,5 @@
 import { readFromLS, writeToLS } from "./ls.js";
-import { qs, createLMNT, setFooter, getDate } from "./utilities.js";
+import { qs, createLMNT, setFooter, gd, se } from "./utilities.js";
 
 // // make some waves.
 // var ocean = document.getElementById("ocean"),
@@ -42,9 +42,7 @@ export default class GoalList {
         this.alphabtn = qs('#alpha');
         this.catbtn = qs('#cat');
         this.timebtn = qs('#time');
-        //this.srchbtn = onTouch(this.srchbtn, () => this.listSearchFiltered());
         this.srchbtn.addEventListener('click', () => { this.listSearchFiltered(); }, false);
-        //this.srchbtn2.addEventListener('click', () => { this.listSearchFiltered(); }, false);
         //this.addbtn.onTouch(), this.addGoal();
         this.addbtn.addEventListener('click', () => { this.addGoal(); }, false);
         this.allbtn.addEventListener('click', () => { this.listAll(); }, false);
@@ -88,7 +86,7 @@ export default class GoalList {
         while (this.searchTerm === "" || this.searchTerm.length < 3) {
             this.searchTerm = qs("#srchinput").value;
             let searchError = qs("#searcherror");
-            searchError.innerText = 'Search term is too short, please enter more characters';
+            se('Search term is too short, please enter more characters', searchError);
         }
         this.goalList.forEach((goal) => {
             if ((goal.task.toLowerCase().includes(this.searchTerm.toLowerCase())) || (goal.category.toLowerCase().includes(this.searchTerm.toLowerCase()))) {
@@ -181,7 +179,7 @@ export default class GoalList {
         }
     }
 
-    chkLength(input) {
+    chkLength = (input) => {
         // grab input from form
         let getInput = qs(input);
         let inputValue = 'blank';
@@ -251,7 +249,7 @@ export default class GoalList {
             // createLMNT(LMNT, type, id, text, class)
             const item = createLMNT('div', '', goal.id, '', 'listitem nodots');
             // get date from goal.id
-            const itemtext = createLMNT("p", "", "", `${getDate(goal.id)}\n ${goal.category}: ${goal.task}`, "todo-text task");
+            const itemtext = createLMNT("p", "", "", `${gd(goal.id)}\n ${goal.category}: ${goal.task}`, "todo-text task");
             // const markbtn = createLMNT("input", "checkbox", `mark${goal.id}`, "", "itembtns markbtn chkbtn"); //  "✕"
 
             const markbtn = createLMNT("button", "button", `mark${goal.id}`, "Done", "itembtns markbtn chkbtn");

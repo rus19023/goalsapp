@@ -7,11 +7,11 @@ export const qs = selector => {
     return document.querySelector(selector);
 }
 
-export function getDate(id) {
+export const gd =  (id) => {
     return new Date(+id).toLocaleDateString();
 }
 
-export function showError(errorText, el) {
+export const se = (errorText, el) => {
     console.log("errorText: ", errorText);
     el.innerText = errorText;
 }
