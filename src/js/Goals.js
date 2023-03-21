@@ -2,19 +2,19 @@ import { readFromLS, writeToLS } from "./ls.js";
 import { qs, createLMNT, setFooter, gd, se } from "./utilities.js";
 
 // // make some waves.
-// var ocean = document.getElementById("ocean"),
-//     waveWidth = 10,
-//     waveCount = Math.floor(window.innerWidth/waveWidth),
-//     docFrag = document.createDocumentFragment();
+ var ocean = document.getElementById("ocean"),
+     waveWidth = 10,
+     waveCount = Math.floor(window.innerWidth/waveWidth),
+     docFrag = document.createDocumentFragment();
 
-// for(var i = 0; i < waveCount; i++){
-//   var wave = document.createElement("div");
-//   wave.className += " wave";
-//   docFrag.appendChild(wave);
-//   wave.style.left = i * waveWidth + "px";
-//   wave.style.AnimationDelay = (i/100) + "s";
-// }
-// ocean.appendChild(docFrag);
+ for(var i = 0; i < waveCount; i++){
+   var wave = document.createElement("div");
+   wave.className += " wave";
+   docFrag.appendChild(wave);
+   wave.style.left = i * waveWidth + "px";
+   wave.style.AnimationDelay = (i/100) + "s";
+ }
+ ocean.appendChild(docFrag);
 
 let goalList = [];
 const listkey = 'items';
@@ -179,22 +179,28 @@ export default class GoalList {
         }
     }
 
-    chkLength = (input) => {
-        // grab input from form
-        let getInput = qs(input);
-        let inputValue = 'blank';
-        if (inputValue.length > 0) { inputValue = getInput.value; }
-        console.log("inputValue: ", inputValue);
-        let inputName = input.substring(1, input.length);
-        console.log("inputName: ", inputName);
-        if (inputValue.length < 3) {
-            let errorEl = qs('#goal-error');
-            errorEl.innerText = `${inputName} too short, please enter longer text for ${inputName}.`;
-            return '';
-        } else {
-            return inputValue;
-        }
-    }
+    // // Gets input from the given element and checks for length of text entered (must be at least 3 characters)
+    // chkLength = (input) => {
+    //     //debugger;
+    //     // grab input from form
+    //     let getInput = qs(input);
+    //     console.log("getInput: ", getInput);
+    //     if (getInput.length > 0) { 
+    //         getInput = getInput.value; 
+    //         console.log("getInput: ", getInput);
+    //     }
+    //     //console.log("getInput: ", getInput);
+    //     // get input name from params minus the '#' to display in error for user
+    //     let inputName = input.substring(1, input.length);
+    //     console.log("inputName: ", inputName);
+    //     if (getInput.length < 3) {
+    //         let errorEl = qs('#goal-error');
+    //         errorEl.innerText = `${inputName} too short, please enter longer text for ${inputName}.`;
+    //         return '';
+    //     } else {
+    //         return getInput;
+    //     }
+    // }
 
     getListHeading(sort, filter) {
         let title = `My Goals\n ${filter} sorted by ${sort}`;
@@ -203,34 +209,39 @@ export default class GoalList {
     }
 
     addGoal() {
+        //debugger;
         console.log('addGoal() invoked'); 
         // grab category input from add goal form
-        const category = this.chkLength('#catinput');
+        const catText = qs('#catinput');
+        //let catText = category.value;
         // check if category input is blank
-        if (category.length === 0) {
-
+        if (catText.value.length === 0) {
             // if it's blank, set it to 'General'
-            category = 'General';
-        } else {
-
-            // not blank, add a goal number
-            this.goalCount++;
-            if (this.goalCount < 9) {
-                category;//  += '-0' + this.goalCount.toString();
-            } else {
-                category;//  += '-'+ this.goalCount.toString();          
-            }
-        }
+            catText.value = 'General';
+        } 
+        // else 
+        // {
+        //     // not blank, add a goal number, my preference only
+        //     this.goalCount++;
+        //     if (this.goalCount < 9) {
+        //         catText;//  += '-0' + this.goalCount.toString();
+        //     } else {
+        //         catText;//  += '-'+ this.goalCount.toString();          
+        //     }
+        // }
     
         // check for goal input not blank
-        const goal = this.chkLength('#goalinput');
+        const goal = qs('#goalinput');
         //if (goal.length == 0) { goal.push('Custom goal'); }
             // goal is ok, add to list for storage with others
             console.log("inside addGoal, just before saveGoal");
-            console.log(`category: ${category}`);
+            console.log(`catText: ${catText}`);
+            console.log(`catText.value: ${catText.value}`);
+            console.log(`goal: ${goal}`);
+            console.log(`goal.value: ${goal.value}`);
             //console.log(`value: ${value}`);
-            //prompt('stop here');
-            saveGoal(category, goal); 
+            //alert('stop here');
+            saveGoal(catText.value, goal.value); 
             //qs("#addinput").value = '';
         // display the list on screen
         console.log(`this.goalList: ${this.goalList}`);

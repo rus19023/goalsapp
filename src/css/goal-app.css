@@ -108,7 +108,7 @@ input[type=checkbox].markbtnX {
   grid-template-areas: "tasks" "sortitems" "filters" "srchbar" "addbar";
 }
 
-z #header1 {
+#header1 {
   grid-area: header1;
 }
 
@@ -234,9 +234,19 @@ p.todo-text.cat {
     padding: 0.5rem;
   }
 }
+@media screen and (min-width: 500px) {
+  .itembtns {
+    max-width: 5vw;
+    margin: 0 0.02vw;
+  }
+}
 @media screen and (min-width: 700px) {
   body {
     font-size: 16px;
+  }
+  .itembtns {
+    max-width: 2.5vw;
+    margin: 0 0.2vw;
   }
 }
 @media screen and (min-width: 768px) {
@@ -245,6 +255,10 @@ p.todo-text.cat {
   }
   .color3 {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .itembtns {
+    max-width: 1.25vw;
+    margin: 0 0.1vw;
   }
 }
 @media screen and (min-width: 992px) {
@@ -276,10 +290,6 @@ body {
 
 label {
   font-size: medium;
-}
-
-div {
-  margin: 0.5rem auto;
 }
 
 div.sticky { /* Safari */
@@ -635,9 +645,13 @@ a:hover {
   background: hsl(210, 100%, 40%);
   font-size: 1rem;
   width: 35%;
-  margin: 0.25rem;
-  margin: 0.25rem;
+  margin: 0 0.25rem;
   max-width: 3rem;
+}
+
+#goalinput, #catinput {
+  background: hsl(48, 100%, 50%);
+  margin: 0 0.25rem;
 }
 
 .warning {
@@ -670,7 +684,7 @@ a:hover {
 }
 
 div#tasks, div#sortitems, div#filters {
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 .todo-text {
@@ -678,7 +692,8 @@ div#tasks, div#sortitems, div#filters {
 }
 
 .itembtns {
-  max-height: 2rem;
+  max-height: 30px;
+  max-width: 20vw;
   background: black;
   font-weight: bold;
   margin: 0 0.25rem;
@@ -745,7 +760,7 @@ p {
 #todocontainer #todos li.listitem, #todocontainer #dtodos li.listitem {
   max-height: 10rem;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: 0.25rem;
   max-width: 100%;
   border: 2px solid white;
 }
@@ -762,10 +777,6 @@ p {
   padding: 0;
   margin: 0 auto;
   height: 2rem;
-}
-#todocontainer #addbar #goalinput, #todocontainer #addbar #catinput {
-  background: hsl(48, 100%, 50%);
-  margin: 0 0.5rem;
 }
 #todocontainer #listfooter {
   max-height: 10rem;

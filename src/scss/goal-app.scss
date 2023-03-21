@@ -27,10 +27,6 @@ label {
     font-size: medium;
 }
 
-div {
-    margin: .5rem auto;
-}
-
 div.sticky {
     position: -webkit-sticky; /* Safari */
     position: sticky;
@@ -372,9 +368,13 @@ a:hover {
     background: $medblue;
     font-size: $font2;
     width: 35%;
-    margin: .25rem;
-    margin: .25rem;
+    margin: 0 .25rem ;
     max-width: 3rem;
+}
+
+#goalinput, #catinput {
+    background: $yellow;
+    margin: 0 .25rem ;
 }
 
 .warning {
@@ -406,14 +406,15 @@ a:hover {
     border: 2px solid $uYellow;
 }
 
-div#tasks, div#sortitems, div#filters { padding: 0 .5rem; } 
+div#tasks, div#sortitems, div#filters { padding: .5rem; } 
 
 .todo-text {
     color: white;
 }
 
 .itembtns {
-    max-height: 2rem;
+    max-height: 30px;
+    max-width: 20vw;
     background: black;
     font-weight: bold;
     margin: 0 .25rem;
@@ -474,7 +475,7 @@ p { padding: 0;  margin: 4px; }
         & li.listitem {
             max-height: 10rem;
             margin: 0 auto;
-            padding: .5rem;
+            padding: .25rem;
             max-width: 100%;
             border: $goalborder;
             & .task {
@@ -492,10 +493,6 @@ p { padding: 0;  margin: 4px; }
         padding: 0;
         margin: 0 auto;
         height: 2rem;
-        & #goalinput, #catinput {
-            background: $yellow;
-            margin: 0 .5rem ;
-        }
     }
     & #listfooter {
         max-height: 10rem;

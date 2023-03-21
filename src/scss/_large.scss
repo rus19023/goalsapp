@@ -1,7 +1,20 @@
+@media screen and (min-width: 500px) {    
+    .itembtns {
+        max-width: 5vw;
+        margin: 0 .02vw;
+    }
+}
+
+
 @media screen and (min-width: 700px) {
 
     body {
         font-size: 16px;
+    }
+
+    .itembtns {
+        max-width: 2.5vw;
+        margin: 0 .2vw;
     } 
 
     // #addinput, #searchinput {
@@ -21,6 +34,11 @@
   .color3 {
       grid-template-columns: 1fr 1fr 1fr;
   }
+
+  .itembtns {
+      max-width: 1.25vw;
+      margin: 0 .1vw;
+  } 
 }
 
 @media screen and (min-width: 992px) {

@@ -29,7 +29,6 @@
     "srchbar"
     "addbar";
 }
-z
 
 #header1 {
     grid-area: header1;
@@ -38,8 +37,7 @@ z
 #todos, #dtodos {
     grid-area: todos;
     grid-template-areas:
-    "listitem"
-    ;
+    "listitem";
 }
 
 .padit {
