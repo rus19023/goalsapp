@@ -23,6 +23,7 @@ body {
     border: 2px solid $uYellow;
 }
 
+
 label {
     font-size: medium;
 }
@@ -45,6 +46,12 @@ footer {
     font-weight: bold;
     font-size: large;
     color: white;
+}
+
+.hotpink {
+    color: lighten($hotpink, 25%);
+    font-weight: bolder;
+    font-size: larger;
 }
 
 .bublue {
@@ -414,7 +421,7 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
 
 .itembtns {
     max-height: 30px;
-    max-width: 20vw;
+    max-width: 15vw;
     background: black;
     font-weight: bold;
     margin: 0 .25rem;
@@ -437,6 +444,7 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
 .delbtn {  
     color: $redorange;
     border: 1px solid $redorange;
+    width: 8vw;
 }
 
 .undone {   

@@ -226,7 +226,7 @@ p.todo-text.cat {
 @media screen and (min-width: 300px) {
   .listitem {
     padding: 0.5rem;
-    grid-template-columns: 2fr 2fr 2fr 8fr;
+    grid-template-columns: 2fr 2fr 1fr 9fr;
   }
 }
 @media screen and (min-width: 600px) {
@@ -309,6 +309,12 @@ footer {
   font-weight: bold;
   font-size: large;
   color: white;
+}
+
+.hotpink {
+  color: #ff4dff;
+  font-weight: bolder;
+  font-size: larger;
 }
 
 .bublue {
@@ -693,7 +699,7 @@ div#tasks, div#sortitems, div#filters {
 
 .itembtns {
   max-height: 30px;
-  max-width: 20vw;
+  max-width: 15vw;
   background: black;
   font-weight: bold;
   margin: 0 0.25rem;
@@ -716,6 +722,7 @@ div#tasks, div#sortitems, div#filters {
 .delbtn {
   color: #cc0000;
   border: 1px solid #cc0000;
+  width: 8vw;
 }
 
 .undone {

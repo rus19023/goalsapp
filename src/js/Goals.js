@@ -106,16 +106,16 @@ export default class GoalList {
         const itemcount = this.goalList.length;
         let t;
         if (itemcount === 1) {
-          t = ' goal ';
+          t = ' GOAL ';
         } else if ((itemcount > 1) || (itemcount === 0)) {
-          t = ' goals ';
+          t = ' GOALS ';
         }
         let goaltext = '';
         let done = this.goalList.filter(item => item.done === true).length;
         let pending = (itemcount - done);
         switch (filter) {
             case ('All'):
-                goaltext = 'Working on it: ' + pending + t + ', Achieved: ' + done + t;
+                goaltext = `${pending} ${t} TO WORK ON, ${done} ${t} ACHIEVED!`;
                 this.allbtn.classList.add('goalbordered');
                 this.srchbtn.classList.remove('goalbordered');
                 this.pendbtn.classList.remove('goalbordered');
@@ -123,7 +123,7 @@ export default class GoalList {
                 break;
 
             case ("Working on it"):
-                goaltext = `Working on it: ${pending} ${t}`;
+                goaltext = `${pending} ${t} TO WORK ON`;
                 this.pendbtn.classList.add('goalbordered');
                 this.allbtn.classList.remove('goalbordered');
                 this.pendbtn.classList.remove('goalbordered');
@@ -131,7 +131,7 @@ export default class GoalList {
                 break;
 
             case ('Achieved'):
-                goaltext = `Achieved: ${done} ${t}`;
+                goaltext = `${done} ${t} ACHIEVED!`;
                 this.donebtn.classList.add('goalbordered');
                 this.allbtn.classList.remove('goalbordered');
                 this.pendbtn.classList.remove('goalbordered');
@@ -212,7 +212,7 @@ export default class GoalList {
         //debugger;
         console.log('addGoal() invoked'); 
         // grab category input from add goal form
-        const catText = qs('#catinput');
+        const catText = qs('#catinput').toUpperCase();
         //let catText = category.value;
         // check if category input is blank
         if (catText.value.length === 0) {
@@ -260,12 +260,12 @@ export default class GoalList {
             // createLMNT(LMNT, type, id, text, class)
             const item = createLMNT('div', '', goal.id, '', 'listitem nodots');
             // get date from goal.id
-            const itemtext = createLMNT("p", "", "", `${gd(goal.id)}\n ${goal.category}: ${goal.task}`, "todo-text task");
+            const itemtext = createLMNT("p", "", "", `${gd(goal.id)}\n ${goal.category.toUpperCase()}: ${goal.task}`, "todo-text task");
             // const markbtn = createLMNT("input", "checkbox", `mark${goal.id}`, "", "itembtns markbtn chkbtn"); //  "✕"
 
             const markbtn = createLMNT("button", "button", `mark${goal.id}`, "Done", "itembtns markbtn chkbtn");
             const editbtn = createLMNT("button", "button", `edit${goal.id}`, "Edit", "itembtns editbtn chkbtn");
-            const delbtn = createLMNT("button", "button", `del${goal.id}`, "Delete", "itembtns delbtn chkbtn"); 
+            const delbtn = createLMNT("button", "button", `del${goal.id}`, "✕", "itembtns delbtn chkbtn"); 
             //"✕"
 
             // Done tasks show as "scratched out or lined out"
