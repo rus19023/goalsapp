@@ -212,7 +212,7 @@ export default class GoalList {
         //debugger;
         console.log('addGoal() invoked'); 
         // grab category input from add goal form
-        const catText = qs('#catinput').toUpperCase();
+        const catText = qs('#catinput');
         //let catText = category.value;
         // check if category input is blank
         if (catText.value.length === 0) {
@@ -241,7 +241,7 @@ export default class GoalList {
             console.log(`goal.value: ${goal.value}`);
             //console.log(`value: ${value}`);
             //alert('stop here');
-            saveGoal(catText.value, goal.value); 
+            saveGoal(catText.value.toUpperCase(), goal.value); 
             //qs("#addinput").value = '';
         // display the list on screen
         console.log(`this.goalList: ${this.goalList}`);
