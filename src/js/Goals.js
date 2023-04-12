@@ -16,7 +16,7 @@ export default class GoalList {
         this.goal_error = '';
         this.sortval = 'Category';
         this.filter = 'Working on it';
-        this.searchTerm = qs('#srchinput');
+        this.searchTerm = '';
         this.srchbtn = qs('#srchbtn');
         this.allbtn = qs('#allbtn');
         this.pendbtn = qs('#pendbtn');
@@ -25,8 +25,8 @@ export default class GoalList {
         this.duedatebtn = qs('#duedate');
         this.catbtn = qs('#cat');
         this.timebtn = qs('#time');
-        this.srchbtn.addEventListener('click', () => { this.listSearchFiltered(); }, false);
-        //this.addbtn.onTouch(), this.addGoal();
+        this.srchbtn.addEventListener('click', () => { this.setSearchTerm(); }, false);
+        // TODO: this.addbtn.onTouch(), this.addGoal();
         this.addbtn.addEventListener('click', () => { this.addGoal(); }, false);
         this.allbtn.addEventListener('click', () => { this.listAll(); }, false);
         this.pendbtn.addEventListener('click', () => { this.listPending(); }, false);
@@ -67,6 +67,11 @@ export default class GoalList {
         this.renderList('goals');
     }
 
+    setSearchTerm() {
+        this.searchTerm = qs('#srchinput').value;
+        this.renderList('goals');
+    }
+
     getList(listkey) {
         // Get list of tasks from storage
         let goalList = getGoals(listkey);
@@ -74,7 +79,7 @@ export default class GoalList {
         
         // Filter list by search term if any
         if (this.searchTerm.length > 0) {
-            goalList = listSearchFiltered(goalList);
+            goalList = this.listSearchFiltered(goalList);
             console.log('\n goalList (getList srchFilter): ', goalList);
         }
         
@@ -115,10 +120,11 @@ export default class GoalList {
     }
 
     listSearchFiltered(list) {
+        console.log('list: ', list);
         this.searchTerm = qs("#srchinput").value;
         let newlist = [];
         // Check for missing search term entry
-        while (this.searchTerm === "" || this.searchTerm.length < 3) {
+        while (this.searchTerm === '' || this.searchTerm.length < 3) {
             this.searchTerm = qs("#srchinput").value;
             let searchError = qs("#searcherror");
             se('Search term is too short, please enter more characters', searchError);
@@ -244,6 +250,8 @@ export default class GoalList {
                 break;
         }
         if (this.searchTerm.length > 0) {
+            let srchList = this.listSearchFiltered(goalList);
+            let srchcount = srchList.length;
             srchtext = `,\nSearch results: ${srchcount} ${t} found for "${this.searchTerm}"`;
             console.log('itemsLeft() in srchTerm>0');
         }
