@@ -423,7 +423,7 @@ function editGoal(id) {
 function markDone(id) {
     console.log('markDone() invoked');
     console.log('id: ', id);
-    donedate = new Date();
+    let donedate = new Date();
     let goalList = getGoals(listkey);
     goalList.forEach(function(item) {
         // use == (not ===) because here types are different. One is number and other is string
