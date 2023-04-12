@@ -304,6 +304,7 @@ a:hover {
 
 #autofooter {
     font-weight: bold;
+    color: $uYellow;
     text-align: center;
     padding: 1rem;
     margin-bottom: 6vh;
@@ -420,7 +421,6 @@ a:hover {
 
 .warning {
     color: lighten($warning, 5%);
-    padding: .5rem;
 }
 
 .success {
@@ -483,23 +483,26 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
 
 .editbtn {    
     color: $skyblue;
-    border: 1px solid $skyblue;
+    border: 2px solid $skyblue;
 }
 
 .markbtn {    
     color: $hotpink;
-    border: 1px solid $hotpink;
+    border: 2px solid $hotpink;
 }
 
 .delbtn {  
     color: $redorange;
-    border: 1px solid $redorange;
+    border: 2px solid $redorange;
     width: 8vw;
+    padding: .02rem;
+    font-size: $font3;
+    font-weight: 900;
 }
 
 .undone {   
     color: $uYellow;
-    border: 1px solid $uYellow;
+    border: 2px solid $uYellow;
 }
 
 #srchbar {

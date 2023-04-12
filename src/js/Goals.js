@@ -165,7 +165,7 @@ export default class GoalList {
             // Buttons
             const markbtn = createLMNT('button', 'button', `mark${goal.id}`, 'Done', 'itembtns markbtn chkbtn');
             const editbtn = createLMNT('button', 'button', `edit${goal.id}`, 'Edit', 'itembtns editbtn chkbtn');
-            const delbtn = createLMNT('button', 'button', `del${goal.id}`, '✕', 'itembtns delbtn chkbtn'); 
+            const delbtn = createLMNT('button', 'button', `del${goal.id}`, '✕', 'itembtns delbtn chkbtn warning'); 
             //'✕'
             // Display done tasks as 'scratched out'
             if (goal.done === true) {

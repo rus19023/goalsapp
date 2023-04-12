@@ -596,6 +596,7 @@ a:hover {
 
 #autofooter {
   font-weight: bold;
+  color: hsl(48, 100%, 50%);
   text-align: center;
   padding: 1rem;
   margin-bottom: 6vh;
@@ -712,7 +713,6 @@ a:hover {
 
 .warning {
   color: #ff6666;
-  padding: 0.5rem;
 }
 
 .success {
@@ -777,23 +777,26 @@ div#tasks, div#sortitems, div#filters {
 
 .editbtn {
   color: #00b3ff;
-  border: 1px solid #00b3ff;
+  border: 2px solid #00b3ff;
 }
 
 .markbtn {
   color: #cc00cc;
-  border: 1px solid #cc00cc;
+  border: 2px solid #cc00cc;
 }
 
 .delbtn {
   color: #cc0000;
-  border: 1px solid #cc0000;
+  border: 2px solid #cc0000;
   width: 8vw;
+  padding: 0.02rem;
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
 .undone {
   color: hsl(48, 100%, 50%);
-  border: 1px solid hsl(48, 100%, 50%);
+  border: 2px solid hsl(48, 100%, 50%);
 }
 
 #srchbar {
