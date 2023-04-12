@@ -788,8 +788,10 @@ div#tasks, div#sortitems, div#filters {
 .delbtn {
   color: #cc0000;
   border: 2px solid #cc0000;
-  width: 8vw;
-  padding: 0.02rem;
+  width: 2rem;
+  height: 4rem;
+  padding: 1%;
+  margin: 0;
   font-size: 1.5rem;
   font-weight: 900;
 }

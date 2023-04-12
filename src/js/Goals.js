@@ -423,12 +423,15 @@ function editGoal(id) {
 function markDone(id) {
     console.log('markDone() invoked');
     console.log('id: ', id);
+    donedate = new Date();
     let goalList = getGoals(listkey);
     goalList.forEach(function(item) {
         // use == (not ===) because here types are different. One is number and other is string
         if (`${item.id}` == id) {
-          // toggle the value
+          // toggle the Done boolean value
           item.done = !item.done;
+          // Set the done date to now
+          item.donedate = donedate;
         }
     });
     // save modified JSON.stringified list to ls
