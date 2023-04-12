@@ -11,6 +11,16 @@ export const gd = (id) => {
     return new Date(+id).toLocaleDateString();
 }
 
+export const gt = (id) => {
+    var date = new Date(+id);
+    var hours = date.getHours() < 12 ? date.getHours() : date.getHours() - 12;
+    hours = 0 ? 12 : hours;
+    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    //var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    var amPM = date.getHours() < 12 ? 'AM' : 'PM';
+        return hours + ":" + minutes + amPM //+ ":" + seconds;     
+}
+
 export const se = (errorText, el) => {
     console.log("errorText: ", errorText);
     el.innerText = errorText;
@@ -107,7 +117,25 @@ export function getURL() {
     
 }
 
+// make some waves for background
+export function makeWaves() {
+    var ocean = document.getElementById("ocean"),
+        waveWidth = 10,
+        waveCount = Math.floor(window.innerWidth/waveWidth),
+        docFrag = document.createDocumentFragment();
+   
+    for(var i = 0; i < waveCount; i++){
+      var wave = document.createElement("div");
+      wave.className += " wave";
+      docFrag.appendChild(wave);
+      wave.style.left = i * waveWidth + "px";
+      wave.style.AnimationDelay = (i/100) + "s";
+    }
+    ocean.appendChild(docFrag);
+}
+
 /* Countries dropdown
+// TODO: Pull countries from database storage
 
 export function getCountry(dropDownName) {
     const parentEl = qs(`#${dropDownName}`);

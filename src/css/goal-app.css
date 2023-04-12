@@ -101,11 +101,28 @@ input[type=checkbox].markbtnX {
   grid-template-areas: "todos";
 }
 
+#socialshare {
+  grid-area: socialshare;
+}
+
+#addbar {
+  grid-area: addbar;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "catinput goalinput addbtn";
+}
+
+#sharecontainer {
+  grid-area: share;
+  grid-template-columns: 1fr;
+  grid-auto-rows: max-content;
+  grid-template-areas: socialshare srchbar addbar addbar;
+}
+
 #listfooter {
   display: grid;
   grid-area: utilities;
   grid-template-columns: 1fr;
-  grid-template-areas: "tasks" "sortitems" "filters" "srchbar" "addbar";
+  grid-template-areas: "tasks" "sortitems" "filters";
 }
 
 #header1 {
@@ -115,44 +132,6 @@ input[type=checkbox].markbtnX {
 #todos, #dtodos {
   grid-area: todos;
   grid-template-areas: "listitem";
-}
-
-.padit {
-  padding: 4vw;
-  margin: 1vh auto;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 0 auto;
-}
-
-.listitem {
-  grid-area: listitem;
-  display: grid;
-  grid-template-areas: "markbtn editbtn delbtn task";
-}
-
-.markbtn {
-  grid-area: markbtn;
-}
-
-p.todo-text.cat {
-  grid-area: cat;
-}
-
-.task {
-  grid-area: task;
-}
-
-.delbtn {
-  grid-area: delbtn;
-}
-
-.editbtn {
-  grid-area: editbtn;
 }
 
 #filters {
@@ -191,17 +170,6 @@ p.todo-text.cat {
   grid-area: srchinput;
 }
 
-#addbar {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: auto;
-  padding: 0.5vh;
-  grid-area: addbar;
-  grid-template-areas: "catinput" "goalinput" "addbtn";
-}
-
 #goalinput {
   grid-area: goalinput;
 }
@@ -211,16 +179,60 @@ p.todo-text.cat {
 }
 
 #catinput, #goalinput, #addbtn, #srchbtn, #srchinput, .sharer {
-  height: 1.5rem;
   padding: 0 1vh;
 }
 
 #goalinput, #catinput {
-  width: 100%;
+  width: 50%;
 }
 
 #addbtn {
   grid-area: addbtn;
+}
+
+.flexrow {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.padit {
+  padding: 4vw;
+  margin: 1vh auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.listitem {
+  grid-area: listitem;
+  display: grid;
+  grid-template-areas: "markbtn editbtn delbtn task";
+}
+
+.markbtn {
+  grid-area: markbtn;
+}
+
+p.todo-text.cat {
+  grid-area: cat;
+}
+
+.task {
+  grid-area: task;
+}
+
+.delbtn {
+  grid-area: delbtn;
+}
+
+.editbtn {
+  grid-area: editbtn;
 }
 
 @media screen and (min-width: 300px) {
@@ -284,12 +296,27 @@ body {
   background-attachment: fixed;
 }
 
+#gridcontainer {
+  background: black;
+  margin: 1rem 0;
+}
+
 .goalbordered {
   border: 2px solid hsl(48, 100%, 50%);
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  text-align: left;
+}
+
 label {
   font-size: medium;
+  text-align: center;
 }
 
 div.sticky { /* Safari */
@@ -361,6 +388,10 @@ footer {
   background: #6600cc;
 }
 
+.black {
+  color: black;
+}
+
 .bchartreuse {
   background: #b3ff00;
 }
@@ -391,8 +422,8 @@ footer {
 
 .centered {
   text-align: center;
-  max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
 }
 
 .showborder {
@@ -401,13 +432,9 @@ footer {
 }
 
 .sharer {
-  margin: 0 auto;
   background: black;
   border: none;
-}
-.sharer img {
-  height: 3vh;
-  width: 3vh;
+  margin: 0;
 }
 
 h1,
@@ -460,6 +487,10 @@ p,
 header,
 section {
   font-family: "Hubballi", sans-serif;
+}
+
+div.m-2 {
+  padding-bottom: 9px;
 }
 
 .morespc {
@@ -520,6 +551,11 @@ a:hover {
   color: #ff33ff;
 }
 
+#sharecontainer {
+  padding: 1rem;
+  height: 9rem;
+}
+
 #siteTitle2 {
   color: #b3ff00;
   font-family: "Hubballi", sans-serif;
@@ -534,14 +570,12 @@ a:hover {
   border: none;
 }
 
-#social-share, #left1, #right1 {
-  text-align: left;
-  background: black;
+#socialshare, #left1, #right1 {
   padding: 0.5rem;
-  margin: 0;
 }
 
-.inputs {
+.inputs, #duedateinput {
+  cursor: pointer;
   color: #3333ff;
   background: hsl(48, 100%, 50%);
   padding: 0.5rem;
@@ -589,8 +623,10 @@ a:hover {
 }
 
 .socialicons {
-  width: 1rem;
-  height: 1rem;
+  cursor: pointer;
+  background: black;
+  width: 25px;
+  height: 25px;
 }
 
 .italic {
@@ -603,6 +639,7 @@ a:hover {
 }
 
 #root a {
+  cursor: pointer;
   color: #b3ff00;
   text-decoration: none;
   font-weight: bold;
@@ -613,6 +650,7 @@ a:hover {
 }
 
 .btns {
+  cursor: pointer;
   max-height: 1.5rem;
   border: 2px solid white;
   border-radius: 4px;
@@ -646,23 +684,46 @@ a:hover {
   -o-border-radius: 4px;
 }
 
-#addbtn {
-  color: hsl(48, 100%, 50%);
-  background: hsl(210, 100%, 40%);
-  font-size: 1rem;
-  width: 35%;
-  margin: 0 0.25rem;
-  max-width: 3rem;
+#addbar {
+  background: black;
+  height: 8vw;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr;
+  padding: 0;
+  margin: 0;
+  height: 1rem;
 }
 
-#goalinput, #catinput {
-  background: hsl(48, 100%, 50%);
-  margin: 0 0.25rem;
+#addbtn {
+  color: hsl(48, 100%, 50%);
+  cursor: pointer;
+  background: hsl(210, 100%, 40%);
+  font-size: 1rem;
+  padding: 0.1rem 0.5rem;
+}
+
+#goalinput, #catinput, #duedateinput {
+  cursor: pointer;
+  margin: 0;
+  width: 75%;
+  padding: 0 0.25rem;
 }
 
 .warning {
-  color: #ff4d4d;
+  color: #ff6666;
   padding: 0.5rem;
+}
+
+.success {
+  color: #00ff4d;
+  padding: 0.5rem;
+}
+
+.task-text {
+  text-align: left;
+  font-weight: bolder;
+  font-size: small;
 }
 
 .white {
@@ -693,11 +754,16 @@ div#tasks, div#sortitems, div#filters {
   padding: 0.5rem;
 }
 
+.sortitems {
+  cursor: pointer;
+}
+
 .todo-text {
   color: white;
 }
 
 .itembtns {
+  cursor: pointer;
   max-height: 30px;
   max-width: 15vw;
   background: black;
@@ -734,10 +800,11 @@ div#tasks, div#sortitems, div#filters {
   display: flex;
   flex-direction: row;
 }
-#srchbar #srchinput {
-  width: 12rem;
+
+#srchinput {
+  cursor: pointer;
   height: 1.5rem;
-  margin: 0 0.5rem 0;
+  margin: 0 1rem;
   font-weight: bold;
   background: #33ff00;
   color: black;
@@ -757,59 +824,55 @@ p {
   text-align: center;
   margin: 0 auto;
 }
-#todocontainer #header1 {
+
+#header1 {
   margin-bottom: 0;
 }
-#todocontainer #todos, #todocontainer #dtodos {
+
+#todos, #dtodos {
   color: white;
   margin: auto;
 }
-#todocontainer #todos li.listitem, #todocontainer #dtodos li.listitem {
+
+li.listitem {
   max-height: 10rem;
   margin: 0 auto;
   padding: 0.25rem;
   max-width: 100%;
-  border: 2px solid white;
 }
-#todocontainer #todos li.listitem .task, #todocontainer #dtodos li.listitem .task {
+
+.task {
   height: 3vh;
   text-align: left;
   max-width: 100%;
   padding: 0.5vw;
   margin: 0;
 }
-#todocontainer #addbar {
-  cursor: pointer;
-  height: 8vw;
-  padding: 0;
-  margin: 0 auto;
-  height: 2rem;
-}
-#todocontainer #listfooter {
+
+#listfooter {
   max-height: 10rem;
   padding: 0.25rem;
   margin: 2vw;
   justify-content: space-around;
 }
-#todocontainer #listfooter #filters {
+
+#filters {
   margin: 0;
   display: flex;
   flex-direction: row;
 }
-#todocontainer #listfooter p#tasks {
+
+p#tasks {
   font-size: 1rem;
   text-align: left;
   margin: 1vw auto;
   max-height: 6vh;
   width: 100%;
 }
-#todocontainer #listfooter #allbtn, #todocontainer #listfooter #actbtn, #todocontainer #listfooter #donebtn {
+
+#allbtn, #actbtn, #donebtn {
+  cursor: pointer;
   border: 2px dotted white;
-}
-#todocontainer {
-  padding: 1vh;
-  text-align: center;
-  font-weight: bolder;
 }
 
 .scroll-container {

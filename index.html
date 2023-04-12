@@ -17,71 +17,85 @@
         <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
         <meta property="og:url" content="https://rus19023.github.io/goalsapp/"/>
         <meta property="og:title" content="'My Goal Journal', designed and built by Doris Rush-Lopez"/>
-        <meta property="og:description" content="Add goals, sort by goal text, category & goal text or timestamp, search goals, edit goals and categories, delete and mark them achieved, and filter goals by all, achieved or pending."/>
-        <meta property="og:site_name" content="My Goal Journal"/>
-        <meta property=”og:image" content="./src/img/todolist.jpg"/>
-
+        <meta property="og:description" content="Add 'SMART' goals, sort by goal text, category & goal text or timestamp, search goals, edit goals and categories, delete and mark them achieved, and filter goals by all, achieved or pending. Keep checking back, new features in the works!"/>
+        <meta property="og:site_name" content="My SMART Goal Journal"/>
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:secure_url" content=".src/img/todolist.jpg"/>
         <title id="wdd330todoapptitle" class="title">My Goal Journal</title>
     </head>
 
     <body>
-        <div id="ocean"></div>
+        <div id="ocean">
         <header class="title col3">
             <section>
-                <h1 id="todoheading" class="title">
-                    My Goal Journal
-                </h1>
+                <h2 id="todoheading" class="title">
+                    My SMART Goal Journal*
+                </h2>
+                <p class="normal-text">*(Specific, Measurable, Achievable, Realistic, Timebound)</p>
             </section>
-            <section>
-                <p class=" marg centered todo-text ">
+            <br>
+            <section id="ukraine">
+                <p class="bold marg centered todo-text ">
                     In solidarity with the Ukraine, the color scheme for this app is based on
                     <a class="lighthover" href="https://en.wikipedia.org/wiki/Flag_of_Ukraine#Design">
                         their flag colors.
                     </a> 
                 </p>
             </section>
-        </header><br>
-        <section class="col-span-1">
-            <div id="social-share">
-                <div class="col-span-4">
-                    <button class="title bgblack">Share: </button>
+        </header>
+        <section id="sharecontainer" class="sharer">
+            <div id="socialshare">
+                <div class="m-2 sharer row">
+                    <span>Share: </span>
                     <button class="sharer"
                         data-sharer="facebook"
-                        data-url="https://rus19023.github.io/ToDoApp/"
-                        data-hashtags="#ToDoApp #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
-                        <img class="centered icons socialicons" src="./src/img/icons/icons8-facebook-96.png" alt="share on Facebook">
+                        data-url="https://rus19023.github.io/goalsapp/"
+                        data-hashtags="#GoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
+                        <img class="centered socialicons" src="./src/img/icons/icons8-facebook-96.png" alt="share on Facebook">
                     </button>
                     <button class="sharer"
                         data-sharer="linkedin"
-                        data-url="https://rus19023.github.io/ToDoApp/"
+                        data-url="https://rus19023.github.io/goalsapp/"
                         data-hashtags="#ToDoApp #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho"
                         >
-                        <img class="centered icons socialicons" src="./src/img/icons/icons8-linkedin-96.png" alt="">
+                        <img class="centered socialicons" src="./src/img/icons/icons8-linkedin-96.png" alt="">
                     </button>
                     <button class="sharer"
                         data-sharer="whatsapp"
                         data-title="Checkout my To Do App! "
-                        data-url="https://rus19023.github.io/ToDoApp/">
-                        <img class="centered icons" src="./src/img/icons/icons8-whatsapp-96.png" alt="">
+                        data-url="https://rus19023.github.io/goalsapp/">
+                        <img class="centered socialicons" src="./src/img/icons/icons8-whatsapp-96.png" alt="">
                     </button>
                 </div>
                 <div id="srchbar" class="todo-text">
-                    <p id="searcherror" class="warning"></p>
-                    <input id="srchinput" type="text" name="srchinput" placeholder="Search in tasks" value="" class="inputs" tabindex="1" required>
+                    <input id="srchinput" type="text" name="srchinput" placeholder="Search goals" value="" class="inputs" tabindex="1" required>
                     <button id="srchbtn" class="btns todobtn">Search</button>
                 </div>
+                <p id="searcherror" class="warning"></p>
             </div>
+            <form id="addbar" class="flexrow">
+                <label for="catinput">
+                    Category
+                    <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs" autofocus>
+                </label>
+                <label for="catinput">
+                    Task
+                    <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs" tabindex=0 required>
+                </label>
+                <label for="duedateinput">
+                    Due Date
+                    <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" class="inputs">
+                </label>
+                <label for="addbtn" class="black"> Add   
+                    <button id="addbtn" class="btns">Add</button>
+                </label>
+            </form>
         </section>
         <main id="gridcontainer">
-            <h2 id="header1" class="centered title">My Goals</h2>
+            <h2 id="header1" class="centered title">My SMART Goals: </h2>
             <div id="left1" class="">
                 <div id="goalcontainer">
                     <p id="taskError"></p>
-                    <form id="addbar" class="">
-                        <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs" autofocus value="">
-                        <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" value="" class="inputs" tabindex=0 required>
-                        <button id="addbtn" class="btns">Add</button>
-                    </form>
                     <div id="goals"></div>
                 </div>
                 <div id="goal-error" class="warning "></div>
@@ -91,16 +105,16 @@
                     <div id="tasks" class="hotpink">_ tasks done.</div>
                     <div id="sortitems">
                          Sort:
-                        <label for="alpha">
-                            <input class="sortitems" type="radio" name="sort" id="alpha" value="Goal">
-                            Goal
+                        <label class="sortitems" for="duedate">
+                            <input type="radio" name="sort" id="duedate" value="Duedate">
+                            Due Date
                         </label>
-                        <label for="time">
-                            <input class="sortitems" type="radio" name="sort" id="time" value="Date" checked>
+                        <label class="sortitems" for="time">
+                            <input type="radio" name="sort" id="time" value="Date" checked>
                             Timestamp
                         </label>
-                        <label for="cat">
-                            <input class="sortitems" type="radio" name="sort" id="cat" value="Category">
+                        <label class="sortitems" for="cat">
+                            <input type="radio" name="sort" id="cat" value="Category">
                             Category
                         </label>
                     </div>
@@ -116,7 +130,7 @@
         <br><br>
         <footer>
             <div class="normal-text centered">
-                All icons from 
+                Icons from 
                 <a href="https://icons8.com">icons8.com</a>
                 <div id="autofooter" class="footer footer-center "></div>
             </div>
