@@ -363,7 +363,7 @@ export default class GoalList {
                     // get id from button id value and delete it
                     //console.log(btnid);
                     let markbtnID = btnid.substring(4);
-                    markDone(markbtnID);
+                    markDone(markbtnID, this.listkey);
                 }
                 // check if that is a delete-button
                 if (e.target.classList.contains('delbtn')) {
@@ -505,7 +505,7 @@ function editGoal(id, listkey) {
     location.reload();
 }
 
-function markDone(id) {
+function markDone(id, listkey) {
     //console.log('markDone() invoked');
     //console.log('id: ', id);
     let donedate = new Date();
