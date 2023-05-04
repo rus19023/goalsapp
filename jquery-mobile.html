@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Adapted from https://www.hongkiat.com/blog/build-websites-apps-jquery-mobile/ -->
+
+        <!-- More info on jQuery Mobile (no longer maintained as of 10/2021): https://www.smashingmagazine.com/2013/03/getting-started-jquery-mobile/ -->
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+        <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>        
+  
+        <title>jQuery Mobile Test Page</title>
+    </head>
+    <body>
+        <div data-role="page" id="index">
+            <header data-role="header">
+                <a href="jquery-mobile.html" data-icon="gear" data-theme="b" class="ui-btn-right">
+                    Settings
+                </a>
+                <h1>Top title bar</h1>
+            </header>
+           
+            <div data-role="content" id="content">
+                <h3>Show another page??</h3>
+                <p>hint: click the button below!</p>
+                <p>
+                    <a href="#about" data-role="button" data-theme="c" data-inline="true">
+                        About us
+                    </a>
+                </p>
+            </div>
+            
+            <footer data-role="footer" class="ui-body-b">
+                <div data-role="navbar">
+                  <ul>
+                    <li><a href="#index" data-direction="reverse">App Homescreen!</a></li>
+                    <li><a href="https://www.google.com/" data-rel="nofollow">Google Me</a></li>
+                    <li><a href="https://www.hongkiat.com/" data-rel="nofollow">Hongkiat Blog</a></li>
+                  </ul>
+                </div>
+              </footer>
+            </div>
+            
+            <div data-role="page" id="about" data-add-back-btn="true">
+            <header data-role="header">
+                <a href="jquery-mobile.html" data-icon="gear" data-theme="b" class="ui-btn-right">
+                    Settings
+                </a>
+                <h1>Page 2 Here</h1>
+            </header>
+            
+            <div data-role="content" id="pg2">
+                <p>just some extra content as well.</p>
+                <p>I mean, you can <a data-rel="back" href="#index">go back</a> at any time.</p>
+            </div>
+
+            <footer data-role="footer" class="ui-body-b">
+                <div data-role="navbar">
+                    <ul>
+                        <li>
+                            <a href="#index" data-direction="reverse">
+                                App Homescreen!
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/" data-rel="nofollow">
+                                Google Me
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.hongkiat.com/" data-rel="nofollow">
+                                Hongkiat Blog
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+              </footer>
+        </div>
+    </body>
+</html>

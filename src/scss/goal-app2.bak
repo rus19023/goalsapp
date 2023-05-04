@@ -334,8 +334,8 @@ a:hover {
 .socialicons {
     cursor: pointer;
     background: black;
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
 }
 
 .italic {
@@ -365,12 +365,7 @@ a:hover {
     border-radius: $radius                    
 }
 
-a.langbtn {
-    color: $ltorange;
-    border: 1px solid $ltorange;             
-}
-
-.goalbtn {
+.todobtn {
     color: $yellow;
     background: $contrast;
     margin: 0 .5rem;
@@ -420,7 +415,7 @@ a.langbtn {
 #goalinput, #catinput, #duedateinput {
     cursor: pointer;
     margin: 0;
-    width: 85%;
+    width: 75%;
     padding: 0 .25rem;
 }
 
@@ -431,13 +426,6 @@ a.langbtn {
 .success {
     color: $seafoam;
     padding: .5rem;
-}
-
-.task {
-    height: 3vh;
-    max-width: 100%;
-    padding: 0 0 0 .25vw;
-    margin: 0;
 }
 
 .task-text {
@@ -478,10 +466,6 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
 
 .todo-text {
     color: white;
-}
-
-#itembox {
-    padding: 0 0 0 2vw;
 }
 
 .itembtns {
@@ -561,6 +545,14 @@ li.listitem {
     margin: 0 auto;
     padding: .25rem;
     max-width: 100%;
+}
+
+.task {
+    height: 3vh;
+    text-align: left;
+    max-width: 100%;
+    padding: .5vw;
+    margin: 0;
 }
 
 #listfooter {

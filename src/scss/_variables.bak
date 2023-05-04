@@ -19,9 +19,102 @@ $aqua:          adjust-hue($uYellow, 120deg);
 $skyblue:       adjust-hue($uYellow, 150deg);
 $newblue:       adjust-hue($uYellow, 180deg);
 
-$ltblue: lighten($uBlue, 20%);
-$ltorange: lighten($redorange, 20%);
-$ltyellow: lighten($yellow, 20%);
+$ltblue: lighten($uBlue, 25%);
+$ltyellow: lighten($uYellow, 25%);
+$ltorange: lighten($orange, 25%);
+
+:root {
+    --navHeight: 70px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .switch {
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .switch div {
+    position: relative;
+    display: block;
+    background: #eee;
+    width: 30px;
+    border-radius: 50px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+  
+  .fa-adjust {
+    transform: rotate(180deg);
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .slider {
+    background: #333;
+    transition: 0.4s;
+    border-radius: 34px;
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  input:checked + .slider {
+    transform: translateX(8px);
+  }
+  
+  nav {
+    background: $uBlue;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+    position: relative;
+  }
+  
+  nav ul {
+    list-style-type: none;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    height: --navHeight;
+    padding: 0 10px;
+  }
+  
+  nav ul li {
+    padding: 12px 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-radius: 4px;
+    position: relative;
+  }
+  
+  nav ul li:hover {
+    background: $hotpink;
+  }
+  
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    //background: #e5c687;
+    height: calc(100vh - var(--navHeight));
+  }
+
+/* END Theme Switching */
+
 
 //$yellowFromSet: adjust-hue($orange,   30deg);
 // $chartreuse:    adjust-hue($orange,   60deg);
@@ -39,6 +132,7 @@ $goalborder: 2px solid white;
 $dotborder: 2px dotted white;
 
 $accent2: lighten($orange, 10%);
+$accent3: lighten($purple, 10%);
 $accent: $chartreuse;
 $headings: $yellow;
 $contrast: $medblue;
@@ -47,6 +141,7 @@ $orangeborder: darken($orange, 20%);
 $warning: lighten($redorange, 25%);
 
 $valid: $limegreen;
+$success: $skyblue;
 
 
 $bgmoz: -moz-linear-gradient(180deg, rgb(0, 102, 204) 0%, rgba(255, 204, 0, 1) 67%);

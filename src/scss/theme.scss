@@ -1,0 +1,352 @@
+@import "variables";
+
+// Adapted from https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
+$colors:(
+    
+  dark: (
+    //logo: url("../images/brand/logo_vertical--invert.svg"),
+    background: $background,
+    yellow: white,
+    uBlue: $uBlue,
+    navFontColor: $yellow,
+    navLinkHoverBg: $yellow,
+    navLinkFontHoverColor: $uBlue,
+    headerColor: $yellow,
+    headerBg: black,
+    btnBg: $uBlue,
+    btnFontColor: $yellow,
+    btnBorder: white,
+    inputsBg: $yellow,
+    inputsFontColor: $uBlue,
+    inputsBorder: white,
+    inputsPlaceholder: lighten(black, 40%)
+  ),
+
+  light: (
+    //logo: url("../images/brand/logo_vertical--invert.svg"),
+    background: $background,
+    yellow: $uBlue,
+    uBlue: $ltblue,
+    navFontColor: $uBlue,
+    navLinkHoverBg: $ltorange,
+    navLinkFontHoverColor: $redorange,
+    headerColor: $uBlue,
+    headerBg: $ltyellow,
+    btnBg: $ltblue,
+    btnFontColor: $uBlue,
+    btnBorder: $uBlue,
+    inputsBg: $ltyellow,
+    inputsFontColor: $ltblue
+  )
+);
+
+
+// from https://stackoverflow.com/questions/49809524/change-variable-colors-if-else-in-scss
+@mixin theme_mode($background: null, $color: null) {
+    @media screen and (prefers-color-scheme: dark) {
+        @if ($background != null and $color != null) {
+            background: $background;
+            color: $color;
+        }
+        @else if ($background != null and $color == null) {
+            background: $background;
+        }
+        @else if ($color != null and $background == null) {
+            color: $color;
+        }
+        @else {
+            @content;
+        }
+    }
+
+    @media screen and (prefers-color-scheme: light) {
+        @if ($background != null and $color != null) {
+            background: $color;
+            color: $background;
+        }
+        @else if ($color != null and $background == null) {
+            background: $color;
+        }
+        @else if ($background != null and $color == null) {
+            color: $background;
+        }
+        @else {
+            @content;
+        }
+    }
+}
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}
+
+// End from 
+
+.light-mode {
+    //@include theme_mode(, );
+
+    body {
+        background: $background;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: $yellow;
+    }
+    
+    p {
+        color: $yellow;
+        background: $uBlue;
+    }
+    
+    .inputs, #duedateinput {
+        color: black;
+        background: $yellow;
+        border: 1px solid $yellow;
+    }
+    
+    
+    // h5, h6 {
+    //     @include dark-mode();
+    //     @include theme_mode($background: $uBlue, $color: null);
+    // }
+}
+
+.dark-mode {
+    $background: black;
+    $yellow: white;
+    $uBlue: #{$uBlue};
+    $navFontColor: #{$uYellow};
+    $navLinkHoverBg: #{$uOrange};
+    $navLinkFontColor: #{$redorange};
+    $headerColor: #{$uYellow};
+    $mainBg: #{$uBlue};
+    $btnBg: #{$uYellow};
+    $btnFontColor: #{$uYellow};
+    $inputsBg: #{$uBlue};
+    $inputsFontColor: black;
+}
+
+.goalbordered {
+    border: 2px solid $uYellow;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $uYellow;
+    font-family: $fontsecond;
+}
+
+h1 {
+    font-size: $font6;
+}
+
+h2 {
+    font-size: $font3;
+}
+
+h3 {
+    font-size: $font3;
+}
+
+h4 {
+    font-size: $font3;
+}
+
+h5 {
+    font-size: $font2;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: $font3;
+    font-weight: bold;
+    font-family: $fontsecond;
+}
+
+figcaption { color: $uYellow; }
+
+div,
+form,
+footer,
+p,
+header,
+section {
+    font-family: $fontsecond;
+}
+
+.f1 {
+    font-family: $fontfirst;
+}
+
+.f2 {
+    font-family: $fontsecond;
+}
+
+.lighthover { color: lighten($hotpink, 10%) }
+
+.title {
+  color: $yellow;
+  margin: 0 auto;
+  padding: 1vw;
+}
+
+a {
+    color: lighten($dksalmon, 10%);
+    text-decoration: none;
+    & a:hover {
+        color: lighten($hotpink, 20%);
+    }
+}
+
+a:visited {
+    color: lighten($orange, 20%);
+}
+
+a:hover {
+    color: lighten($hotpink, 20%);
+}
+
+#siteTitle2 {
+    color: $accent;
+    font-family: $fontsecond;
+    font-weight: bold;
+}
+
+::placeholder {
+    color: lighten(black, 40%);
+    font-size: small;
+}
+
+#autofooter {
+    font-weight: bold;
+    color: $yellow;
+    background: $background !important;
+}
+
+.icons {
+    background: $background;
+}
+
+.socialicons {
+    background: $background;
+}
+
+#todo-error {
+    font-weight: bold;
+    color: $redorange;
+}
+
+#root a:visited {
+    color: $limegreen;
+}
+
+.goalbtn {
+    color: $uBlue;
+    background: $yellow;
+    font-size: $font2;
+    & a {
+      color: $royalblue;
+      & :hover {
+          border: 5px solid $hotpink;
+      }
+    }
+}
+
+
+
+
+
+
+.hotpink {
+    color: lighten($hotpink, 25%);
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.bublue {
+    background: $uBlue !important;
+}
+
+.bmedblue {
+    background: $medblue !important;
+}
+
+.buyellow {
+    background: $uYellow !important;
+}
+
+.byellow {
+    background: $yellow !important;
+}
+
+.buorange {
+    background: $uOrange !important;
+}
+
+.borange {
+    background: $orange !important;
+}
+
+.bredorange {
+    background: $redorange;
+}
+
+.bdksalmon {
+    background: $dksalmon;
+}
+
+.broyalblue {
+    background: $royalblue;
+}
+
+.bhotpink {
+    background: $hotpink;
+}
+
+.bpurple {
+    background: $purple;
+}
+
+.black { color: black; }
+
+.bchartreuse {
+    background: $chartreuse;
+}
+
+.blimegreen {
+    background: $limegreen;
+}
+
+.bseafoam {
+    background: $seafoam;
+}
+
+.baqua {
+    background: $aqua;
+}
+
+.bskyblue {
+    background: $skyblue;
+}
+
+.bnewblue {
+    background: $newblue;
+}

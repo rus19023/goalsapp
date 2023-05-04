@@ -2,6 +2,13 @@
 // do a querySelector lookup @param {string} selector The selector passed to querySelector
 
 // @return {element} The matching element or null if not found /
+
+
+export const toggleTheme = () => {
+    var element = document.body;
+    element.classList.toggle("lightmode");
+ }
+
 export const qs = (selector) => {
     //console.log("selector: " + selector + "," + document.querySelector(selector));
     return document.querySelector(selector);
@@ -13,11 +20,11 @@ export const gd = (id) => {
 
 export const gt = (id) => {
     var date = new Date(+id);
-    var hours = date.getHours() < 12 ? date.getHours() : date.getHours() - 12;
-    hours = 0 ? 12 : hours;
+    var hours = date.getHours() < 13 ? date.getHours() : date.getHours() - 12;
+    if (hours == 0) { hours = 12 };
     var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
     //var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-    var amPM = date.getHours() < 12 ? 'AM' : 'PM';
+    var amPM = date.getHours() < 13 ? 'am' : 'pm';
         return hours + ":" + minutes + amPM //+ ":" + seconds;     
 }
 

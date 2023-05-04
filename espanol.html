@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+      
+        <link rel="stylesheet" href="./src/css/goal-app.css">
+        <!-- <link rel="stylesheet" href="./src/css/main.css"> -->        
+        <!-- <link rel="stylesheet" href="../dist/css/tailwind.css"> --> 
+        <!-- <link rel="stylesheet" href="https://rus19023.github.io/myportfolio/css/styles.css"/> -->
+
+        <link rel="icon" type="image/x-icon" href="./src/img/favicon.ico">
+
+        <!-- <link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css" /> -->
+        
+
+        <!-- For Sharing buttons -->
+        <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
+        <meta property="og:url" content="https://rus19023.github.io/goalsapp/"/>
+        <meta property="og:title" content="'Mi Diario de Metas SMART', diseñado y construido por Doris Rush-López. "/>
+        <meta property="og:description" content="Agregue metas 'SMART', ordene por fecha de vencimiento, categoría o texto de la meta, o fecha en que se estableció la meta, buscar entre las metas, editar metas, fechas de vencimiento y categorías, elimine metas, márquelos logrados y filtrar metas por 'todos', 'logrados' o 'pendientes'. ¡Sigue revisando la aplicación, nuevas características en proceso!"/>
+        <meta property="og:site_name" content="Mi Diario de Metas SMART"/>
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:secure_url" content="./src/img/todolist.jpg"/>
+        <title id="wdd330todoapptitle" class="title">Mi Diario de Metas SMART</title>
+    </head>
+
+    <body class="lightmode">
+        <div id="ocean">
+        <header class="title col3">
+            <!-- <button class="btns langbtn" onclick="toggleTheme()">
+                Light mode
+            </button> -->
+            <a class="btns langbtn" href="index.html">
+                &nbsp;English&nbsp;
+            </a>
+            <section>
+                <h2 id="todoheading" class="title">
+                    Mi Diario de Metas SMART*
+                </h2>
+                <p class="normal-text">*(eSpecífico, Medible, Asignable, Relevante, Tiempo limitado)</p>
+            </section>
+            <br>
+            <section id="ukraine">
+                <p class="bold marg centered todo-text ">
+                    En solidaridad con Ucrania, el esquema de colores de esta aplicación se basa en 
+                    <a class="lighthover" href="https://en.wikipedia.org/wiki/Flag_of_Ukraine#Design">
+                        los colores de su bandera.
+                    </a> 
+                </p>
+            </section>
+        </header>
+        <section id="sharecontainer" class="sharer">
+            <div id="socialshare">
+                <div class="m-2 sharer row">
+                    <span>
+                        Comparte: 
+                    </span>
+                    <button class="sharer"
+                        data-sharer="facebook"
+                        data-url="https://rus19023.github.io/goalsapp/espanol.html"
+                        data-hashtags="#DiarioDeMetas #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
+                        <img class="centered socialicons" src="./src/img/icons/icons8-facebook-96.png" alt="share on Facebook">
+                    </button>
+                    <button class="sharer"
+                        data-sharer="linkedin"
+                        data-url="https://rus19023.github.io/goalsapp/"
+                        data-hashtags="#ToDoApp #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho"
+                        >
+                        <img class="centered socialicons" src="./src/img/icons/icons8-linkedin-96.png" alt="">
+                    </button>
+                    <button class="sharer"
+                        data-sharer="whatsapp"
+                        data-title="Revise mi App de Metas SMART! "
+                        data-url="https://rus19023.github.io/goalsapp/">
+                        <img class="centered socialicons" src="./src/img/icons/icons8-whatsapp-96.png" alt="">
+                    </button> 
+                </div>
+                <div id="srchbar" class="todo-text">
+                    <input id="srchinput" type="text" name="srchinput" placeholder="Buscar en las metas" value="" class="inputs" tabindex="1" required>
+                    <button id="srchbtn" class="btns goalbtn">Busca</button>
+                </div>
+                <p id="searcherror" class="warning"></p>
+            </div>
+            <form id="addbar" class="flexrow">
+                <label for="catinput">
+                    Categoría
+                    <input id="catinput" type="text" name="catinput" class="inputs" autofocus>
+                </label>
+                <label for="catinput">
+                    La Meta
+                    <input id="goalinput" type="text" name="goalinput" class="inputs" tabindex=0 required>
+                </label>
+                <label for="duedateinput">
+                    Fecha de cumplir
+                    <input id="duedateinput" type="date" name="duedateinput" class="inputs">
+                </label>
+                <label for="addbtn" class="black"> Agrega
+                    <button id="addbtn" class="btns">Agrega</button>
+                </label>
+            </form>
+        </section>
+        <main id="gridcontainer">
+            <h2 id="header1" class="centered title">
+                Mi Diario de Metas SMART: 
+            </h2>
+            <div id="left1" class="">
+                <div id="goalcontainer">
+                    <p id="taskError"></p>
+                    <div id="goals"></div>
+                </div>
+                <div id="goal-error" class="warning "></div>
+            </div>
+            <div id="right1" class="">
+                <div id="listfooter sticky" class="todo-text foot-row">
+                    <div id="tasks" class="hotpink">_ metas logradas.</div>
+                    <div id="sortitems">
+                         Ordenar por:
+                        <label class="sortitems" for="duedate">
+                            <input type="radio" name="sort" id="duedate" value="Duedate">
+                            Fecha de cumplir
+                        </label>
+                        <label class="sortitems" for="time">
+                            <input type="radio" name="sort" id="time" value="Date" checked>
+                            Fecha 
+                        </label>
+                        <label class="sortitems" for="cat">
+                            <input type="radio" name="sort" id="cat" value="Categoría">
+                            Categoría
+                        </label>
+                    </div>
+                    <div id="filters">
+                        Mostrar:
+                        <button class="btns goalbtn" id="allbtn">
+                            Todos
+                        </button>
+                        <button class="btns goalbtn" id="pendbtn">
+                            Pendiente
+                        </button>
+                        <button class="btns goalbtn" id="donebtn">
+                            Logrado
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <br><br>
+        <footer>
+            <div class="normal-text centered">
+                <div id="autofooter" class="footer footer-center "></div>
+            </div>
+        </footer>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+        <script src="./src/js/goalsmain.js" type="module"></script>
+        <script src="./src/js/validate.js" type="module"></script>
+        <script src="./src/js/theme.js" type="module"></script>
+    </body>
+</html>
+
+

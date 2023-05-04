@@ -6,3 +6,8 @@
 /index-test-component.html
 /node_modules
 /template.html
+.env
+.venv
+.gitignore
+package-lock.json
+

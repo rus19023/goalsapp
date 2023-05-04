@@ -1,0 +1,232 @@
+.light-mode body {
+  background: linear-gradient(180deg, hsl(210, 100%, 40%) 40%, hsl(69, 9%, 60%) 50%, hsl(48, 100%, 50%) 60%);
+}
+.light-mode h1, .light-mode h2, .light-mode h3, .light-mode h4, .light-mode h5, .light-mode h6 {
+  color: hsl(48, 100%, 50%);
+}
+.light-mode p {
+  color: hsl(48, 100%, 50%);
+  background: hsl(210, 100%, 40%);
+}
+.light-mode .inputs, .light-mode #duedateinput {
+  color: black;
+  background: hsl(48, 100%, 50%);
+  border: 1px solid hsl(48, 100%, 50%);
+}
+
+.goalbordered {
+  border: 2px solid hsl(48, 100%, 50%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: hsl(48, 100%, 50%);
+  font-family: "Hubballi", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: "Hubballi", sans-serif;
+}
+
+figcaption {
+  color: hsl(48, 100%, 50%);
+}
+
+div,
+form,
+footer,
+p,
+header,
+section {
+  font-family: "Hubballi", sans-serif;
+}
+
+.f1 {
+  font-family: "Handlee", cursive;
+}
+
+.f2 {
+  font-family: "Hubballi", sans-serif;
+}
+
+.lighthover {
+  color: fuchsia;
+}
+
+.title {
+  color: hsl(48, 100%, 50%);
+  margin: 0 auto;
+  padding: 1vw;
+}
+
+a {
+  color: #ff0080;
+  text-decoration: none;
+}
+a a:hover {
+  color: #ff33ff;
+}
+
+a:visited {
+  color: #ff9466;
+}
+
+a:hover {
+  color: #ff33ff;
+}
+
+#siteTitle2 {
+  color: #b3ff00;
+  font-family: "Hubballi", sans-serif;
+  font-weight: bold;
+}
+
+::-moz-placeholder {
+  color: #666666;
+  font-size: small;
+}
+
+::placeholder {
+  color: #666666;
+  font-size: small;
+}
+
+#autofooter {
+  font-weight: bold;
+  color: hsl(48, 100%, 50%);
+  background: linear-gradient(180deg, hsl(210, 100%, 40%) 40%, hsl(69, 9%, 60%) 50%, hsl(48, 100%, 50%) 60%) !important;
+}
+
+.icons {
+  background: linear-gradient(180deg, hsl(210, 100%, 40%) 40%, hsl(69, 9%, 60%) 50%, hsl(48, 100%, 50%) 60%);
+}
+
+.socialicons {
+  background: linear-gradient(180deg, hsl(210, 100%, 40%) 40%, hsl(69, 9%, 60%) 50%, hsl(48, 100%, 50%) 60%);
+}
+
+#todo-error {
+  font-weight: bold;
+  color: #cc0000;
+}
+
+#root a:visited {
+  color: #33ff00;
+}
+
+.goalbtn {
+  color: hsl(210, 100%, 40%);
+  background: hsl(48, 100%, 50%);
+  font-size: 1rem;
+}
+.goalbtn a {
+  color: #0000cc;
+}
+.goalbtn a :hover {
+  border: 5px solid #cc00cc;
+}
+
+.hotpink {
+  color: #ff4dff;
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.bublue {
+  background: hsl(210, 100%, 40%) !important;
+}
+
+.bmedblue {
+  background: hsl(210, 100%, 40%) !important;
+}
+
+.buyellow {
+  background: hsl(48, 100%, 50%) !important;
+}
+
+.byellow {
+  background: hsl(48, 100%, 50%) !important;
+}
+
+.buorange {
+  background: #b76000 !important;
+}
+
+.borange {
+  background: #ff4d00 !important;
+}
+
+.bredorange {
+  background: #cc0000;
+}
+
+.bdksalmon {
+  background: #cc0066;
+}
+
+.broyalblue {
+  background: #0000cc;
+}
+
+.bhotpink {
+  background: #cc00cc;
+}
+
+.bpurple {
+  background: #6600cc;
+}
+
+.black {
+  color: black;
+}
+
+.bchartreuse {
+  background: #b3ff00;
+}
+
+.blimegreen {
+  background: #33ff00;
+}
+
+.bseafoam {
+  background: #00ff4d;
+}
+
+.baqua {
+  background: #00ffcc;
+}
+
+.bskyblue {
+  background: #00b3ff;
+}
+
+.bnewblue {
+  background: #0033ff;
+}

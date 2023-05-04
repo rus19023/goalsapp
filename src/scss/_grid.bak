@@ -18,6 +18,14 @@
     "todos";
 }
 
+.color3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+    padding: 2vw;
+    margin: 4vw;
+}
+
 #socialshare { 
     grid-area: socialshare; 
 }
@@ -25,6 +33,8 @@
 #addbar {
     grid-area: addbar;
     grid-template-columns: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
     grid-template-areas:
     "catinput goalinput addbtn";
 }
@@ -139,7 +149,6 @@
     display: grid;
     grid-template-areas: "markbtn editbtn delbtn task";
 }
-
 
 .markbtn {
     grid-area: markbtn;
