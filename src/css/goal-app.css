@@ -659,7 +659,9 @@ a:hover {
 
 a.langbtn {
   color: #ff3333;
-  border: 1px solid #ff3333;
+  font-weight: bold;
+  font-size: large;
+  border: 2px solid #ff3333;
 }
 
 .goalbtn {

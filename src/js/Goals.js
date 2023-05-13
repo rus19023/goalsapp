@@ -33,7 +33,7 @@ export default class GoalList {
 
         // TODO: this.addbtn.onTouch(), this.addGoal();
         this.srchbtn.addEventListener('click', () => { this.setSearchTerm(); }, false);
-        this.addbtn.addEventListener('click', () => { this.addbtn(); }, false);
+        this.addbtn.addEventListener('click', () => { this.addGoal(); }, false);
         this.allbtn.addEventListener('click', () => { this.listAll(); }, false);
         this.pendbtn.addEventListener('click', () => { this.listPending(); }, false);
         this.donebtn.addEventListener('click', () => { this.listDone(); }, false);
@@ -56,8 +56,7 @@ export default class GoalList {
         } else { 
             this.listkey = 'items';
         }
-    }
- 
+    } 
 
     addGoal() {
         // grab category input from add goal form
@@ -80,9 +79,16 @@ export default class GoalList {
     
         // check for goal input not blank
         const goal = qs('#goalinput');
+        const duedate = qs('#duedateinput');
         //if (goal.length == 0) { goal.push('Custom goal'); }
         // goal is ok, add to list for storage with others
-        saveGoal(catText.value.toUpperCase(), goal.value, this.listkey);
+        let goalDue = duedate.value;
+        let goalCat = catText.value;
+        console.log('goalCat: ', goalCat);
+        if (!catText.value > 0) {
+            goalCat = catText.toUpperCase();
+        }
+        saveGoal(catText.value.toUpperCase(), goal.value, this.listkey, goalDue);
         this.renderList('goals');
     }
 
@@ -195,9 +201,9 @@ export default class GoalList {
             let duedate = new Date(goal.duedate);
             //console.log('duedate: ', duedate);
             let month = duedate.toLocaleString("en-US", { month: "short" });
-            //let yearOptions = { year: 'numeric', month: 'undefined', day: 'undefined' };
+            
             let yearString = duedate.toLocaleString("en-US", { year: "numeric" });
-            //let dayOptions = { day: 'numeric', month: 'undefined', day: 'undefined' };
+            
             let dayString = duedate.toLocaleString("en-US", { day: "numeric" });
             //console.log('month: ', month);
             month = month.substring(0, 3);
@@ -209,6 +215,7 @@ export default class GoalList {
             let today = new Date();
             if (goal.duedate > today) {
                 var duedatespan = `<span class="warning task-text">${duedatetext}</span>`;
+                console.log('duedatespan: ', duedatespan);
             } else {
                 var duedatespan = `<span class="success task-text">${duedatetext}</span>`;
             }            
@@ -466,27 +473,29 @@ function getGoals(listkey) {
     return JSON.parse(readFromLS(listkey)) || [];
 }
 
-function saveGoal(cat, goal, listkey) {
-    //console.log('saveGoal() invoked');
+function saveGoal(cat, goal, listkey, duedate) {
+    console.log('saveGoal() invoked');
+    console.log('duedate: ', duedate)
     // read current goal list from local storage
     let goalList = getGoals(listkey);
-    //console.log(`goalList (saveGoal begin): ${goalList}`);
+    console.log(`goalList (saveGoal begin): ${goalList}`);
     let goalListLen = goalList.length;
-    //console.log(`goalListLen (saveGoal begin): ${goalListLen}`);
+    console.log(`goalListLen (saveGoal begin): ${goalListLen}`);
     // build goal object
     const newItem = { 
         id: `${Date.now()}`, 
         task: goal, 
         done: false, 
         category: cat,
-        duedate: duedateinput.value
-    };  // prequel for task: goal.length + " " + 
+        duedate: duedate
+    };  
+    // prequel for task: goal.length + " " + 
     // add obj to goalList
-    //console.log(`newItem: ${newItem}`);
+    console.log(`newItem: ${newItem}`);
     goalList.push(newItem);
     goalListLen = goalList.length;
-    //console.log(`goalListLen (saveGoal end): ${goalListLen}`);
-    //console.log(`goalList (saveGoal end): ${goalList}`);
+    console.log(`goalListLen (saveGoal end): ${goalListLen}`);
+    console.log(`goalList (saveGoal end): ${goalList}`);
     // save JSON.stringified list to ls
     writeToLS(listkey, JSON.stringify(goalList));
     //location.reload();
