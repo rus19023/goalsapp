@@ -1,4 +1,4 @@
-import GoalsController from "./GoalsController.js";
+import GoalsController from "./goalsController.js";
 
 const myGoalsController = new GoalsController("goals");
 window.addEventListener("load", () => {
@@ -13,5 +13,5 @@ let itemsArray = {
 
 //localStorage.setItem('items', JSON.stringify(itemsArray));
 
-const data = JSON.parse(localStorage.getItem("items"));
+const data = JSON.parse(localStorage.getItem("goals"));
 console.log(data);

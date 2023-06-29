@@ -497,27 +497,28 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
 
 .editbtn, .markbtn, .delbtn {
     border-radius: $radius;
+    height: 4rem;
+    border: 2px solid;
 }
 
 .editbtn {    
     color: $skyblue;
-    border: 2px solid $skyblue;
+    border-color: $skyblue;
 }
 
 .markbtn {    
     color: $hotpink;
-    border: 2px solid $hotpink;
+    border-color: $hotpink;
 }
 
 .delbtn {  
     color: $redorange;
-    border: 2px solid $redorange;
+    border-color: $redorange;
     width: 2rem;
-    height: 4rem;
-    padding: 1%;
+    padding: 0;
     margin: 0;
-    font-size: $font3;
-    font-weight: 900;
+    font-size: $font2;
+    font-weight: bolder;
 }
 
 .undone {   

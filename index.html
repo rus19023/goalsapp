@@ -34,6 +34,20 @@
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:secure_url" content="./src/img/todolist.jpg"/>
         <title id="wdd330todoapptitle" class="title">My Goal Journal</title>
+
+        <script>
+          // Get tomorrow's date
+          var tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+      
+          // Format the date as YYYY-MM-DD
+          var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+      
+          // Set the default value of the date field
+          window.onload = function() {
+            document.getElementById("duedateinput").value = tomorrowFormatted;
+          };
+        </script>
     </head>
 
     <body>
@@ -95,15 +109,15 @@
             <form id="addbar" class="flexrow">
                 <label for="catinput">
                     Category
-                    <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs" autofocus>
+                    <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs" value='ds460' utofocus>
                 </label>
                 <label for="catinput">
                     Task &nbsp; &nbsp;
-                    <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs" tabindex=0 required>
+                    <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs" tabindex=0 value='ddd dddd ddddd' required>
                 </label>
                 <label for="duedateinput">
                     Due Date
-                    <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" class="inputs">
+                    <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" value='2023-06-30' class="inputs">
                 </label>
                 <label for="addbtn" class="black"> Add   
                     <button name="addbtn" id="addbtn" class="btns">Add</button>
@@ -222,5 +236,12 @@
         <script src="./src/js/goalsmain.js" type="module"></script>
         <script src="./src/js/validate.js" type="module"></script>
         <script src="./src/js/theme.js"></script>
+        <script>
+          // Get the current date
+          var todayDate = new Date().toISOString().split('T')[0];
+      
+          // Set the default value of the date input field
+          document.getElementById("duedateinput").value = todayDate;
+        </script>
     </body>
 </html>

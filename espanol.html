@@ -26,6 +26,20 @@
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:secure_url" content="./src/img/todolist.jpg"/>
         <title id="wdd330todoapptitle" class="title">Mi Diario de Metas SMART</title>
+
+        <script>
+          // Get tomorrow's date
+          var tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+      
+          // Format the date as YYYY-MM-DD
+          var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+      
+          // Set the default value of the date field
+          window.onload = function() {
+            document.getElementById("duedateinput").value = tomorrowFormatted;
+          };
+        </script>
     </head>
 
     <body class="lightmode">
@@ -88,11 +102,11 @@
             <form id="addbar" class="flexrow">
                 <label for="catinput">
                     Categoría
-                    <input id="catinput" type="text" name="catinput" class="inputs" autofocus>
+                    <input id="catinput" type="text" name="catinput" class="inputs" value='ds460' autofocus>
                 </label>
                 <label for="catinput">
                     La Meta
-                    <input id="goalinput" type="text" name="goalinput" class="inputs" tabindex=0 required>
+                    <input id="goalinput" type="text" name="goalinput" class="inputs" tabindex=0 value='zzz zzzz zzzzz' required>
                 </label>
                 <label for="duedateinput">
                     Fecha de cumplir
@@ -110,7 +124,7 @@
             <div id="left1" class="">
                 <div id="goalcontainer">
                     <p id="taskError"></p>
-                    <div id="goals"></div>
+                    <div id="metas"></div>
                 </div>
                 <div id="goal-error" class="warning "></div>
             </div>
@@ -161,6 +175,13 @@
         <script src="./src/js/goalsmain.js" type="module"></script>
         <script src="./src/js/validate.js" type="module"></script>
         <script src="./src/js/theme.js" type="module"></script>
+        <script>
+          // Get the current date
+          var todayDate = new Date().toISOString().split('T')[0];
+      
+          // Set the default value of the date input field
+          document.getElementById("duedateinput").value = todayDate;
+        </script>
     </body>
 </html>
 

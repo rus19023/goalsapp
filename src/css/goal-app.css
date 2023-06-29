@@ -791,27 +791,28 @@ div#tasks, div#sortitems, div#filters {
 
 .editbtn, .markbtn, .delbtn {
   border-radius: 4px;
+  height: 4rem;
+  border: 2px solid;
 }
 
 .editbtn {
   color: #00b3ff;
-  border: 2px solid #00b3ff;
+  border-color: #00b3ff;
 }
 
 .markbtn {
   color: #cc00cc;
-  border: 2px solid #cc00cc;
+  border-color: #cc00cc;
 }
 
 .delbtn {
   color: #cc0000;
-  border: 2px solid #cc0000;
+  border-color: #cc0000;
   width: 2rem;
-  height: 4rem;
-  padding: 1%;
+  padding: 0;
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 900;
+  font-size: 1rem;
+  font-weight: bolder;
 }
 
 .undone {
