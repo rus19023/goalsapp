@@ -36,17 +36,17 @@
         <title id="wdd330todoapptitle" class="title">My Goal Journal</title>
 
         <script>
-          // Get tomorrow's date
-          var tomorrow = new Date();
-          tomorrow.setDate(tomorrow.getDate() + 1);
-      
-          // Format the date as YYYY-MM-DD
-          var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
-      
-          // Set the default value of the date field
-          window.onload = function() {
-            document.getElementById("duedateinput").value = tomorrowFormatted;
-          };
+            // Get tomorrow's date
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+        
+            // Format the date as YYYY-MM-DD
+            var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+        
+            // Set the default value of the date field
+            window.onload = function() {
+                document.getElementById("duedateinput").value = tomorrowFormatted;
+            };
         </script>
     </head>
 
@@ -57,7 +57,7 @@
                 <!-- <button class="btns langbtn" onclick="toggleTheme()">
                     Light mode
                 </button> -->
-                <a class="btns langbtn" href="espanol.html">
+                <a id='lang' class="btns langbtn" href="espanol.html">
                     &nbsp;Español&nbsp;
                 </a>
                 <h2 id="todoheading" class="title">
@@ -109,15 +109,15 @@
             <form id="addbar" class="flexrow">
                 <label for="catinput">
                     Category
-                    <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs" value='ds460' utofocus>
+                    <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs" value='' autofocus>
                 </label>
                 <label for="catinput">
                     Task &nbsp; &nbsp;
-                    <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs" tabindex=0 value='ddd dddd ddddd' required>
+                    <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs" tabindex=0 value='' required>
                 </label>
                 <label for="duedateinput">
                     Due Date
-                    <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" value='2023-06-30' class="inputs">
+                    <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" value='' class="inputs">
                 </label>
                 <label for="addbtn" class="black"> Add   
                     <button name="addbtn" id="addbtn" class="btns">Add</button>

@@ -2,6 +2,7 @@ import GoalsController from "./goalsController.js";
 
 const myGoalsController = new GoalsController("goals");
 window.addEventListener("load", () => {
+  myGoalsController.switchLang();
   myGoalsController.showAll();
 });
 

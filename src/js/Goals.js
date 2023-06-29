@@ -9,7 +9,20 @@ var customtasks = [
 
 export default class GoalList {
     // a class needs a constructor
-    constructor(parentId) { 
+    constructor(parentId) {
+
+        window.addEventListener('load', function() {
+            if (performance.navigation.type === 1) {
+                // Page is loaded from a link
+                // Check for which language to use
+                this.switchLang();
+            } else if (performance.navigation.type === 0) {
+                // Page is reloaded
+                // Check for which language to use
+                this.switchLang();
+            }
+          });          
+
         this.lang = 'ENG';       
         this.doneVar = 'Done';
         this.undoVar = 'Undo';
@@ -34,6 +47,7 @@ export default class GoalList {
         this.duedatebtn = qs('#duedate');
         this.catbtn = qs('#cat');
         this.timebtn = qs('#time');
+        this.langbtn = qs('#lang');
 
         // TODO: this.addbtn.onTouch(), this.addGoal();
         this.srchbtn.addEventListener('click', () => { this.setSearchTerm(); }, false);
@@ -44,6 +58,10 @@ export default class GoalList {
         this.duedatebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
         this.catbtn.addEventListener('click', () => { this.setSortTerm(); }, false);
         this.timebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
+        this.langbtn.addEventListener('click', () => { 
+            //langbtn.preventDefault();
+            this.switchLang(); 
+        }, false);
     }
 
     // TODO:  add functionality to choose from listkeys or just filter on category?
@@ -52,9 +70,11 @@ export default class GoalList {
        
     // Another get filename idea from https://befused.com/javascript/get-filename-url/
     switchLang() {
-        // If referring file is espanol.html, set listkey to metas
-        if (document.referrer.includes('espanol.html')) {        
-          console.log('if espanol.html: document.referrer: ', document.referrer);
+        var currentFile = window.location.pathname.split('/').pop();
+        console.log('currentFile:', currentFile);
+        // If referring file is espanol.html, set variables to Spanish
+        if (currentFile.includes('espanol.html')) {        
+            console.log('if espanol.html: currentFile: ', currentFile);
             this.lang = 'SPA';
             this.doneVar = 'Hecho';
             this.undoVar = 'Anula';
@@ -68,8 +88,9 @@ export default class GoalList {
             this.pendingTitle = 'EN CURSO';
             this.allTitle = 'TODOS';
             this.searchErrorMsg = 'El término de búsqueda es demasiado corto, ingrese más caracteres por favor.';
+        // If referring file is not espanol.html, set variables to English
         } else {         
-          console.log('else: document.referrer: ', document.referrer);           
+            console.log('else: currentFile: ', currentFile);           
             this.lang = 'ENG';       
             this.doneVar = 'Done';
             this.undoVar = 'Undo';
@@ -82,9 +103,9 @@ export default class GoalList {
             this.achievedTitle = 'ACHIEVED';
             this.pendingTitle = 'IN PROGRESS';
             this.allTitle = 'ALL';
-            this.searchErrorMsg = 'This search term is too short, please use more characters.';
+            this.searchErrorMsg = 'This search term is too short, please use more characters.';            
         }
-    } 
+    }
 
     addGoal() {
         // grab category input from add goal form
@@ -220,10 +241,8 @@ export default class GoalList {
             const setdatespan = `<span class="task-text"> ${gd(goal.id)} ${gt(goal.id)}</span>`;
             let duedate = new Date(goal.duedate);
             //console.log('duedate: ', duedate);
-            let month = duedate.toLocaleString("en-US", { month: "short" });
-            
-            let yearString = duedate.toLocaleString("en-US", { year: "numeric" });
-            
+            let month = duedate.toLocaleString("en-US", { month: "short" });            
+            let yearString = duedate.toLocaleString("en-US", { year: "numeric" });            
             let dayString = duedate.toLocaleString("en-US", { day: "numeric" });
             //console.log('month: ', month);
             month = month.substring(0, 3);
@@ -238,7 +257,7 @@ export default class GoalList {
               // console.log('duedatespan: ', duedatespan);
             } else {
                 var duedatespan = `<span class="success task-text">${duedatetext}</span>`;
-            }            
+            }           
             const dateinfo = `${setdatespan}${duedatespan}`;            
             const itemtext = `<p class="todo-text task">${goal.category.toUpperCase()}: ${goal.task}`;
             //console.log('itemtext: ', itemtext);

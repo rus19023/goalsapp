@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -14,8 +14,7 @@
 
         <!-- <link 
         rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css" /> -->
-        
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/regular.min.css" /> -->        
 
         <!-- For Sharing buttons -->
         <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
@@ -28,17 +27,17 @@
         <title id="wdd330todoapptitle" class="title">Mi Diario de Metas SMART</title>
 
         <script>
-          // Get tomorrow's date
-          var tomorrow = new Date();
-          tomorrow.setDate(tomorrow.getDate() + 1);
-      
-          // Format the date as YYYY-MM-DD
-          var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
-      
-          // Set the default value of the date field
-          window.onload = function() {
-            document.getElementById("duedateinput").value = tomorrowFormatted;
-          };
+            // Get tomorrow's date
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+        
+            // Format the date as YYYY-MM-DD
+            var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+        
+            // Set the default value of the date field
+            window.onload = function() {
+                document.getElementById("duedateinput").value = tomorrowFormatted;
+            };
         </script>
     </head>
 
@@ -48,7 +47,7 @@
             <!-- <button class="btns langbtn" onclick="toggleTheme()">
                 Light mode
             </button> -->
-            <a class="btns langbtn" href="index.html">
+            <a id='lang' class="btns langbtn" href="index.html">
                 &nbsp;English&nbsp;
             </a>
             <section>
@@ -102,15 +101,15 @@
             <form id="addbar" class="flexrow">
                 <label for="catinput">
                     Categoría
-                    <input id="catinput" type="text" name="catinput" class="inputs" value='ds460' autofocus>
+                    <input id="catinput" type="text" name="catinput" placeholder="Categoría de la meta" class="inputs" value='' autofocus>
                 </label>
                 <label for="catinput">
                     La Meta
-                    <input id="goalinput" type="text" name="goalinput" class="inputs" tabindex=0 value='zzz zzzz zzzzz' required>
+                    <input id="goalinput" type="text" name="goalinput" class="inputs" tabindex=0 value='' placeholder="La meta" required>
                 </label>
                 <label for="duedateinput">
                     Fecha de cumplir
-                    <input id="duedateinput" type="date" name="duedateinput" class="inputs">
+                    <input id="duedateinput" type="date" name="duedateinput" value='' class="inputs">
                 </label>
                 <label for="addbtn" class="black"> Agrega
                     <button id="addbtn" class="btns">Agrega</button>
