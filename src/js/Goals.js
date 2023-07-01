@@ -198,7 +198,7 @@ export default class GoalList {
             this.filter = 'All';
             console.log('this.filter: ', this.filter);
         }        
-        if (!currentFile.includes('feedback')) {
+        if (!this.currentFile.includes('feedback')) {
             this.renderList();
         }
     }
@@ -211,7 +211,7 @@ export default class GoalList {
             this.filter = 'In progress';
             console.log('this.filter: ', this.filter);
         }        
-        if (!currentFile.includes('feedback')) {
+        if (!this.currentFile.includes('feedback')) {
             this.renderList();
         }
     }
@@ -224,7 +224,7 @@ export default class GoalList {
             this.filter = 'Achieved';
             console.log('this.filter: ', this.filter); 
         }        
-        if (!currentFile.includes('feedback')) {
+        if (!this.currentFile.includes('feedback')) {
             this.renderList();
         }
     }
