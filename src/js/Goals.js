@@ -11,17 +11,17 @@ export default class GoalList {
     // a class needs a constructor
     constructor(parentId) {
 
-        window.addEventListener('load', function() {
-            if (performance.navigation.type === 1) {
-                // Page is loaded from a link
-                // Check for which language to use
-                this.switchLang();
-            } else if (performance.navigation.type === 0) {
-                // Page is reloaded
-                // Check for which language to use
-                this.switchLang();
-            }
-          });          
+        window.addEventListener('DOMContentLoaded', function() {
+            // if (performance.navigation.type === 1) {
+            //     // Page is loaded from a link
+            //     // Check for which language to use
+            //     switchLang();
+            // } else if (performance.navigation.type === 0) {
+            //     // Page is reloaded
+            //     // Check for which language to use
+                switchLang();
+            //}
+        });         
 
         this.lang = 'ENG';       
         this.doneVar = 'Done';
@@ -31,7 +31,7 @@ export default class GoalList {
         this.title = 'GOAL';
         this.listkey = 'goals';
         this.sortTitle = 'ordered by';
-        this.filter = 'All';
+        this.filter = '';
         this.pendingTitle = 'TO WORK ON';
         this.achievedTitle = 'ACHIEVED';
         this.sortval = 'Timestamp';
@@ -48,19 +48,13 @@ export default class GoalList {
         this.catbtn = qs('#cat');
         this.timebtn = qs('#time');
         this.langbtn = qs('#lang');
+        this.currentFile = window.location.pathname;
 
         // TODO: this.addbtn.onTouch(), this.addGoal();
-        this.srchbtn.addEventListener('click', () => { this.setSearchTerm(); }, false);
-        this.addbtn.addEventListener('click', () => { this.addGoal(); }, false);
-        this.allbtn.addEventListener('click', () => { this.listAll(); }, false);
-        this.pendbtn.addEventListener('click', () => { this.listPending(); }, false);
-        this.donebtn.addEventListener('click', () => { this.listDone(); }, false);
-        this.duedatebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
-        this.catbtn.addEventListener('click', () => { this.setSortTerm(); }, false);
-        this.timebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
+
         this.langbtn.addEventListener('click', () => { 
             //langbtn.preventDefault();
-            this.switchLang(); 
+            this.switchLang(this.currentFile); 
         }, false);
     }
 
@@ -69,41 +63,57 @@ export default class GoalList {
     // TODO:    
        
     // Another get filename idea from https://befused.com/javascript/get-filename-url/
-    switchLang() {
-        var currentFile = window.location.pathname.split('/').pop();
+    switchLang(currentFile) {
         console.log('currentFile:', currentFile);
         // If referring file is espanol.html, set variables to Spanish
-        if (currentFile.includes('espanol.html')) {        
-            console.log('if espanol.html: currentFile: ', currentFile);
-            this.lang = 'SPA';
-            this.doneVar = 'Hecho';
-            this.undoVar = 'Anula';
-            this.editVar = 'Edita';
-            this.header1 = 'Mi Diario de Metas SMART';
-            this.title= 'META'; 
-            this.listkey = 'metas';
-            this.sortTitle = 'ordenado por';
-            this.sortval = 'Fecha';
-            this.achievedTitle = 'LOGRADOS';
-            this.pendingTitle = 'EN CURSO';
-            this.allTitle = 'TODOS';
-            this.searchErrorMsg = 'El término de búsqueda es demasiado corto, ingrese más caracteres por favor.';
-        // If referring file is not espanol.html, set variables to English
-        } else {         
-            console.log('else: currentFile: ', currentFile);           
-            this.lang = 'ENG';       
-            this.doneVar = 'Done';
-            this.undoVar = 'Undo';
-            this.editVar = 'Edit';
-            this.header1 = 'My SMART Goals Journal';
-            this.title= 'GOAL';
-            this.listkey = 'goals';
-            this.sortTitle = 'ordered by';
-            this.sortval = 'Timestamp';
-            this.achievedTitle = 'ACHIEVED';
-            this.pendingTitle = 'IN PROGRESS';
-            this.allTitle = 'ALL';
-            this.searchErrorMsg = 'This search term is too short, please use more characters.';            
+        if (!currentFile.includes('feedback')) {
+            this.srchbtn.addEventListener('click', () => { this.setSearchTerm(); }, false);
+            this.addbtn.addEventListener('click', () => { this.addGoal(); }, false);
+            this.allbtn.addEventListener('click', () => { this.listAll(); }, false);
+            this.pendbtn.addEventListener('click', () => { this.listPending(); }, false);
+            this.donebtn.addEventListener('click', () => { this.listDone(); }, false);
+            this.duedatebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
+            this.catbtn.addEventListener('click', () => { this.setSortTerm(); }, false);
+            this.timebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
+
+            if (currentFile.includes('espanol')) {        
+                console.log('if espanol.html: currentFile: ', currentFile);
+                this.lang = 'SPA';
+                this.doneVar = 'Hecho';
+                this.undoVar = 'Anula';
+                this.editVar = 'Edita';
+                this.header1 = 'Mi Diario de Metas SMART';
+                this.title= 'META'; 
+                this.listkey = 'metas';
+                this.sortTitle = 'ordenado por';
+                this.sortval = 'Fecha';
+                if (this.filter == '') {
+                    this.filter = 'Todos';
+                }
+                this.achievedTitle = 'LOGRADOS';
+                this.pendingTitle = 'EN CURSO';
+                this.allTitle = 'TODOS';
+                this.searchErrorMsg = 'El término de búsqueda es demasiado corto, ingrese más caracteres por favor.';
+            // If referring file is not espanol.html, set variables to English
+            } else {         
+                //console.log('else: currentFile: ', currentFile);           
+                this.lang = 'ENG';       
+                this.doneVar = 'Done';
+                this.undoVar = 'Undo';
+                this.editVar = 'Edit';
+                this.header1 = 'My SMART Goals Journal';
+                this.title= 'GOAL';
+                this.listkey = 'goals';
+                this.sortTitle = 'ordered by';
+                this.sortval = 'Timestamp';
+                if (this.filter == '') {
+                    this.filter = 'All';
+                }
+                this.achievedTitle = 'ACHIEVED';
+                this.pendingTitle = 'IN PROGRESS';
+                this.allTitle = 'ALL';
+                this.searchErrorMsg = 'This search term is too short, please use more characters.';            
+            }            
         }
     }
 
@@ -139,12 +149,17 @@ export default class GoalList {
         }
       // console.log('this.listkey:', this.listkey);
         saveGoal(goalCat, goal.value, this.listkey, goalDue);
-        this.renderList();
+        
+        if (!currentFile.includes('feedback')) {
+            this.renderList();
+        }
     }
 
     setSearchTerm() {
-        this.searchTerm = qs('#srchinput').value;
-        this.renderList();
+        this.searchTerm = qs('#srchinput').value;        
+        if (!currentFile.includes('feedback')) {
+            this.renderList();
+        }
     }
 
     getList() {
@@ -164,6 +179,9 @@ export default class GoalList {
                 goalList = goalList.filter(el => el.done);
                 //console.log('\n goalList (getList doneFilter): ', goalList);
             }       
+        } else {
+            console.log('(getList(168) FILTER EMPTY! - this.filter): ', this.filter);
+            
         }
         // Sort list by category and task, timestamp or duedate
         if (this.sortval.length > 0) { 
@@ -175,28 +193,50 @@ export default class GoalList {
     listAll() {
         if (this.lang === 'SPA') {            
             this.filter = 'Todos';
+            console.log('this.filter: ', this.filter);
         } else {
-            this.filter = 'All'
+            this.filter = 'All';
+            console.log('this.filter: ', this.filter);
+        }        
+        if (!currentFile.includes('feedback')) {
+            this.renderList();
         }
-        this.renderList();
     }
 
     listPending() {
         if (this.lang === 'SPA') {            
             this.filter = 'En curso';
+            console.log('this.filter: ', this.filter);
         } else {            
             this.filter = 'In progress';
+            console.log('this.filter: ', this.filter);
+        }        
+        if (!currentFile.includes('feedback')) {
+            this.renderList();
         }
-        this.renderList();
     }
 
     listDone() {
         if (this.lang === 'SPA') {            
             this.filter = 'Logrado';
+            console.log('this.filter: ', this.filter);
         } else {       
-            this.filter = 'Achieved'; 
+            this.filter = 'Achieved';
+            console.log('this.filter: ', this.filter); 
+        }        
+        if (!currentFile.includes('feedback')) {
+            this.renderList();
         }
-        this.renderList();
+    }
+
+    getCategory(cat) {    
+        //console.log(cat ? cat : null);
+        let goalCat = 'general';
+        if (cat) {
+            goalCat = cat;
+        }
+        //console.log('goalCat', goalCat);
+        return goalCat;
     }
 
     listSearchFiltered(list) {
@@ -210,29 +250,30 @@ export default class GoalList {
             se(this.searchErrorMsg, searchError);
         }
         list.forEach((goal) => {
-            if ((goal.task.toLowerCase().includes(this.searchTerm.toLowerCase())) || (goal.category.toLowerCase().includes(this.searchTerm.toLowerCase()))) {
+            let goalCategory = this.getCategory(goal.category);
+            if ((goal.task.toLowerCase().includes(this.searchTerm.toLowerCase())) || (goalCategory.toLowerCase().includes(this.searchTerm.toLowerCase()))) {
                 newlist.push(goal);
             }
         });
         return newlist;
     }
 
-    renderList() {
-        this.switchLang();
+    renderList() {        
+        this.switchLang(this.currentFile);
         const parentElName = this.listkey;      
-        console.log('this.lang:', this.lang);
-        console.log('renderList() invoked: parentElName:', parentElName);
+        //console.log('this.lang:', this.lang);
+        //console.log('renderList() invoked: parentElName:', parentElName);
         //console.log('renderList() invoked');
         // console.log('this.searchTerm:', this.searchTerm);
-        const renderList = this.getList(this.listkey);
-        console.log('renderList() this.listkey: ', this.listkey);
-        console.log('renderList() renderList: ', renderList);
+        const goalList = this.getList(this.listkey);
+        //console.log('renderList() this.listkey: ', this.listkey);
+        //console.log('renderList() goalList: ', goalList);
         // Build new display     
-        console.log('renderList() parentElName:', parentElName);
+        //console.log('renderList() parentElName:', parentElName);
         let parentEl = qs(`#${parentElName}`);
-        console.log('renderList() parentEl:', parentEl);
+        //console.log('renderList() parentEl:', parentEl);
         parentEl.innerText = '';
-        renderList.forEach( (goal) => {
+        goalList.forEach( (goal) => {
             // create new item line
             // createLMNT(element, type, id, text, classes)
             const item = createLMNT('div', '', goal.id, '', 'listitem');
@@ -258,8 +299,11 @@ export default class GoalList {
             } else {
                 var duedatespan = `<span class="success task-text">${duedatetext}</span>`;
             }           
-            const dateinfo = `${setdatespan}${duedatespan}`;            
-            const itemtext = `<p class="todo-text task">${goal.category.toUpperCase()}: ${goal.task}`;
+            const dateinfo = `${setdatespan}${duedatespan}`;
+            let goalCategory = this.getCategory(goal.category);
+            //console.log('goalCategory: ', goalCategory);   
+            //console.log('goal.task: ', goal.task);           
+            const itemtext = `<p class="todo-text task">${goalCategory.toUpperCase()}: ${goal.task}`;
             //console.log('itemtext: ', itemtext);
             // Buttons
             const markbtn = createLMNT('button', 'button', `mark${goal.id}`, this.doneVar, 'itembtns markbtn chkbtn');
@@ -274,14 +318,14 @@ export default class GoalList {
                 // Change done button text and style if done             
                 markbtn.innerText = this.undoVar;
                 markbtn.classList.add('markbtnX');                
-                markbtn.classList.remove('undone');      
+                markbtn.classList.remove('notdone');      
             } else {                
                 // Change button text and style back to not done               
                 markbtn.innerText = this.doneVar;             
                 itembox.classList.remove('todo-scratch');                
                 // Change color of text and border                
                 markbtn.classList.remove('markbtnX');                
-                markbtn.classList.add('undone');         
+                markbtn.classList.add('notdone');         
             }
             item.appendChild(markbtn);
             item.appendChild(delbtn);
@@ -291,10 +335,10 @@ export default class GoalList {
             parentEl.appendChild(item);
         }); 
         // console.log('renderList() bef itemsLeft()');       
-        this.itemsLeft(renderList);
+        this.itemsLeft(goalList);
         // console.log('renderList() bef getListHeading()');
         //console.log('this.sortval: ', this.sortval);
-        //console.log('this.filter: ', this.filter);
+        console.log('this.filter: ', this.filter);
         this.getListHeading(this.sortval, this.filter);
         // console.log('renderList() bef checkBtn()');   
         this.checkBtn();
@@ -338,7 +382,7 @@ export default class GoalList {
         let done = goalList.filter(item => item.done === true).length;
         //console.log('done:', done);
         let pending = (itemcount - done);
-        //console.log('this.filter: ', this.filter);
+        console.log('this.filter: ', this.filter);
         if (this.filter === 'All' || this.filter === 'Todos') {
             goaltext = `${pending} ${t} ${this.pendingTitle}, ${done} ${t} ${this.achievedTitle}`;
             this.all();
@@ -363,7 +407,7 @@ export default class GoalList {
         // console.log('goaltext() in itemsLeft end:', goaltext);
         // console.log('srchtext() in itemsLeft end:', srchtext);
         // console.log('itemsLeft() in srchTerm>0');
-        qs("#tasks").innerHTML = `${goaltext}<br><br>${srchtext}`;
+        qs("#tasks").innerHTML = `${goaltext}<br>${srchtext}`;
         setFooter();
     }
 
@@ -379,37 +423,36 @@ export default class GoalList {
 
     checkBtn() {
         const listkey = this.listkey;
-        console.log('checkBtn() invoked: listkey:', listkey);
+        //console.log('checkBtn() invoked: listkey:', listkey);
+        console.log('checkBtn() invoked: this.filter:', this.filter);
         let btnitems = Array.from(document.querySelectorAll('.chkbtn'));
         btnitems.forEach((item) => {
             item.addEventListener('click', function(e) {
                 const btnid = e.target.getAttribute('id');
                 // check if the event is a checkbox
                 if (e.target.classList.contains('markbtn')) {
-                  // console.log('checkBtn() markbtn invoked: this.listkey:', listkey);
+                    // console.log('checkBtn() markbtn invoked: this.listkey:', listkey);
                     // get id from button id value and delete it
                     //console.log('checkBtn() markbtn: btnid:', btnid);
                     let markbtnID = btnid.substring(4);
                     //console.log('checkBtn() markbtn: markbtnID:', markbtnID);
-                  // console.log('checkBtn() markbtn: this.listkey:', listkey);
+                    // console.log('checkBtn() markbtn: this.listkey:', listkey);
                     markDone(markbtnID, listkey);
-                    //this.renderList(listkey);
                 }
                 // check if that is a delete-button
                 if (e.target.classList.contains('delbtn')) {
                     // get id from button id value and delete it
                     let delbtnID = btnid.substring(3);
-                  // console.log('checkBtn() delbtn: listkey:', listkey);
+                    // console.log('checkBtn() delbtn: listkey:', listkey);
                     deleteGoal(delbtnID, listkey);
-                    //this.renderList(listkey);
                 }
                 if (e.target.classList.contains('editbtn')) {
                     // get id from button id value and use it to find the item to edit
                     let editbtnID = btnid.substring(4);
-                  // console.log('checkBtn() editbtn: listkey:', listkey);
+                    // console.log('checkBtn() editbtn: listkey:', listkey);
                     editGoal(editbtnID, listkey);
-                    //this.renderList(listkey);
                 }
+                //this.renderList();
             });
         });
     }
@@ -417,13 +460,15 @@ export default class GoalList {
     setSortTerm() {
         var ele = document.getElementsByName('sort');          
         for(let i = 0; i < ele.length; i++) {    
-          // console.log('\n this.sortval: ', this.sortval); 
+            // console.log('\n this.sortval: ', this.sortval); 
             if(ele[i].checked) {
                 this.sortval = ele[i].value;   
               // console.log('\n this.sortval: ', this.sortval);               
             }
+        }        
+        if (!currentFile.includes('feedback')) {
+            this.renderList();
         }
-        this.renderList();
     }
 
     clearSortTerm() {
@@ -506,12 +551,12 @@ function saveGoal(cat, goal, listkey, duedate) {
   // console.log(`listkey: ${listkey}`);
     // read current goal list from local storage
     let goalList = getGoals(listkey);
-  // console.log('goalList (saveGoal begin):', goalList);
+    // console.log('goalList (saveGoal begin):', goalList);
     let goalListLen = goalList.length;
-  // console.log(`goalListLen (saveGoal begin): ${goalListLen}`);
+    // console.log(`goalListLen (saveGoal begin): ${goalListLen}`);
     // build goal object
     let datenow = Date.now();
-  // console.log('datenow: ', datenow);
+    // console.log('datenow: ', datenow);
     const newItem = { 
         id: datenow, 
         task: goal, 
@@ -523,14 +568,14 @@ function saveGoal(cat, goal, listkey, duedate) {
         if (newItem.hasOwnProperty(key)) {
         // console.log(key + ': ' + newItem[key]);
         }
-      }  
+    }  
     // prequel for task: goal.length + " " + 
     // add obj to goalList
-  // console.log(`newItem: ${newItem}`);
+    // console.log(`newItem: ${newItem}`);
     goalList.push(newItem);
     goalListLen = goalList.length;
-  // console.log(`goalListLen (saveGoal end): ${goalListLen}`);
-  // console.log(`goalList (saveGoal end): ${goalList}`);
+    // console.log(`goalListLen (saveGoal end): ${goalListLen}`);
+    // console.log(`goalList (saveGoal end): ${goalList}`);
     // save JSON.stringified list to ls
     writeToLS(listkey, JSON.stringify(goalList));
     //location.reload();
@@ -543,13 +588,9 @@ function editGoal(id, listkey) {
     let goalList = getGoals(listkey);    
     console.log('editGoal() goalList: ', goalList);    
     let goal = goalList.find(el => el.id === id);    
-    console.log('editGoal() goal: ', goal);    
-    console.log('editGoal goal.category: ', goal.category);
-    if (!goal.category) {
-        console.log('NO CATEGORY!!!!');
-        goal.category = 'GENERAL';
-    }
-    let newCat = prompt("Edit category", goal.category);
+    console.log('editGoal() goal: ', goal);  
+    let goalCategory = this.getCategory(goal.category);
+    let newCat = prompt("Edit category", goalCategory);
     let newTask = prompt("Edit goal", goal.task);
     let newDuedate = prompt("Edit duedate", goal.duedate);
     goal.task = newTask;
@@ -560,9 +601,9 @@ function editGoal(id, listkey) {
 }
 
 function markDone(id, listkey) {
-  // console.log('markDone() invoked');
-  // console.log('id: ', id);
-  // console.log('markDone() listkey:', listkey);
+    // console.log('markDone() invoked');
+    // console.log('id: ', id);
+    // console.log('markDone() listkey:', listkey);
     let donedate = new Date();
     let goalList = getGoals(listkey);
     goalList.forEach(function(item) {
@@ -580,11 +621,11 @@ function markDone(id, listkey) {
 }
 
 function deleteGoal(id, listkey) {
-  // console.log('deleteGoal invoked');
-  // console.log(`deleteGoal() id: ${id}`);
-  // console.log('deleteGoal() listkey:', listkey);
+    // console.log('deleteGoal invoked');
+    // console.log(`deleteGoal() id: ${id}`);
+    // console.log('deleteGoal() listkey:', listkey);
     let goalList = getGoals(listkey);
-  // console.log(`deleteGoal() goalList: ${goalList}`);
+    // console.log(`deleteGoal() goalList: ${goalList}`);
     const filtered = goalList.filter(item => item.id != id);
     // convert JSON list to string and save in storage
     writeToLS(listkey, JSON.stringify(filtered));

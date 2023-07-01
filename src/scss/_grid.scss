@@ -80,13 +80,6 @@
     grid-area: donebtn;
 }
 
-#srchbar {
-    display: grid;
-    grid-area: srchbar;
-    grid-template-areas:
-    "srchinput srchbtn";
-}
-
 #srchbtn {
     grid-area: srchbtn;
 }
@@ -104,7 +97,7 @@
 }
 
 #catinput, #goalinput, #addbtn, #srchbtn, #srchinput, .sharer {
-    padding: 0 1vh;
+    padding: 0 1vw;
 }
 
 #goalinput, #catinput {

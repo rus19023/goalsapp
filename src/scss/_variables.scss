@@ -1,7 +1,6 @@
 // Colors
 $uOrange: #b76000;
 
-
 $uYellow: hsl(48, 100%, 50%);
 $uBlue: hsl(210, 100%, 40%);
 $medblue: $uBlue;
@@ -18,10 +17,15 @@ $seafoam:       adjust-hue($uYellow, 90deg);
 $aqua:          adjust-hue($uYellow, 120deg);
 $skyblue:       adjust-hue($uYellow, 150deg);
 $newblue:       adjust-hue($uYellow, 180deg);
+$black:         #000;
+//$black:         rgb(0, 0, 0, .5);
+//$black:         $uBlue;
 
 $ltblue: lighten($uBlue, 20%);
 $ltorange: lighten($redorange, 20%);
-$ltyellow: lighten($yellow, 20%);
+$ltyellow: lighten($uYellow, 20%);
+$lthotpink: lighten($hotpink, 30%);
+$ltskyblue: lighten($skyblue, 20%);
 
 //$yellowFromSet: adjust-hue($orange,   30deg);
 // $chartreuse:    adjust-hue($orange,   60deg);
