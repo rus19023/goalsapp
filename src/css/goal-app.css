@@ -1,5 +1,6 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Hubballi"); /* Adapted from https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995 */
+@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Hubballi");
+/* Adapted from https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995 */
 .color3 {
   display: grid;
   grid-template-columns: 1fr;
@@ -16,7 +17,7 @@
 
 .yellow {
   background: black;
-  color: hsl(48, 100%, 50%);
+  color: #ffcc00;
   margin: 0;
 }
 
@@ -46,7 +47,7 @@
 
 .medblue {
   background: black;
-  color: hsl(210, 100%, 40%);
+  color: #0066cc;
   margin: 0;
 }
 
@@ -231,13 +232,7 @@ p.todo-text.cat {
 
 @media screen and (min-width: 300px) {
   .listitem {
-    padding: 0.5rem;
     grid-template-columns: 2fr 2fr 1fr 9fr;
-  }
-}
-@media screen and (min-width: 600px) {
-  .listitem {
-    padding: 0.5rem;
   }
 }
 @media screen and (min-width: 500px) {
@@ -299,13 +294,21 @@ body {
   grid-template-columns: 1fr 1fr;
 }
 
+.bold-text {
+  font-weight: bold;
+}
+
 #gridcontainer {
   background: #000;
   margin: 1rem 0;
 }
 
 .goalbordered {
-  border: 2px solid hsl(48, 100%, 50%);
+  border: 2px solid #ffcc00;
+}
+
+.dashbordered {
+  border: 2px dashed #ffcc00;
 }
 
 .row {
@@ -320,6 +323,7 @@ body {
 label {
   font-size: medium;
   text-align: center;
+  padding: 0.25rem;
 }
 
 div.sticky { /* Safari */
@@ -358,19 +362,19 @@ footer {
 }
 
 .bublue {
-  background: hsl(210, 100%, 40%) !important;
+  background: #0066cc !important;
 }
 
 .bmedblue {
-  background: hsl(210, 100%, 40%) !important;
+  background: #0066cc !important;
 }
 
 .buyellow {
-  background: hsl(48, 100%, 50%) !important;
+  background: #ffcc00 !important;
 }
 
 .byellow {
-  background: hsl(48, 100%, 50%) !important;
+  background: #ffcc00 !important;
 }
 
 .buorange {
@@ -403,9 +407,6 @@ footer {
 
 .black {
   color: #000;
-  width: 100%;
-  margin: auto;
-  height: 4rem;
 }
 
 .bchartreuse {
@@ -447,6 +448,14 @@ footer {
   border-radius: 4px;
 }
 
+.sort-asc:after {
+  content: "▲";
+}
+
+.sort-desc:after {
+  content: "▼";
+}
+
 .sharer {
   background: #000;
   border: none;
@@ -459,7 +468,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: hsl(48, 100%, 50%);
+  color: #ffcc00;
   font-family: "Hubballi", sans-serif;
 }
 
@@ -482,18 +491,18 @@ h4 {
 h5 {
   font-size: 1rem;
   font-weight: bold;
-  background: hsl(210, 100%, 40%);
+  background: #0066cc;
 }
 
 h6 {
   font-size: 1.5rem;
   font-weight: bold;
   font-family: "Hubballi", sans-serif;
-  background: hsl(210, 100%, 40%);
+  background: #0066cc;
 }
 
 figcaption {
-  color: hsl(48, 100%, 50%);
+  color: #ffcc00;
 }
 
 div,
@@ -546,7 +555,7 @@ div.m-2, div.m-2 span {
 }
 
 .title {
-  color: hsl(48, 100%, 50%);
+  color: #ffcc00;
   margin: 0 auto;
   padding: 1vw;
 }
@@ -576,21 +585,30 @@ a:hover {
   max-width: 100%;
 }
 
+.addrow2 {
+  padding-bottom: 0.25rem;
+}
+
 .bgblack {
   background: #000;
   border: none;
+}
+
+.whiteborder {
+  border: 1px solid white;
+  border-radius: 5px;
 }
 
 #left1, #right1 {
   padding: 0.5rem;
 }
 
-.inputs, #duedateinput {
+input.inputs, #duedateinput {
   cursor: pointer;
   color: #3333ff;
-  background: hsl(48, 100%, 50%);
-  padding: 0.5rem;
-  height: 1.5rem;
+  background: #ffcc00;
+  width: 90%;
+  height: 2.5rem;
   border: 1px solid white;
   border-radius: 4px;
 }
@@ -607,7 +625,7 @@ a:hover {
 
 #autofooter {
   font-weight: bold;
-  color: hsl(48, 100%, 50%);
+  color: #ffcc00;
   text-align: center;
   padding: 1rem;
   margin-bottom: 6vh;
@@ -645,54 +663,34 @@ a:hover {
   font-style: italic;
 }
 
-#todo-error {
-  font-weight: bold;
-  color: #cc0000;
-}
-
-#root a {
+.btns, a.btns {
   cursor: pointer;
-  color: #b3ff00;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-#root a:visited {
-  color: #33ff00;
-}
-
-.btns {
-  cursor: pointer;
-  max-height: 1.5rem;
+  min-width: 4rem;
+  padding: 0.25rem 0.5rem;
+  margin: auto;
+  height: 35px;
+  background: #0066cc;
+  color: #ffcc00;
   border: 2px solid white;
-  border-radius: 4px;
+  border-radius: 2rem;
 }
 
-.mininputs {
-  min-width: 8rem;
+.toggle {
+  color: #00b3ff;
+  background: #0066cc;
+  font-weight: bold;
+  font-size: small;
+  border: 2px solid #00b3ff;
+  margin-left: 1rem;
 }
 
-a.langbtn {
-  color: hsl(48, 100%, 50%);
+#lang {
+  height: 35px;
+  padding: 0.35rem 0 0 0;
+  color: #b3ff00;
+  background: black;
   font-weight: bold;
   font-size: larger;
-  border: 2px solid hsl(48, 100%, 50%);
-  padding: 0.5rem 0;
-}
-
-.goalbtn {
-  color: hsl(48, 100%, 50%);
-  background: hsl(210, 100%, 40%);
-  margin: 0 0.5rem;
-  font-size: 1rem;
-}
-.goalbtn a {
-  text-decoration: none;
-  color: #0000cc;
-  text-align: center;
-}
-.goalbtn a :hover {
-  border: 5px solid #cc00cc;
 }
 
 #right1, #left1 {
@@ -708,26 +706,24 @@ a.langbtn {
   -o-border-radius: 4px;
 }
 
-#addbar {
+#addbar, #feedback {
   background: #000;
-  height: 6rem;
   padding: 0;
   margin: auto;
-  border: 1px hsl(48, 100%, 50%) solid;
+  border: 2px #ffcc00 solid;
   border-radius: 4px;
 }
 
-#addrow2 {
+#row2 {
   margin: 0.5rem 0 0 0;
 }
 
 #addbtn {
-  color: hsl(48, 100%, 50%);
+  color: #ffcc00;
   cursor: pointer;
-  background: hsl(210, 100%, 40%);
+  background: #0066cc;
   font-size: 1rem;
   padding: 0.1rem;
-  height: 5rem;
   width: 5rem;
   margin: 1rem;
 }
@@ -765,7 +761,7 @@ a.langbtn {
   color: white;
 }
 
-.todo-scratch {
+.scratch {
   text-decoration: line-through;
 }
 
@@ -780,7 +776,7 @@ a.langbtn {
 }
 
 .todo-bordered {
-  border: 2px solid hsl(48, 100%, 50%);
+  border: 2px solid #ffcc00;
 }
 
 div#tasks, div#sortitems, div#filters {
@@ -796,12 +792,11 @@ div#tasks, div#sortitems, div#filters {
 }
 
 .itembtns {
-  cursor: pointer;
   max-height: 30px;
   max-width: 17vw;
   background: #000;
   font-weight: bold;
-  margin: 0 0.25rem;
+  margin: 0.25rem;
 }
 
 .editbtn, .markbtn, .delbtn {
@@ -825,47 +820,33 @@ div#tasks, div#sortitems, div#filters {
   border-color: #ff4d00;
   width: 1.75rem;
   padding: 0;
-  margin: 0;
   font-size: 1rem;
   font-weight: bolder;
 }
 
 .notdone {
-  color: hsl(48, 100%, 50%);
-  border: 2px solid hsl(48, 100%, 50%);
+  color: #ffcc00;
+  border: 2px solid #ffcc00;
 }
 
 #srchbar {
   display: flex;
-  border: 1px solid #33ff00;
+  border: 2px solid #33ff00;
   border-radius: 4px;
-  padding: 0.75rem 2.5rem;
-  max-width: 98%;
-  margin: 0;
+  padding: 0.75rem;
 }
 
 #srchinput {
   cursor: pointer;
-  height: 1.5rem;
-  margin: 0 1rem;
+  margin: 0.25rem 1rem;
   font-weight: bold;
   background: #33ff00;
   color: #000;
 }
 
-#todocontainer {
-  margin: 0 auto;
-}
-
 p {
   padding: 0;
   margin: 4px;
-}
-
-#todocontainer {
-  background: #000;
-  text-align: center;
-  margin: 0 auto;
 }
 
 #header1 {
@@ -878,16 +859,18 @@ p {
 }
 
 li.listitem {
-  max-height: 10rem;
+  max-height: 15rem;
   margin: 0 auto;
   padding: 0.25rem;
   max-width: 100%;
 }
 
-#listfooter {
+div#listfooter {
   max-height: 10rem;
   padding: 0.25rem;
   margin: 2vw;
+  border: 1px solid white;
+  border-radius: 4px;
   justify-content: space-around;
 }
 

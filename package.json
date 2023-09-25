@@ -1,42 +1,44 @@
 {
-    "name": "SMART-GOALS-APP",
-    "version": "1.0.0",
-    "description": "SMART Goals App",
-    "main": "",
-    "scripts": {
-        "start": "nodemon index.js",
-        "tailwind:css": "postcss src/css/main.css -o dist/css/tailwind.css",
-        "dev": "npm run tailwind:css",
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/rus19023/goals-app.git"
-    },
-    "keywords": [
-        "portfolio",
-        "tailwind",
-        "javascript"
-    ],
-    "author": "Doris Rush-Lopez",
-    "license": "",
-    "bugs": {
-        "url": "https://github.com/rus19023/myportfolio/issues"
-    },
-    "homepage": "https://github.com/rus19023/myportfolio#readme",
-    "devDependencies": {
-        "autoprefixer": "^10.4.8",
-        "nodemon": "^2.0.22",
-        "postcss": "^8.4.16",
-        "postcss-cli": "^10.0.0",
-        "tailwindcss": "^3.1.8",
-        "webpack": "^5.74.0",
-        "webpack-cli": "^4.10.0"
-    },
-    "dependencies": {
-        "@material-tailwind/html": "^1.2.1",
-        "dotenv": "^16.0.3",
-        "express": "^4.18.2",
-        "mongoose": "^7.0.3"
-    }
+  "name": "smart-goals-app",
+  "version": "1.0.0",
+  "description": "SMART Goals App",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "tailwind:css": "postcss src/css/main.css -o dist/css/tailwind.css",
+    "dev": "npm run tailwind:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rus19023/goals-app.git"
+  },
+  "keywords": [
+    "portfolio",
+    "tailwind",
+    "javascript"
+  ],
+  "author": "Doris Rush-Lopez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rus19023/myportfolio/issues"
+  },
+  "homepage": "https://github.com/rus19023/myportfolio#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.8",
+    "nodemon": "^1.14.9",
+    "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "tailwindcss": "^3.1.8",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "@material-tailwind/html": "^1.2.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "multiparty": "^4.2.3",
+    "nodemailer": "^6.9.3"
+  }
 }

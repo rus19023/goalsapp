@@ -33,6 +33,18 @@ export const se = (errorText, el) => {
     el.innerText = errorText;
 }
 
+export const ctts = (timestamp) => {
+    const date = new Date(timestamp);
+    const options = { month: 'short', day: 'numeric', year: 'numeric' };
+    const formattedDate = date.toLocaleString('en-US', options);    
+    return formattedDate;
+  }
+  
+  // Example usage
+//   const timestamp = '1688139382877'; // Example timestamp
+//   const dateString = ctts(timestamp);
+//   console.log(dateString);
+
 /*
 add a touchend event listener to an element for mobile with a click event fallback for desktops @param {string} elementSelector The selector for the element to attach the listener to
 * @param {function} callback The callback function to run
@@ -87,7 +99,11 @@ export function createLMNT(LMNT, LMNTtype, LMNTid, LMNTtext, LMNTclass) {
 // set footer
 export function setFooter() {
     if (isElement("autofooter")) {
-        writeById("autofooter", createLink("https://rus19023.github.io/myportfolio/", "&copy; 2019-2022 | Doris Rush-Lopez, BYU-Idaho Candidate for Bachelor of Science in Applied Technology"));
+        const link = createLink(
+            "https://rus19023.github.io/myportfolio/", "My Portfolio");
+        writeById("autofooter",
+            "&copy; 2019-2023 | Doris Rush-Lopez, BYU-Idaho, Candidate for Bachelor of Science in Applied Technology, Focus in Cybersecurity using ML/AI<br><br>" + link      
+        );
     }
 }
 

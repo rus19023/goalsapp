@@ -44,7 +44,7 @@
     <body class="lightmode">
         <div id="ocean">
         <header class="title col3">
-            <!-- <button class="btns langbtn" onclick="toggleTheme()">
+            <!-- <button class="btns" onclick="toggleTheme()">
                 Light mode
             </button> -->
             <section>
@@ -52,11 +52,11 @@
                     <h2 id="todoheading" class="title">
                         Mi Diario de Metas SMART*
                     </h2>
-                    <a id='lang' class="btns langbtn" href="/">
+                    <a id='lang' class="btns" href="/">
                         &nbsp;English&nbsp;
                     </a>
                 </div>
-                <p class="normal-text">*(eSpecífico, Medible, Asignable, Relevante, Tiempo limitado)</p>
+                <p class="normal-text bold-text">*(eSpecífico, Medible, Asignable, Relevante, Tiempo limitado)</p>
             </section>
             <br>
             <section id="ukraine">
@@ -101,27 +101,31 @@
                         <img class="centered socialicons" src="./src/img/icons/icons8-twitter-96.png" alt="Comparte en Twitter">
                     </button> 
                 </div>
-                <div id="srchbar" class="todo-text">
-                    <input id="srchinput" type="text" name="srchinput" placeholder="Buscar en las metas" value="" class="inputs" tabindex="1" required>
-                    <button id="srchbtn" class="btns goalbtn">Busca</button>
-                </div>
+                <form id="srchbar" class="todo-text">
+                    <label for="srchinput">
+                        <input id="srchinput" type="text" name="srchinput" placeholder="Buscar en las metas" value="" class="inputs" tabindex="1" required>
+                    </label>
+                    <button id="srchbtn" class="btns srchbtns">Busca</button>
+                    <button id="clrsrchbtn" class="btns srchbtns">Anula Busqueda</button>
+                </form>
                 <p id="searcherror" class="warning"></p>
             </div>
 
             <form id="addbar" class="">
+                <h2 class="row">Agregue una Meta</h2>
                 <div id="addrow1" class="col2">
                     <label for="catinput">
                         Categoría
                         <input id="catinput" type="text" name="catinput" placeholder="Categoría de la meta" class="inputs halfwide" value='' autofocus>
                     </label>
-                    <label for="catinput">
+                    <label for="catinput" class="">
                         Meta
                         <input id="goalinput" type="text" name="goalinput" class="inputs halfwide" tabindex=0 value='' placeholder="Meta" required>
                     </label>
                 </div>
                 <div id="addrow2" class="col2">
-                    <label for="duedateinput">
-                        Fecha de cumplir
+                    <label for="duedateinput" class="">
+                        Fecha cumplir
                         <input id="duedateinput" type="date" name="duedateinput" value='' class="inputs halfwide">
                     </label>
                     <label for="addbtn" class="black">
@@ -150,24 +154,27 @@
                             <input type="radio" name="sort" id="duedate" value="Duedate">
                             Fecha de cumplir
                         </label>
-                        <label class="sortitems" for="time">
-                            <input type="radio" name="sort" id="time" value="Date" checked>
+                        <label class="sortitems" for="id">
+                            <input type="radio" name="sort" id="id" value="Date" checked>
                             Fecha 
                         </label>
-                        <label class="sortitems" for="cat">
-                            <input type="radio" name="sort" id="cat" value="Categoría">
+                        <label class="sortitems" for="category">
+                            <input type="radio" name="sort" id="category" value="Categoría">
                             Categoría
                         </label>
+                        <button id="sortToggle" class="btns toggle" onclick="toggleSort()">
+                           Orden &uarr;  &darr;
+                       </button>
                     </div>
                     <div id="filters">
                         Mostrar:
-                        <button class="btns goalbtn" id="allbtn">
+                        <button class="btns" id="allbtn">
                             Todos
                         </button>
-                        <button class="btns goalbtn" id="pendbtn">
+                        <button class="btns" id="pendbtn">
                             Pendiente
                         </button>
-                        <button class="btns goalbtn" id="donebtn">
+                        <button class="btns" id="donebtn">
                             Logrado
                         </button>
                     </div>
@@ -177,8 +184,8 @@
         <br><br>
         <footer>
             <div class="normal-text centered">
-                <a href="rus19023.github.io/goalsapp/feedback/">
-                    Give Feedback or Ask for Features
+                <a href="rus19023.github.io/goalsapp/feedback-esp">
+                    Envíe su opinión o solicite funciones
                 </a>
                 <div id="autofooter" class="footer footer-center "></div>
             </div>

@@ -1,5 +1,5 @@
 import { readFromLS, writeToLS } from "./ls.js";
-import { qs, createLMNT, setFooter, gd, gt, se, makeWaves } from "./utilities.js";
+import { qs, createLMNT, setFooter, gd, gt, se, ctts, makeWaves } from "./utilities.js";
 
 makeWaves();
 
@@ -15,11 +15,11 @@ export default class GoalList {
             // if (performance.navigation.type === 1) {
             //     // Page is loaded from a link
             //     // Check for which language to use
-            //     switchLang();
+            //     getLang();
             // } else if (performance.navigation.type === 0) {
             //     // Page is reloaded
             //     // Check for which language to use
-                switchLang();
+                getLang();
             //}
         });         
 
@@ -31,30 +31,33 @@ export default class GoalList {
         this.title = 'GOAL';
         this.listkey = 'goals';
         this.sortTitle = 'ordered by';
-        this.filter = '';
-        this.pendingTitle = 'TO WORK ON';
+        this.filter = 'In Progress';
+        this.pendingTitle = 'IN PROGRESS';
         this.achievedTitle = 'ACHIEVED';
-        this.sortval = 'Timestamp';
+        this.sortval = 'id';
         this.taskCount = 0;
         this.parentId = parentId;
         this.goal_error = '';
         this.searchTerm = '';
+        this.sortDirection = 'asc';
         this.srchbtn = qs('#srchbtn');
+        this.clrsrchbtn = qs('#clrsrchbtn');
         this.allbtn = qs('#allbtn');
         this.pendbtn = qs('#pendbtn');
         this.donebtn = qs('#donebtn');
         this.addbtn = qs('#addbtn');
         this.duedatebtn = qs('#duedate');
-        this.catbtn = qs('#cat');
-        this.timebtn = qs('#time');
+        this.catbtn = qs('#category');
+        this.timebtn = qs('#id');
         this.langbtn = qs('#lang');
+        this.sortToggle = qs('#sortToggle')
         this.currentFile = window.location.pathname;
 
         // TODO: this.addbtn.onTouch(), this.addGoal();
 
         this.langbtn.addEventListener('click', () => { 
             //langbtn.preventDefault();
-            this.switchLang(this.currentFile); 
+            this.getLang(this.currentFile); 
         }, false);
     }
 
@@ -63,11 +66,12 @@ export default class GoalList {
     // TODO:    
        
     // Another get filename idea from https://befused.com/javascript/get-filename-url/
-    switchLang(currentFile) {
-        console.log('currentFile:', currentFile);
+    getLang(currentFile) {
+        //console.log('currentFile:', currentFile);
         // If referring file is espanol.html, set variables to Spanish
-        if (!currentFile.includes('feedback')) {
+        if (!this.currentFile.includes('feedback')) {
             this.srchbtn.addEventListener('click', () => { this.setSearchTerm(); }, false);
+            this.clrsrchbtn.addEventListener('click', () => { this.clearSearchTerm(); }, false);
             this.addbtn.addEventListener('click', () => { this.addGoal(); }, false);
             this.allbtn.addEventListener('click', () => { this.listAll(); }, false);
             this.pendbtn.addEventListener('click', () => { this.listPending(); }, false);
@@ -75,6 +79,7 @@ export default class GoalList {
             this.duedatebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
             this.catbtn.addEventListener('click', () => { this.setSortTerm(); }, false);
             this.timebtn.addEventListener('click', () => { this.setSortTerm(); }, false);
+            this.sortToggle.addEventListener('click', () => { this.toggleSort(); }, false);
 
             if (currentFile.includes('espanol')) {        
                 console.log('if espanol.html: currentFile: ', currentFile);
@@ -86,7 +91,6 @@ export default class GoalList {
                 this.title= 'META'; 
                 this.listkey = 'metas';
                 this.sortTitle = 'ordenado por';
-                this.sortval = 'Fecha';
                 if (this.filter == '') {
                     this.filter = 'Todos';
                 }
@@ -105,9 +109,8 @@ export default class GoalList {
                 this.title= 'GOAL';
                 this.listkey = 'goals';
                 this.sortTitle = 'ordered by';
-                this.sortval = 'Timestamp';
                 if (this.filter == '') {
-                    this.filter = 'All';
+                    this.filter = 'In Progress';
                 }
                 this.achievedTitle = 'ACHIEVED';
                 this.pendingTitle = 'IN PROGRESS';
@@ -124,247 +127,302 @@ export default class GoalList {
         if (catText.value.length === 0) {
             // if it's blank, set it to 'General'
             catText.value = 'General';
-        } 
-        // else 
-        // {
-        //     // not blank, add a goal number, my preference only
-        //     this.goalCount++;
-        //     if (this.goalCount < 9) {
-        //         catText;//  += '-0' + this.goalCount.toString();
-        //     } else {
-        //         catText;//  += '-'+ this.goalCount.toString();          
-        //     }
-        // }
-    
+        }    
         // check for goal input not blank
         const goal = qs('#goalinput');
         const duedate = qs('#duedateinput');
         //if (goal.length == 0) { goal.push('Custom goal'); }
         // goal is ok, add to list for storage with others
-        let goalDue = duedate.value;
-        let goalCat = catText.value.toUpperCase();
+        const goalDue = duedate.value;
+        const goalCat = catText.value.toUpperCase();
+        const goalText = goal.value;
       // console.log('goalCat: ', goalCat);
-        if (!catText.value > 0) {
-            goalCat = catText.toUpperCase();
-        }
       // console.log('this.listkey:', this.listkey);
-        saveGoal(goalCat, goal.value, this.listkey, goalDue);
-        
-        if (!currentFile.includes('feedback')) {
-            this.renderList();
+        saveGoal(goalCat, goalText, this.listkey, goalDue);
+        if (!this.currentFile.includes('feedback')) {
+            this.renderTheList();
         }
     }
 
     setSearchTerm() {
-        this.searchTerm = qs('#srchinput').value;        
-        if (!currentFile.includes('feedback')) {
-            this.renderList();
-        }
+        this.searchTerm = qs('#srchinput').value;
+        console.log('this.searchTerm', this.searchTerm);
     }
 
     getList() {
-        // Get list of tasks from storage
-        let goalList = getGoals(this.listkey);        
-        // Filter list by search term if any
-        if (this.searchTerm.length > 0) {
-            goalList = this.listSearchFiltered(goalList);
-            //console.log('\n goalList (getList srchFilter): ', goalList);
-        }        
-        // Filter list by done, pending, all 
-        if (this.filter.length > 0) { 
-            if ((this.filter === 'In progress') || (this.filter === 'En curso')) {
-                goalList = goalList.filter(el => !el.done);
+        // Called by renderTheList()
+        // Get full list of tasks from storage
+        var goalList = getGoals(this.listkey);
+        console.log('this.searchTerm:', this.searchTerm);
+        // Parse the JSON string back into an array
+        var goalsArray = JSON.parse(goalList);
+        // Check that list is not empty.
+        if (!Array.isArray(goalsArray)) {
+            alert("Goal list is empty. Please enter at least one goal.");
+            return
+        } else {        
+            // Filter list by search term if any
+            if (this.searchTerm.length > 0) {
+                goalsArray = this.listSearchFiltered(goalsArray);
+                //console.log('\n goalsArray (getList srchFilter): ', goalsArray);
             } 
-            if ((this.filter === 'Achieved') || (this.filter === 'Logrado')){                
-                goalList = goalList.filter(el => el.done);
-                //console.log('\n goalList (getList doneFilter): ', goalList);
-            }       
-        } else {
-            console.log('(getList(168) FILTER EMPTY! - this.filter): ', this.filter);
-            
+            let goalFilter = this.filter; 
+            // console.log('xxx', xxx)
+            console.log('goalFilter', goalFilter) 
+            console.log('goalsArray', goalsArray)        
+            // Filter list by done, pending, all 
+            if (goalFilter.length > 0) {
+                if ((goalFilter.toLowerCase() === 'in progress') || (goalFilter.toLowerCase() === 'en curso')) {
+                    goalsArray = goalsArray.filter(el => !el.done);
+                } 
+                if ((goalFilter.toLowerCase() === 'achieved') || (goalFilter.toLowerCase() === 'logrado')) {
+                    goalsArray = goalsArray.filter(el => el.done);
+                    //console.log('\n goalsArray (getList doneFilter): ', goalsArray);
+                }       
+            } else {
+                console.log('(getList(168) FILTER EMPTY! - goalFilter): ', goalFilter);
+                
+            }
+            // Sort list by category and task, timestamp or duedate
+            if (this.sortval.length > 0) { 
+                //console.log('this.sortval', this.sortval);
+                goalsArray = this.sortList(goalsArray, this.sortval, this.sortDirection);
+                //console.log('Goal list is being sorted...');
+                return goalsArray;
+            } else {
+                console.log('Goal list is empty!');
+            }
         }
-        // Sort list by category and task, timestamp or duedate
-        if (this.sortval.length > 0) { 
-            goalList = this.sortList(goalList);
-        }
-        return goalList;
     }
 
     listAll() {
         if (this.lang === 'SPA') {            
-            this.filter = 'Todos';
-            console.log('this.filter: ', this.filter);
+            this.filter = 'todos';
+            //console.log('this.filter: ', this.filter);
         } else {
-            this.filter = 'All';
-            console.log('this.filter: ', this.filter);
-        }        
-        if (!this.currentFile.includes('feedback')) {
-            this.renderList();
+            this.filter = 'all';
+            //console.log('this.filter: ', this.filter);
         }
+        this.all();
+        this.renderTheList();
     }
 
     listPending() {
         if (this.lang === 'SPA') {            
-            this.filter = 'En curso';
-            console.log('this.filter: ', this.filter);
+            this.filter = 'en curso';
         } else {            
-            this.filter = 'In progress';
-            console.log('this.filter: ', this.filter);
-        }        
-        if (!this.currentFile.includes('feedback')) {
-            this.renderList();
+            this.filter = 'in progress';
         }
+        this.pending();
+        this.renderTheList();
     }
 
     listDone() {
+        this.done();
         if (this.lang === 'SPA') {            
-            this.filter = 'Logrado';
-            console.log('this.filter: ', this.filter);
+            this.filter = 'logrado';
         } else {       
-            this.filter = 'Achieved';
-            console.log('this.filter: ', this.filter); 
-        }        
-        if (!this.currentFile.includes('feedback')) {
-            this.renderList();
+            this.filter = 'achieved'; 
         }
+        this.renderTheList();
     }
 
-    getCategory(cat) {    
-        //console.log(cat ? cat : null);
-        let goalCat = 'general';
-        if (cat) {
-            goalCat = cat;
+    checkNull(objEl) {
+        //console.log(objEl ? objEl : null);
+        let objText = 'null';
+        if (objEl) {
+            objText = objEl.toLowerCase();
         }
-        //console.log('goalCat', goalCat);
-        return goalCat;
+        //console.log('objText', objText);
+        return objText;
     }
 
     listSearchFiltered(list) {
-        //console.log('list: ', list);
+        // Called by getList()
         this.searchTerm = qs("#srchinput").value;
-        let newlist = [];
+        //console.log('list: ', list);
         // Check for missing search term entry
         while (this.searchTerm === '' || this.searchTerm.length < 3) {
             this.searchTerm = qs("#srchinput").value;
-            let searchError = qs("#searcherror");
+            const searchError = qs("#searcherror");
             se(this.searchErrorMsg, searchError);
         }
-        list.forEach((goal) => {
-            let goalCategory = this.getCategory(goal.category);
-            if ((goal.task.toLowerCase().includes(this.searchTerm.toLowerCase())) || (goalCategory.toLowerCase().includes(this.searchTerm.toLowerCase()))) {
-                newlist.push(goal);
+        if (this.searchTerm.length > 0) {
+            let newlist = [];
+            list.forEach((goal) => {
+                const goalCat = this.checkNull(goal.category);
+                const catSrch = goal.category.toLowerCase().includes(this.searchTerm.toLowerCase());
+                const taskSrch = goal.task.toLowerCase().includes(this.searchTerm.toLowerCase());
+                const dateString = goal.id;
+                const dateSrch = dateString.toLocaleString().toLowerCase().includes(this.searchTerm.toLowerCase());
+                const dueString = goal.duedate;
+                const dueSrch = dueString.toLowerCase().includes(this.searchTerm.toLowerCase());
+                if (goalCat) {
+                    if (catSrch || taskSrch || dateSrch || dueSrch) {
+                        console.log('goal:', goal.id, goal.task);
+                        newlist.push(goal);
+                    } 
+                }
+            });
+            const srchcount = newlist.length;
+            //console.log('srchcount', srchcount);
+            const seBox = qs('#searcherror');
+            //console.log('seBox', seBox);
+            if (srchcount > 0) {
+                seBox.innerText = `Search results: ${srchcount} goals found for "${this.searchTerm}"`;
+                return newlist;
+            } else {
+                if (this.lang == 'SPA') {
+                    seBox.innerText = 'Término de búsqueda no se encuentra.'
+                } else {
+                    seBox.innerText = 'Search term not found.';
+                }
             }
-        });
-        return newlist;
+        }
     }
 
-    renderList() {        
-        this.switchLang(this.currentFile);
+    renderTheList() {        
+        if (this.currentFile.includes('feedback')) {
+            return;
+        }
+        this.getLang(this.currentFile);
         const parentElName = this.listkey;      
         //console.log('this.lang:', this.lang);
-        //console.log('renderList() invoked: parentElName:', parentElName);
-        //console.log('renderList() invoked');
-        // console.log('this.searchTerm:', this.searchTerm);
+        //console.log('this.searchTerm:', this.searchTerm);
         const goalList = this.getList(this.listkey);
-        //console.log('renderList() this.listkey: ', this.listkey);
-        //console.log('renderList() goalList: ', goalList);
-        // Build new display     
-        //console.log('renderList() parentElName:', parentElName);
-        let parentEl = qs(`#${parentElName}`);
-        //console.log('renderList() parentEl:', parentEl);
-        parentEl.innerText = '';
-        goalList.forEach( (goal) => {
-            // create new item line
-            // createLMNT(element, type, id, text, classes)
-            const item = createLMNT('div', '', goal.id, '', 'listitem');
-            // get date from goal.id
-            const itembox = createLMNT('div', '', 'itembox', 'bgblack', '');   
-            const setdatespan = `<span class="task-text"> ${gd(goal.id)} ${gt(goal.id)}</span>`;
-            let duedate = new Date(goal.duedate);
-            //console.log('duedate: ', duedate);
-            let month = duedate.toLocaleString("en-US", { month: "short" });            
-            let yearString = duedate.toLocaleString("en-US", { year: "numeric" });            
-            let dayString = duedate.toLocaleString("en-US", { day: "numeric" });
-            //console.log('month: ', month);
-            month = month.substring(0, 3);
-            //console.log('day: ', dayString);
-            //console.log('year: ', yearString);
-            let duedatetext = `${dayString} ${month} ${yearString}`;
-            //console.log('duedatetext: ', duedatetext);
-            // If duedate after today's date, set success class to warning
-            let today = new Date();
-            if (goal.duedate > today) {
-                var duedatespan = `<span class="warning task-text">${duedatetext}</span>`;
-              // console.log('duedatespan: ', duedatespan);
-            } else {
-                var duedatespan = `<span class="success task-text">${duedatetext}</span>`;
-            }           
-            const dateinfo = `${setdatespan}${duedatespan}`;
-            let goalCategory = this.getCategory(goal.category);
-            //console.log('goalCategory: ', goalCategory);   
-            //console.log('goal.task: ', goal.task);           
-            const itemtext = `<p class="todo-text task">${goalCategory.toUpperCase()}: ${goal.task}`;
-            //console.log('itemtext: ', itemtext);
-            // Buttons
-            const markbtn = createLMNT('button', 'button', `mark${goal.id}`, this.doneVar, 'itembtns markbtn chkbtn');
-            const editbtn = createLMNT('button', 'button', `edit${goal.id}`, this.editVar, 'itembtns editbtn chkbtn');
-            const delbtn = createLMNT('button', 'button', `del${goal.id}`, '✕', 'itembtns delbtn chkbtn warning'); 
-            //'✕'
-            // Display done tasks as 'scratched out'
-            if (goal.done === true) {
-                // Mark the goal item as scratched out
-                                
-                itembox.classList.add('todo-scratch');                
-                // Change done button text and style if done             
-                markbtn.innerText = this.undoVar;
-                markbtn.classList.add('markbtnX');                
-                markbtn.classList.remove('notdone');      
-            } else {                
-                // Change button text and style back to not done               
-                markbtn.innerText = this.doneVar;             
-                itembox.classList.remove('todo-scratch');                
-                // Change color of text and border                
-                markbtn.classList.remove('markbtnX');                
-                markbtn.classList.add('notdone');         
-            }
-            item.appendChild(markbtn);
-            item.appendChild(delbtn);
-            item.appendChild(editbtn);
-            item.appendChild(itembox);            
-            itembox.innerHTML = `${dateinfo} \n ${itemtext}`;
-            parentEl.appendChild(item);
-        }); 
-        // console.log('renderList() bef itemsLeft()');       
-        this.itemsLeft(goalList);
-        // console.log('renderList() bef getListHeading()');
-        //console.log('this.sortval: ', this.sortval);
-        console.log('this.filter: ', this.filter);
-        this.getListHeading(this.sortval, this.filter);
-        // console.log('renderList() bef checkBtn()');   
-        this.checkBtn();
-        //console.log('renderList() end');
+        //console.log('renderTheList() this.listkey: ', this.listkey);
+        if (goalList) {
+            console.log('renderTheList() goalList: ', goalList);
+            // Build new display     
+            //console.log('renderTheList() parentElName:', parentElName);
+            let parentEl = qs(`#${parentElName}`);
+            //console.log('renderTheList() parentEl:', parentEl);
+            parentEl.innerText = '';
+            goalList.forEach( (goal) => {
+                // create new item line
+                // createLMNT(element, type, id, text, classes)
+                const item = createLMNT('div', '', goal.id, '', 'listitem whiteborder');
+                // get date from goal.id
+                const itembox = createLMNT('div', '', 'itembox', '', 'bgblack');   
+                const setdatespan = `<span class="task-text"> ${gd(goal.id)} ${gt(goal.id)}</span>`;
+                //console.log('setdatespan: ', setdatespan);
+                let duedate = new Date(goal.duedate);
+                //console.log('duedate: ', duedate);
+                let month = duedate.toLocaleString("en-US", { month: "short" });            
+                let yearString = duedate.toLocaleString("en-US", { year: "numeric" });            
+                let dayString = duedate.toLocaleString("en-US", { day: "numeric" });
+                //console.log('day: ', dayString);
+                //console.log('month: ', month);
+                month = month.substring(0, 3);
+                //console.log('day: ', dayString);
+                //console.log('year: ', yearString);
+                let duedatetext = `${dayString} ${month} ${yearString}`;
+                //console.log('duedatetext: ', duedatetext);
+                // If duedate after today's date, set success class to warning
+                let today = new Date();
+                //console.log('today:', today);
+                //console.log('duedate:', duedate);
+                if (duedate < today) {
+                    var duedatespan = `<span class="warning task-text"> Due: ${duedatetext}</span>`;
+                  // console.log('duedatespan: ', duedatespan);
+                } else {
+                    var duedatespan = `<span class="success task-text"> Due: ${duedatetext}</span>`;
+                }           
+                const dateinfo = `${setdatespan}${duedatespan}`;
+                //console.log('goal:', goal.id, goal.task);
+                var tasktext = '';
+                if (goal.task) {
+                    tasktext = goal.task; 
+                } else {
+                    tasktext = 'goal.task = null'; 
+                }
+                let goalCategory = this.checkNull(goal.category);
+
+                const itemtext = `<p class="todo-text task">${goalCategory.toUpperCase()}: ${tasktext}`;
+                //console.log('goalCategory: ', goalCategory);   
+                //console.log('goal.task: ', goal.task);
+                //console.log('itemtext: ', itemtext);
+
+                // BUTTONS
+                const markbtn = createLMNT('button', 'button', `mark${goal.id}`, this.doneVar, 'itembtns markbtn chkbtn');
+                const editbtn = createLMNT('button', 'button', `edit${goal.id}`, this.editVar, 'itembtns editbtn chkbtn');
+                const delbtn = createLMNT('button', 'button', `del${goal.id}`, '✕', 'itembtns delbtn chkbtn warning'); 
+                //'✕'
+                // Display done tasks as 'scratched out'
+                if (goal.done === true) {
+                    // Mark the goal item as scratched out
+                    itembox.classList.add('scratch');
+                    // Change done button text and style if done
+                    markbtn.innerText = this.undoVar;
+                    markbtn.classList.add('markbtnX');
+                    markbtn.classList.remove('notdone');      
+                } else {                
+                    // Change button text and style back to not done
+                    markbtn.innerText = this.doneVar;             
+                    itembox.classList.remove('scratch');
+                    // Change color of text and border
+                    markbtn.classList.remove('markbtnX');
+                    markbtn.classList.add('notdone');         
+                }
+                item.appendChild(markbtn);
+                item.appendChild(editbtn);
+                item.appendChild(delbtn);
+                item.appendChild(itembox);
+                itembox.innerHTML = `${dateinfo} \n ${itemtext}`;
+                parentEl.appendChild(item);
+            });     
+            this.itemsLeft(goalList);
+            this.setListHeading(this.sortval, this.filter);  
+            this.checkBtn();
+        }
     }
 
     all() {
+        this.allbtn.classList.remove('dashbordered');
         this.allbtn.classList.add('goalbordered');
-        this.srchbtn.classList.remove('goalbordered');
-        this.pendbtn.classList.remove('goalbordered');
-        this.donebtn.classList.remove('goalbordered');
+        this.pendbtn.classList.add('dashbordered');
+        this.donebtn.classList.add('dashbordered');
     }
 
     done() {        
-        this.pendbtn.classList.add('goalbordered');
-        this.allbtn.classList.remove('goalbordered');
-        this.pendbtn.classList.remove('goalbordered');
-        this.donebtn.classList.remove('goalbordered');
+        this.donebtn.classList.remove('dashbordered');
+        this.donebtn.classList.add('goalbordered');
+        this.pendbtn.classList.add('dashbordered');
+        this.allbtn.classList.add('dashbordered');
     }
 
     pending() {
+        this.pendbtn.classList.remove('dashbordered');
         this.pendbtn.classList.add('goalbordered');
-        this.allbtn.classList.remove('goalbordered');
-        this.pendbtn.classList.remove('goalbordered');
-        this.donebtn.classList.remove('goalbordered');
-    }
+        this.allbtn.classList.add('dashbordered');
+        this.donebtn.classList.add('dashbordered');
+    }    
+
+    toggleSort() {
+        if (this.sortDirection == 'asc') {
+            this.sortDirection = 'desc';
+        } else {
+            this.sortDirection = 'asc';
+        }
+        this.renderTheList();
+      }
+
+      clearSearchTerm() {
+          this.searchTerm = '';        
+          if (!this.currentFile.includes('feedback')) {
+              this.renderTheList();
+          }
+      }
+      
+      sortAsc() {
+        // Perform ascending sort logic here
+        console.log('Ascending sort');
+      }
+      
+      sortDesc() {
+        // Perform descending sort logic here
+        console.log('Descending sort');
+      }
 
     // function to show how many items are in the current list
     itemsLeft(goalList) {
@@ -378,135 +436,94 @@ export default class GoalList {
             t = `${this.title}S`;
         }
         let goaltext = '';
-        let srchtext = '';
         let done = goalList.filter(item => item.done === true).length;
         //console.log('done:', done);
         let pending = (itemcount - done);
-        console.log('this.filter: ', this.filter);
+        //console.log('this.filter: ', this.filter);
         if (this.filter === 'All' || this.filter === 'Todos') {
             goaltext = `${pending} ${t} ${this.pendingTitle}, ${done} ${t} ${this.achievedTitle}`;
-            this.all();
             //console.log('itemsLeft() case All');
         } else if (this.filter === 'In progress' || this.filter === 'En curso') {
             goaltext = `${pending} ${t} ${this.pendingTitle}`;
-            this.pending();
             // console.log('itemsLeft() case Pend');
         } else if (this.filter === 'Achieved' || this.filter === 'Logrado') {
             goaltext = `${done} ${t} ${this.achievedTitle}`;
-            this.done();
             // console.log('itemsLeft() case Pend');
         } else {
           // console.log('itemsLeft() case default');
         }
-        if (this.searchTerm.length > 0) {
-            let srchList = this.listSearchFiltered(goalList);
-            let srchcount = srchList.length;
-            srchtext = `Search results: ${srchcount} ${t} found for "${this.searchTerm}"`;
-            // console.log('itemsLeft() in srchTerm>0');
-        }
         // console.log('goaltext() in itemsLeft end:', goaltext);
-        // console.log('srchtext() in itemsLeft end:', srchtext);
         // console.log('itemsLeft() in srchTerm>0');
-        qs("#tasks").innerHTML = `${goaltext}<br>${srchtext}`;
+        qs("#tasks").innerHTML = `${goaltext}<br>`;
         setFooter();
     }
 
-    getListHeading(sort, filter) {
-        let header1 = qs('#header1');
-        //console.log('this.filter: ', this.filter);
-        //console.log('this.sortval: ', this.sortval);
-        //console.log('this.header1: ', this.header1);
-        let title = `${this.header1} \n ${filter} ${this.sortTitle} ${sort}`;
-        //console.log('title:', title);
+    setListHeading(sort, filter) {
+        const header1 = qs('#header1');
+        const title = `${this.header1} \n ${filter} ${this.sortTitle} ${sort}`;
         header1.innerText = title;
     }
 
     checkBtn() {
         const listkey = this.listkey;
-        //console.log('checkBtn() invoked: listkey:', listkey);
-        console.log('checkBtn() invoked: this.filter:', this.filter);
         let btnitems = Array.from(document.querySelectorAll('.chkbtn'));
         btnitems.forEach((item) => {
             item.addEventListener('click', function(e) {
                 const btnid = e.target.getAttribute('id');
-                // check if the event is a checkbox
+                // check if the event is markdone
                 if (e.target.classList.contains('markbtn')) {
-                    // console.log('checkBtn() markbtn invoked: this.listkey:', listkey);
-                    // get id from button id value and delete it
-                    //console.log('checkBtn() markbtn: btnid:', btnid);
-                    let markbtnID = btnid.substring(4);
-                    //console.log('checkBtn() markbtn: markbtnID:', markbtnID);
-                    // console.log('checkBtn() markbtn: this.listkey:', listkey);
+                    const markbtnID = btnid.substring(4);
                     markDone(markbtnID, listkey);
                 }
-                // check if that is a delete-button
+                // check if the event is delete
                 if (e.target.classList.contains('delbtn')) {
-                    // get id from button id value and delete it
-                    let delbtnID = btnid.substring(3);
-                    // console.log('checkBtn() delbtn: listkey:', listkey);
+                    const delbtnID = btnid.substring(3);
                     deleteGoal(delbtnID, listkey);
                 }
+                // check if the event is edit
                 if (e.target.classList.contains('editbtn')) {
-                    // get id from button id value and use it to find the item to edit
-                    let editbtnID = btnid.substring(4);
-                    // console.log('checkBtn() editbtn: listkey:', listkey);
+                    const editbtnID = btnid.substring(4);         
+                    console.log('editbtnID: ', editbtnID);         
+                    console.log('typeof editbtnID: ', typeof editbtnID);  
+                    console.log('checkBtn() editbtn: listkey:', listkey);
                     editGoal(editbtnID, listkey);
                 }
-                //this.renderList();
             });
         });
     }
 
     setSortTerm() {
+        console.log('setSortTerm() invoked');
         var ele = document.getElementsByName('sort');          
         for(let i = 0; i < ele.length; i++) {    
-            // console.log('\n this.sortval: ', this.sortval); 
+            //console.log('\n this.sortval: ', this.sortval); 
             if(ele[i].checked) {
                 this.sortval = ele[i].value;   
-              // console.log('\n this.sortval: ', this.sortval);               
+                console.log('\n this.sortval: ', this.sortval);
             }
-        }        
-        if (!currentFile.includes('feedback')) {
-            this.renderList();
-        }
+        }   
+        console.log('\n this.sortval: ', this.sortval);
+        this.renderTheList();
     }
 
-    clearSortTerm() {
-        this.sortval = '';
-    }
-
-    sortList(list) {    
-        //console.log('\n this.sortval: ', this.sortval); 
-        if (this.sortval === "Duedate") {               
-            // console.log('\n sortval === duedate invoked');
-            list.sort(function(a, b) {
-                if (a.duedate < b.duedate) { return 1; }
-                if (a.duedate > b.duedate) { return -1; }
-                return 0;
-            });
-        } 
-        else if (this.sortval === "Date") {               
-            // console.log('\n sortval === timestamp invoked');
-            list.sort(function(a, b) {
-                if (a.id < b.id) { return -1; }
-                if (a.id > b.id) { return 1; }
-                return 0;
-            });
-        } 
-        else if (this.sortval === "Category") {
-            list.sort(function(a, b) {
-                let asort = a.category.toUpperCase() + ': ' + a.task.toUpperCase();
-                let bsort = b.category.toUpperCase() + ': ' + b.task.toUpperCase();                
-                // console.log('\n sortval === cat+goal invoked');
-                // console.log('asort: ', asort);
-                // console.log('bsort: ', bsort);
-                // console.log('asort < bsort: ', asort < bsort);
-                if (asort < bsort) { return -1; }
-                if (asort > bsort) { return 1; }
-                return 0;
-            });
+    sortList(list, sortBy, sortOrder) {
+        //console.log('sortList() invoked');
+        //console.log('this.sortval', this.sortval);
+        const compareFunction = (a, b) => {
+            // console.log('sortBy', sortBy);
+            // console.log('a', a);
+            // console.log('b', b);
+            // console.log('a[sortBy]', a[sortBy]);
+            // console.log('b[sortBy]', b[sortBy]);
+        if (a[sortBy] < b[sortBy]) {
+            return sortOrder === "asc" ? -1 : 1;
         }
-        return list;
+        if (a[sortBy] > b[sortBy]) {
+            return sortOrder === "asc" ? 1 : -1;
+        }
+        return 0;
+      };    
+      return list.slice().sort(compareFunction);
     }
 
     addCustomTodos = () => {
@@ -542,21 +559,23 @@ export default class GoalList {
 
 
 function getGoals(listkey) {
-    return JSON.parse(readFromLS(listkey)) || [];
+    const goalList = readFromLS(listkey);
+    //console.log('goalList: ', goalList);
+    return goalList || [];
 }
 
 function saveGoal(cat, goal, listkey, duedate) {
-  // console.log('saveGoal() invoked');
-  // console.log('duedate: ', duedate);
-  // console.log(`listkey: ${listkey}`);
+    console.log('saveGoal() invoked');
+    console.log('duedate: ', duedate);
+    console.log(`listkey: ${listkey}`);
     // read current goal list from local storage
     let goalList = getGoals(listkey);
-    // console.log('goalList (saveGoal begin):', goalList);
+    console.log('goalList (saveGoal begin):', goalList);
     let goalListLen = goalList.length;
-    // console.log(`goalListLen (saveGoal begin): ${goalListLen}`);
+    console.log(`goalListLen (saveGoal begin): ${goalListLen}`);
     // build goal object
     let datenow = Date.now();
-    // console.log('datenow: ', datenow);
+    console.log('datenow: ', datenow);
     const newItem = { 
         id: datenow, 
         task: goal, 
@@ -564,35 +583,45 @@ function saveGoal(cat, goal, listkey, duedate) {
         category: cat,
         duedate: duedate
     };
-    for (let key in newItem) {
-        if (newItem.hasOwnProperty(key)) {
-        // console.log(key + ': ' + newItem[key]);
-        }
-    }  
-    // prequel for task: goal.length + " " + 
+    // for (let key in newItem) {
+    //     if (newItem.hasOwnProperty(key)) {
+    //         console.log(key + ': ' + newItem[key]);
+    //     }
+    // }  
+    // prefix for task: goal.length + " " + 
     // add obj to goalList
-    // console.log(`newItem: ${newItem}`);
+    goalListLen = goalList.length;
+    console.log(`goalListLen (saveGoal end): ${goalListLen}`);
     goalList.push(newItem);
     goalListLen = goalList.length;
-    // console.log(`goalListLen (saveGoal end): ${goalListLen}`);
-    // console.log(`goalList (saveGoal end): ${goalList}`);
+    console.log(`goalListLen (saveGoal end): ${goalListLen}`);
+    console.log(`goalList (saveGoal end): ${goalList}`);
     // save JSON.stringified list to ls
     writeToLS(listkey, JSON.stringify(goalList));
-    //location.reload();
+    location.reload();
 }
 
 function editGoal(id, listkey) {
-    console.log('editGoal() invoked');
-    console.log('editGoal id: ', id);
-    console.log('editGoal listkey:', listkey);
-    let goalList = getGoals(listkey);    
-    console.log('editGoal() goalList: ', goalList);    
-    let goal = goalList.find(el => el.id === id);    
-    console.log('editGoal() goal: ', goal);  
-    let goalCategory = this.getCategory(goal.category);
-    let newCat = prompt("Edit category", goalCategory);
-    let newTask = prompt("Edit goal", goal.task);
-    let newDuedate = prompt("Edit duedate", goal.duedate);
+    // console.log('editGoal() invoked');
+    // console.log('editGoal id: ', id);
+    // console.log('editGoal typeof id: ', typeof id);
+    let goalList = getGoals(listkey);
+    // console.log('editGoal() goalList: ', goalList);
+    goalList.forEach(el => {
+        console.log('goal:', el.id.toString(), el.task, el.category, el.duedate, el.done);
+    });
+    const goal = goalList.find(el => el.id.toString() === id);
+    // console.log('editGoal() goal.category: ', goal.category);
+    //const goalCategory = this.checkNull(goal.category, goal.id);
+    
+    const newCat = prompt("Edit category", goal.category);
+    const newTask = prompt("Edit goal", goal.task);
+    const newDuedate = prompt("Edit duedate", goal.duedate);
+    // TODO: Remove this or for admin only?
+    //const timeDate = new Date(goal.id);
+    //const newTimestamp = prompt('Edit time set', timeDate);
+    //const newId = newTimestamp.getTime();
+    //goal.id = newId;
     goal.task = newTask;
     goal.category = newCat;
     goal.duedate = newDuedate;
@@ -624,10 +653,26 @@ function deleteGoal(id, listkey) {
     // console.log('deleteGoal invoked');
     // console.log(`deleteGoal() id: ${id}`);
     // console.log('deleteGoal() listkey:', listkey);
-    let goalList = getGoals(listkey);
+    const goalList = getGoals(listkey);
     // console.log(`deleteGoal() goalList: ${goalList}`);
     const filtered = goalList.filter(item => item.id != id);
     // convert JSON list to string and save in storage
     writeToLS(listkey, JSON.stringify(filtered));
     location.reload();
+
+    try {
+        console.log('deletegoal(), inside try');
+        const items = JSON.parse(localStorage.getItem(listkey) || '[]');
+        const updatedItems = items.filter(item => item.id !== parseInt(id));
+        localStorage.setItem('items', JSON.stringify(updatedItems));
+
+        // If the delete was successful, remove the item from the DOM
+        const itemElement = document.getElementById(`item-${id}`);
+        if (itemElement) {
+            itemElement.remove();
+        }
+    } catch (error) {
+        console.log('deletegoal(), inside catch');
+        console.error('Error occurred during delete:', error);
+    }
 }

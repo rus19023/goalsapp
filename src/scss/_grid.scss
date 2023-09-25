@@ -157,14 +157,9 @@ p.todo-text.cat {
 @media screen and (min-width: 300px) { 
     
     .listitem {
-        padding: .5rem;
         grid-template-columns: 2fr 2fr 1fr 9fr;
     }
 }
 
-@media screen and (min-width: 600px) { 
-
-    .listitem {
-        padding: .5rem;
-    }
+@media screen and (min-width: 600px) {
 }

@@ -28,6 +28,8 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
+.bold-text { font-weight: bold;}
+
 #gridcontainer {
     background: $black;
     margin: 1rem 0;
@@ -35,6 +37,10 @@ body {
 
 .goalbordered {
     border: 2px solid $uYellow;
+}
+
+.dashbordered {
+    border: 2px dashed $uYellow;
 }
 
 .row {
@@ -49,6 +55,7 @@ body {
 label {
     font-size: medium;
     text-align: center;
+    padding: .25rem;
 }
 
 div.sticky {
@@ -100,7 +107,7 @@ footer {
 }
 
 .byellow {
-    background: $yellow !important;
+    background: $uYellow !important;
 }
 
 .buorange {
@@ -131,7 +138,7 @@ footer {
     background: $purple;
 }
 
-.black { color: $black; width: 100%; margin: auto; height: 4rem; }
+.black { color: $black; }
 
 .bchartreuse {
     background: $chartreuse;
@@ -170,6 +177,14 @@ footer {
 .showborder {
     border: $goalborder;
     border-radius: $radius;
+}
+
+.sort-asc:after {
+    content: "▲";
+  }
+  
+.sort-desc:after {
+    content: "▼";
 }
 
 .sharer {
@@ -265,7 +280,7 @@ div.m-2, div.m-2 span {
 .lighthover { color: lighten($hotpink, 10%) }
 
 .title {
-  color: $yellow;
+  color: $uYellow;
   margin: 0 auto;
   padding: 1vw;
 }
@@ -295,18 +310,25 @@ a:hover {
     max-width: 100%;
 }
 
+.addrow2 { padding-bottom: .25rem; }
+
 .bgblack { background: $black; border: none; }
+
+.whiteborder { 
+    border: 1px solid white; 
+    border-radius: 5px; 
+}
 
 #left1, #right1 {
     padding: .5rem;
 }
 
-.inputs, #duedateinput {
+input.inputs, #duedateinput {
     cursor: pointer;
     color: lighten($royalblue, 20%);
-    background: $yellow;
-    padding: .5rem;
-    height: 1.5rem;
+    background: $uYellow;
+    width: 90%;
+    height: 2.5rem;
     border: 1px solid white;
     border-radius: $radius;
 }
@@ -356,54 +378,34 @@ a:hover {
     font-style: italic;
 }
 
-#todo-error {
-    font-weight: bold;
-    color: $redorange;
-}
-
-#root a {
+.btns, a.btns {
     cursor: pointer;
-    color: $accent;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#root a:visited {
-    color: $limegreen;
-}
-
-.btns {
-    cursor: pointer;
-    max-height: 1.5rem;
+    min-width: 4rem;
+    padding: .25rem .5rem;
+    margin: auto;
+    height: 35px;
+    background: $uBlue;
+    color: $uYellow;
     border: $goalborder;
-    border-radius: $radius                    
+    border-radius: $btnradius;                    
 }
 
-.mininputs {
-    min-width: 8rem;
-}
-
-a.langbtn {
-    color: $yellow;
+.toggle {
+    color: $skyblue;
+    background: $uBlue;
     font-weight: bold;
-    font-size: larger;
-    border: 2px solid $yellow;
-    padding: .5rem 0;             
+    font-size: small;
+    border: 2px solid $skyblue;
+    margin-left: 1rem;  
 }
 
-.goalbtn {
-    color: $yellow;
-    background: $contrast;
-    margin: 0 .5rem;
-    font-size: $font2;
-    & a {
-      text-decoration: none;
-      color: $royalblue;
-      text-align: center;
-      & :hover {
-          border: 5px solid $hotpink;
-      }
-    }
+#lang {
+    height: 35px;
+    padding: .35rem 0 0 0;
+    color: $chartreuse;
+    background: black;
+    font-weight: bold;
+    font-size: larger;   
 }
 
 #right1, #left1 {
@@ -419,27 +421,25 @@ a.langbtn {
     -o-border-radius: $radius;
 }
 
-#addbar {
+#addbar, #feedback {
     background: $black;
-    height: 6rem;
     padding: 0;
     margin: auto;
-    border: 1px $uYellow solid;
+    border: 2px $uYellow solid;
     border-radius: $radius;
 }
 
-#addrow2 {
+#row2 {
     margin: .5rem 0 0 0;
 
 }
 
 #addbtn {
-    color: $yellow;
+    color: $uYellow;
     cursor: pointer;
     background: $medblue;
     font-size: $font2;
     padding: .1rem;
-    height: 5rem;
     width: 5rem;
     margin: 1rem;
 }
@@ -477,7 +477,7 @@ a.langbtn {
     color: white;
 }
 
-.todo-scratch {
+.scratch {
     text-decoration: line-through;
 }
 
@@ -506,12 +506,11 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
 }
 
 .itembtns {
-    cursor: pointer;
     max-height: 30px;
     max-width: 17vw;
     background: $black;
     font-weight: bold;
-    margin: 0 .25rem;
+    margin: .25rem;
 }
 
 .editbtn, .markbtn, .delbtn {
@@ -535,43 +534,31 @@ div#tasks, div#sortitems, div#filters { padding: .5rem; }
     border-color: $orange;
     width: 1.75rem;
     padding: 0;
-    margin: 0;
     font-size: $font2;
     font-weight: bolder;
 }
 
-.notdone {   
+.notdone {  
     color: $uYellow;
     border: 2px solid $uYellow;
 }
 
 #srchbar {
     display: flex;
-    border: 1px solid $limegreen;
+    border: 2px solid $limegreen;
     border-radius: $radius;
-    padding: .75rem 2.5rem;
-    max-width: 98%;
-    margin:0;
+    padding: .75rem;
 }
 
 #srchinput {
     cursor: pointer;
-    height: 1.5rem;
-    margin: 0 1rem;
+    margin: .25rem 1rem;
     font-weight: bold;
     background: $limegreen;
     color: $black;
 }
 
-#todocontainer { margin: 0 auto; }
-
 p { padding: 0;  margin: 4px; }
-
-#todocontainer {
-    background: $black;
-    text-align: center;
-    margin: 0 auto;
-}
 
 #header1 {
     margin-bottom: 0;
@@ -583,16 +570,18 @@ p { padding: 0;  margin: 4px; }
 }
 
 li.listitem {
-    max-height: 10rem;
+    max-height: 15rem;
     margin: 0 auto;
     padding: .25rem;
     max-width: 100%;
 }
 
-#listfooter {
+div#listfooter {
     max-height: 10rem;
     padding: .25rem;
     margin: 2vw;
+    border: 1px solid white;
+    border-radius: $radius;
     justify-content: space-around;
 }        
 

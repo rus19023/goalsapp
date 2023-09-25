@@ -1,8 +1,8 @@
 // Colors
 $uOrange: #b76000;
 
-$uYellow: hsl(48, 100%, 50%);
-$uBlue: hsl(210, 100%, 40%);
+$uYellow: #ffcc00;
+$uBlue: #0066cc;
 $medblue: $uBlue;
 $royalblue:     adjust-hue($uBlue, 30deg);
 $purple:        adjust-hue($uBlue, 60deg);
@@ -84,6 +84,7 @@ $oldwarning: #bd0000;
 $formshadow: 0 0 10px $orange;
 $greyshadow: 0 0 20px $mdgrey;
 $radius: 4px;
+$btnradius: 2rem;
 $border: 2px solid $orange;
 $borderb: 4px solid $orange;
 $borderwarn: 4px solid $warning;

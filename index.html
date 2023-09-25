@@ -56,18 +56,18 @@
         <div id="ocean">
         <header class="title col3">
             <section>
-                <!-- <button class="btns langbtn" onclick="toggleTheme()">
+                <!-- <button class="btns" onclick="toggleTheme()">
                     Light mode
                 </button> -->
                 <div class="row">
                     <h2 id="todoheading" class="title">
                         My SMART Goal Journal*
                     </h2>
-                    <a id='lang' class="btns langbtn" href="espanol.html">
+                    <a id="lang" class="btns" href="espanol.html">
                         &nbsp;Español&nbsp;
                     </a>
                 </div>
-                <p class="normal-text">*(Specific, Measurable, Achievable, Relevant, and Timebound)</p>
+                <p class="normal-text bold-text">*(Specific, Measurable, Achievable, Relevant, and Timebound)</p>
             </section>
             <br>
             <section id="ukraine">
@@ -178,13 +178,17 @@
                 My SMART Goals: 
             </h2>
             <section id="right1" class="">
-                <div id="srchbar" class="todo-text">
-                    <input id="srchinput" type="text" name="srchinput" placeholder="Search goals" value="" class="inputs" tabindex="1" required>
-                    <button id="srchbtn" class="btns goalbtn">Search</button>
-                </div>
-                <p id="searcherror" class="warning"></p>
+                <form id="srchbar" class="todo-text">
+                    <label for="srchinput">
+                        <input id="srchinput" type="text" name="srchinput" placeholder="Search goals" value="" class="inputs" tabindex="1" required>
+                    </label>
+                    <button id="srchbtn" class="btns">Search</button>
+                    <button id="clrsrchbtn" class="btns">Clear Search</button>
+                </form>
+                <div id="searcherror" class="warning"></div>
     
-                <form id="addbar" class="">
+                <form id="addbar">
+                    <h2 class="row">Add a Goal</h2>
                     <div id="addrow1" class="col2">
                         <label for="catinput">
                             Category
@@ -209,26 +213,27 @@
                     <div id="tasks" class="lthotpink widefont">
                         _ Goals Achieved!
                     </div>
-                    <div id="sortitems">
+                    <div id="sortitems" class="row">
                          Sort:
                         <label class="sortitems" for="duedate">
-                            <input type="radio" name="sort" id="duedate" value="Duedate">
+                            <input type="radio" name="sort" id="duedate" value="duedate">
                             Due Date
                         </label>
-                        <label class="sortitems" for="time">
-                            <input type="radio" name="sort" id="time" value="Date" checked>
+                        <label class="sortitems" for="id">
+                            <input type="radio" name="sort" id="id" value="id" checked>
                             Timestamp
                         </label>
-                        <label class="sortitems" for="cat">
-                            <input type="radio" name="sort" id="cat" value="Category">
+                        <label class="sortitems" for="category">
+                            <input type="radio" name="sort" id="category" value="category">
                             Category
                         </label>
+                        <button id="sortToggle" class="btns toggle">Sort &uarr;  &darr;</button>
                     </div>
                     <div id="filters">
                         Show:
-                        <button class="btns goalbtn" id="allbtn"> All</button>
-                        <button class="btns goalbtn" id="pendbtn"> Pending</button>
-                        <button class="btns goalbtn" id="donebtn"> Done</button>
+                        <button class="btns" id="allbtn"> All</button>
+                        <button class="btns" id="pendbtn"> Pending</button>
+                        <button class="btns" id="donebtn"> Done</button>
                     </div>
                 </div>
             </section>
@@ -243,7 +248,7 @@
         <br><br>
         <footer>
             <div class="normal-text centered">
-                <a href="rus19023.github.io/goalsapp/feedback/">
+                <a href="../src/feedback/">
                     Give Feedback or Ask for Features
                 </a>
                 <div id="autofooter" class="footer footer-center "></div>
@@ -259,10 +264,11 @@
         <script src="./src/js/validate.js" type="module"></script>
         <script src="./src/js/theme.js"></script>
         <script>
-          // Get the current date
-          var todayDate = new Date().toISOString().split('T')[0];      
-          // Set the default value of the date input field
-          document.getElementById("duedateinput").value = todayDate;
+            // Get the current date
+            var todayDate = new Date();
+            var tomorrow = todayDate.toISOString().split('T')[0];      
+            // Set the default value of the date input field
+            document.getElementById("duedateinput").value = tomorrow;
         </script>
     </body>
 </html>
