@@ -672,7 +672,7 @@ input.inputs, #duedateinput {
   background: #0066cc;
   color: #ffcc00;
   border: 2px solid white;
-  border-radius: 2rem;
+  border-radius: 0.35rem;
 }
 
 .toggle {

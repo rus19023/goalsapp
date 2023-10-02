@@ -36,6 +36,7 @@
         <title id="wdd330todoapptitle" class="title">
             My Goal Journal
         </title>
+        <script defer src="https://www.gofundme.com/static/js/embed.js"></script>
 
         <script>
             // Get tomorrow's date
@@ -54,206 +55,214 @@
 
     <body>
         <div id="ocean">
-        <header class="title col3">
-            <section>
-                <!-- <button class="btns" onclick="toggleTheme()">
-                    Light mode
-                </button> -->
-                <div class="row">
-                    <h2 id="todoheading" class="title">
-                        My SMART Goal Journal*
-                    </h2>
-                    <a id="lang" class="btns" href="espanol.html">
-                        &nbsp;Español&nbsp;
+            <header class="title col3">
+                <section>
+                    <!-- <button class="btns" onclick="toggleTheme()">
+                        Light mode
+                    </button> -->
+                    <div class="row">
+                        <h2 id="todoheading" class="title">
+                            My SMART Goal Journal*
+                        </h2>
+                        <a id="lang" class="btns" href="espanol.html">
+                            &nbsp;Español&nbsp;
+                        </a>
+                    </div>
+                    <p class="normal-text bold-text">*(Specific, Measurable, Achievable, Relevant, and Timebound)</p>
+                </section>
+                <br>
+                <section id="ukraine">
+                    <p class="bold marg centered todo-text ">
+                        In solidarity with the Ukraine, the color scheme for this app is based on
+                        <a class="lighthover" href="https://en.wikipedia.org/wiki/Flag_of_Ukraine#Design">
+                            their flag colors.
+                        </a> 
+                    </p>
+                </section>
+            </header>
+            <section id="sharecontainer" class="sharer">
+                <div id="socialshare">
+                    <div class="m-2 sharer row">
+                        <span>  Share: </span>
+                        <button class="sharer"
+                            data-sharer="facebook"
+                            data-title="Checkout my SMART Goals Journal WebApp!"
+                            data-url="https://rus19023.github.io/goalsapp/"
+                            data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
+                            <img class="centered socialicons" src="./src/img/icons/icons8-facebook-96.png" alt="share on Facebook">
+                        </button>
+                        <button class="sharer"
+                            data-sharer="linkedin"
+                            data-title="Checkout my SMART Goals Journal WebApp!"
+                            data-url="https://rus19023.github.io/goalsapp/"
+                            data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
+                            <img class="centered socialicons" src="./src/img/icons/icons8-linkedin-96.png" alt="">
+                        </button>
+                        <button class="sharer"
+                            data-sharer="whatsapp"
+                            data-title="Checkout my SMART Goals Journal WebApp!"
+                            data-url="https://rus19023.github.io/goalsapp/"
+                            data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
+                            <img class="centered socialicons" src="./src/img/icons/icons8-whatsapp-96.png" alt="WhatsApp logo icon">
+                        </button>
+                        <button class="sharer"
+                            data-sharer="twitter"
+                            data-title="Checkout my SMART Goals Journal WebApp!"
+                            data-url="https://rus19023.github.io/goalsapp/"
+                            data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
+                            <img class="centered socialicons" src="./src/img/icons/icons8-twitter-96.png" alt="Twitter logo icon">
+                        </button>
+                    </div>
+                </div>
+
+                <!--  Adapted from https://www.freecodecamp.org/news/learn-crud-operations-in-javascript-by-building-todo-app/  -->
+                <!-- <div class="app">
+                    <h4 class="mb-3"></h4>
+                    <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
+                        <span class="goal-text">Add New Task</span>
+                        <i class="fas fa-plus goal-text"></i>
+                    </div>
+                </div> -->
+                <!-- Modal -->
+                <!-- <form
+                class="modal fade"
+                id="addbar"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Add New Task
+                            </h5>
+                            <button
+                                id="addbtn"
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                            ></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Category</p>
+                                <input type="text" class="form-control" name="catinput" 
+                                id="catinput" />
+                                <div id="msg"></div>
+                                <br />
+                                <p>Due Date</p>
+                                <input type="date" class="form-control" name="duedateinput" id="duedateinput" />
+                                <br />
+                                <p>Goal text</p>
+                                <textarea
+                                    name="goalinput"
+                                    class="form-control"
+                                    id="goalinput"
+                                    cols="30"
+                                    rows="5">
+                                </textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" id="add" class="btn btn-primary">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+            </section>
+            <main id="gridcontainer">
+                <h2 id="header1" class="centered title">
+                    My SMART Goals: 
+                </h2>
+                <section id="right1" class="">
+                    <form id="srchbar" class="todo-text">
+                        <label for="srchinput">
+                            <input id="srchinput" type="text" name="srchinput" placeholder="Search goals" value="" class="inputs" tabindex="1" required>
+                        </label>
+                        <button id="srchbtn" class="btns">Search</button>
+                        <button id="clrsrchbtn" class="btns">Clear Search</button>
+                    </form>
+                    <div id="searcherror" class="warning"></div>
+        
+                    <form id="addbar">
+                        <h2 class="row">Add a Goal</h2>
+                        <div id="addrow1" class="col2">
+                            <label for="catinput">
+                                Category
+                                <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs halfwide" value='' autofocus>
+                            </label>
+                            <label for="goalinput">
+                                Task &nbsp; &nbsp;
+                                <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs halfwide" tabindex=0 value='' required>
+                            </label>
+                        </div>
+                        <div id="addrow2" class="col2">
+                            <label for="duedateinput">
+                                Due Date
+                                <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" value='' class="inputs halfwide">
+                            </label>
+                            <label for="addbtn" class="black"> 
+                                <button name="addbtn" id="addbtn" class="btns">Add</button>
+                            </label>
+                        </div>
+                    </form>
+                    <div id="listfooter sticky" class="todo-text foot-row">
+                        <div id="tasks" class="lthotpink widefont">
+                            _ Goals Achieved!
+                        </div>
+                        <div id="sortitems" class="row">
+                            Sort:
+                            <label class="sortitems" for="duedate">
+                                <input type="radio" name="sort" id="duedate" value="duedate">
+                                Due Date
+                            </label>
+                            <label class="sortitems" for="id">
+                                <input type="radio" name="sort" id="id" value="id" checked>
+                                Timestamp
+                            </label>
+                            <label class="sortitems" for="category">
+                                <input type="radio" name="sort" id="category" value="category">
+                                Category
+                            </label>
+                            <button id="sortToggle" class="btns toggle">Sort &uarr;  &darr;</button>
+                        </div>
+                        <div id="filters">
+                            Show:
+                            <button class="btns" id="allbtn"> All</button>
+                            <button class="btns" id="pendbtn"> Pending</button>
+                            <button class="btns" id="donebtn"> Done</button>
+                        </div>
+                    </div>
+                </section>
+                <section id="left1" class="">
+                    <div id="goalcontainer">
+                        <p id="taskError"></p>
+                        <div id="goals"></div>
+                    </div>
+                    <div id="goal-error" class="warning "></div>
+                </section>
+            </main>
+            <br><br>
+            <footer>
+                <div class="normal-text centered">
+                    <a href="../src/feedback/">
+                        Give Feedback or Ask for Features
+                    </a>
+                    <div id="autofooter" class="footer footer-center "></div>
+                </div>
+                <div class="col2">
+                    <a href="https://www.gofundme.com/f/someone-survive-this-winter-in-the-wilderness/"> 
+                        <img src="/src/img/wanda-gofund.png" alt="QR code to donate to Gofundme">
+                    </a>
+                    <a class='btns' href="https://www.gofundme.com/f/someone-survive-this-winter-in-the-wilderness/">
+                        GoFundMe to help someone survive this winter in the wilderness!
                     </a>
                 </div>
-                <p class="normal-text bold-text">*(Specific, Measurable, Achievable, Relevant, and Timebound)</p>
-            </section>
-            <br>
-            <section id="ukraine">
-                <p class="bold marg centered todo-text ">
-                    In solidarity with the Ukraine, the color scheme for this app is based on
-                    <a class="lighthover" href="https://en.wikipedia.org/wiki/Flag_of_Ukraine#Design">
-                        their flag colors.
-                    </a> 
-                </p>
-            </section>
-        </header>
-        <section id="sharecontainer" class="sharer">
-            <div id="socialshare">
-                <div class="m-2 sharer row">
-                    <span>  Share: </span>
-                    <button class="sharer"
-                        data-sharer="facebook"
-                        data-title="Checkout my SMART Goals Journal WebApp!"
-                        data-url="https://rus19023.github.io/goalsapp/"
-                        data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
-                        <img class="centered socialicons" src="./src/img/icons/icons8-facebook-96.png" alt="share on Facebook">
-                    </button>
-                    <button class="sharer"
-                        data-sharer="linkedin"
-                        data-title="Checkout my SMART Goals Journal WebApp!"
-                        data-url="https://rus19023.github.io/goalsapp/"
-                        data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
-                        <img class="centered socialicons" src="./src/img/icons/icons8-linkedin-96.png" alt="">
-                    </button>
-                    <button class="sharer"
-                        data-sharer="whatsapp"
-                        data-title="Checkout my SMART Goals Journal WebApp!"
-                        data-url="https://rus19023.github.io/goalsapp/"
-                        data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
-                        <img class="centered socialicons" src="./src/img/icons/icons8-whatsapp-96.png" alt="WhatsApp logo icon">
-                    </button>
-                    <button class="sharer"
-                        data-sharer="twitter"
-                        data-title="Checkout my SMART Goals Journal WebApp!"
-                        data-url="https://rus19023.github.io/goalsapp/"
-                        data-hashtags="#SMARTGoalsJournal #BonnieSitesDotSolutions #DorisRushLopez #BYU-Idaho">
-                        <img class="centered socialicons" src="./src/img/icons/icons8-twitter-96.png" alt="Twitter logo icon">
-                    </button>
-                </div>
-            </div>
-
-            <!--  Adapted from https://www.freecodecamp.org/news/learn-crud-operations-in-javascript-by-building-todo-app/  -->
-            <!-- <div class="app">
-                <h4 class="mb-3"></h4>
-                <div id="addNew" data-bs-toggle="modal" data-bs-target="#form">
-                    <span class="goal-text">Add New Task</span>
-                    <i class="fas fa-plus goal-text"></i>
-                </div>
-            </div> -->
-            <!-- Modal -->
-            <!-- <form
-            class="modal fade"
-            id="addbar"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Add New Task
-                        </h5>
-                        <button
-                            id="addbtn"
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Category</p>
-                            <input type="text" class="form-control" name="catinput" 
-                            id="catinput" />
-                            <div id="msg"></div>
-                            <br />
-                            <p>Due Date</p>
-                            <input type="date" class="form-control" name="duedateinput" id="duedateinput" />
-                            <br />
-                            <p>Goal text</p>
-                            <textarea
-                                name="goalinput"
-                                class="form-control"
-                                id="goalinput"
-                                cols="30"
-                                rows="5">
-                            </textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="submit" id="add" class="btn btn-primary">
-                                Add
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form> -->
-        </section>
-        <main id="gridcontainer">
-            <h2 id="header1" class="centered title">
-                My SMART Goals: 
-            </h2>
-            <section id="right1" class="">
-                <form id="srchbar" class="todo-text">
-                    <label for="srchinput">
-                        <input id="srchinput" type="text" name="srchinput" placeholder="Search goals" value="" class="inputs" tabindex="1" required>
-                    </label>
-                    <button id="srchbtn" class="btns">Search</button>
-                    <button id="clrsrchbtn" class="btns">Clear Search</button>
-                </form>
-                <div id="searcherror" class="warning"></div>
-    
-                <form id="addbar">
-                    <h2 class="row">Add a Goal</h2>
-                    <div id="addrow1" class="col2">
-                        <label for="catinput">
-                            Category
-                            <input id="catinput" type="text" name="catinput" placeholder="Goal category" class="inputs halfwide" value='' autofocus>
-                        </label>
-                        <label for="goalinput">
-                            Task &nbsp; &nbsp;
-                            <input id="goalinput" type="text" name="goalinput" placeholder="Goal task" class="inputs halfwide" tabindex=0 value='' required>
-                        </label>
-                    </div>
-                    <div id="addrow2" class="col2">
-                        <label for="duedateinput">
-                            Due Date
-                            <input id="duedateinput" type="date" name="duedateinput" placeholder="Due Date" value='' class="inputs halfwide">
-                        </label>
-                        <label for="addbtn" class="black"> 
-                            <button name="addbtn" id="addbtn" class="btns">Add</button>
-                        </label>
-                    </div>
-                </form>
-                <div id="listfooter sticky" class="todo-text foot-row">
-                    <div id="tasks" class="lthotpink widefont">
-                        _ Goals Achieved!
-                    </div>
-                    <div id="sortitems" class="row">
-                         Sort:
-                        <label class="sortitems" for="duedate">
-                            <input type="radio" name="sort" id="duedate" value="duedate">
-                            Due Date
-                        </label>
-                        <label class="sortitems" for="id">
-                            <input type="radio" name="sort" id="id" value="id" checked>
-                            Timestamp
-                        </label>
-                        <label class="sortitems" for="category">
-                            <input type="radio" name="sort" id="category" value="category">
-                            Category
-                        </label>
-                        <button id="sortToggle" class="btns toggle">Sort &uarr;  &darr;</button>
-                    </div>
-                    <div id="filters">
-                        Show:
-                        <button class="btns" id="allbtn"> All</button>
-                        <button class="btns" id="pendbtn"> Pending</button>
-                        <button class="btns" id="donebtn"> Done</button>
-                    </div>
-                </div>
-            </section>
-            <section id="left1" class="">
-                <div id="goalcontainer">
-                    <p id="taskError"></p>
-                    <div id="goals"></div>
-                </div>
-                <div id="goal-error" class="warning "></div>
-            </section>
-        </main>
-        <br><br>
-        <footer>
-            <div class="normal-text centered">
-                <a href="../src/feedback/">
-                    Give Feedback or Ask for Features
-                </a>
-                <div id="autofooter" class="footer footer-center "></div>
-            </div>
-        </footer>
+            </footer>
         </div>
         <script src="./src/js/main.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

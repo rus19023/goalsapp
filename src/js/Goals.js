@@ -147,6 +147,8 @@ export default class GoalList {
     setSearchTerm() {
         this.searchTerm = qs('#srchinput').value;
         console.log('this.searchTerm', this.searchTerm);
+        //debugger;
+        //this.getList();
     }
 
     getList() {
@@ -154,30 +156,30 @@ export default class GoalList {
         // Get full list of tasks from storage
         var goalList = getGoals(this.listkey);
         console.log('this.searchTerm:', this.searchTerm);
-        // Parse the JSON string back into an array
-        var goalsArray = JSON.parse(goalList);
+        // // Parse the JSON string back into an array
+        // var goalsArray = JSON.parse(goalList);
         // Check that list is not empty.
-        if (!Array.isArray(goalsArray)) {
+        if (!Array.isArray(goalList)) {
             alert("Goal list is empty. Please enter at least one goal.");
             return
         } else {        
             // Filter list by search term if any
             if (this.searchTerm.length > 0) {
-                goalsArray = this.listSearchFiltered(goalsArray);
-                //console.log('\n goalsArray (getList srchFilter): ', goalsArray);
+                goalList = this.listSearchFiltered(goalList);
+                console.log('\n goalList (getList srchFilter): ', goalList);
             } 
             let goalFilter = this.filter; 
             // console.log('xxx', xxx)
             console.log('goalFilter', goalFilter) 
-            console.log('goalsArray', goalsArray)        
+            console.log('goalList', goalList)        
             // Filter list by done, pending, all 
             if (goalFilter.length > 0) {
                 if ((goalFilter.toLowerCase() === 'in progress') || (goalFilter.toLowerCase() === 'en curso')) {
-                    goalsArray = goalsArray.filter(el => !el.done);
+                    goalList = goalList.filter(el => !el.done);
                 } 
                 if ((goalFilter.toLowerCase() === 'achieved') || (goalFilter.toLowerCase() === 'logrado')) {
-                    goalsArray = goalsArray.filter(el => el.done);
-                    //console.log('\n goalsArray (getList doneFilter): ', goalsArray);
+                    goalList = goalList.filter(el => el.done);
+                    //console.log('\n goalList (getList doneFilter): ', goalList);
                 }       
             } else {
                 console.log('(getList(168) FILTER EMPTY! - goalFilter): ', goalFilter);
@@ -186,9 +188,9 @@ export default class GoalList {
             // Sort list by category and task, timestamp or duedate
             if (this.sortval.length > 0) { 
                 //console.log('this.sortval', this.sortval);
-                goalsArray = this.sortList(goalsArray, this.sortval, this.sortDirection);
+                goalList = this.sortList(goalList, this.sortval, this.sortDirection);
                 //console.log('Goal list is being sorted...');
-                return goalsArray;
+                return goalList;
             } else {
                 console.log('Goal list is empty!');
             }
@@ -239,8 +241,8 @@ export default class GoalList {
 
     listSearchFiltered(list) {
         // Called by getList()
-        this.searchTerm = qs("#srchinput").value;
-        //console.log('list: ', list);
+        //this.searchTerm = qs("#srchinput").value;
+        console.log('list: ', list);
         // Check for missing search term entry
         while (this.searchTerm === '' || this.searchTerm.length < 3) {
             this.searchTerm = qs("#srchinput").value;
@@ -561,7 +563,9 @@ export default class GoalList {
 function getGoals(listkey) {
     const goalList = readFromLS(listkey);
     //console.log('goalList: ', goalList);
-    return goalList || [];
+    // Parse the JSON string back into an array
+    var goalsArray = JSON.parse(goalList);
+    return goalsArray;
 }
 
 function saveGoal(cat, goal, listkey, duedate) {
