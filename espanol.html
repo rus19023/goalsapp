@@ -49,14 +49,13 @@
             </button> -->
             <section>
                 <div class="row">
-                    <h2 id="todoheading" class="title">
+                    <h3 id="todoheading" class="title">
                         Mi Diario de Metas SMART*
-                    </h2>
+                    </h3>
                     <a id='lang' class="btns" href="/">
                         &nbsp;English&nbsp;
                     </a>
                 </div>
-                <p class="normal-text bold-text">*(eSpecífico, Medible, Asignable, Relevante, Tiempo limitado)</p>
             </section>
             <br>
             <section id="ukraine">
@@ -103,16 +102,16 @@
                 </div>
                 <form id="srchbar" class="todo-text">
                     <label for="srchinput">
-                        <input id="srchinput" type="text" name="srchinput" placeholder="Buscar en las metas" value="" class="inputs" tabindex="1" required>
+                        <input id="srchinput" type="text" name="srchinput" placeholder="Buscar" value="" class="inputs" tabindex="1" required>
                     </label>
                     <button id="srchbtn" class="btns srchbtns">Busca</button>
-                    <button id="clrsrchbtn" class="btns srchbtns">Anula Busqueda</button>
+                    <button id="clrsrchbtn" class="btns srchbtns">Borrar</button>
                 </form>
                 <p id="searcherror" class="warning"></p>
             </div>
 
             <form id="addbar" class="">
-                <h2 class="row">Agregue una Meta</h2>
+                <h4 class="row">Agregue una Meta</h4>
                 <div id="addrow1" class="col2">
                     <label for="catinput">
                         Categoría
@@ -135,9 +134,9 @@
             </form>
         </section>
         <main id="gridcontainer">
-            <h2 id="header1" class="centered title">
+            <h4 id="header1" class="centered title">
                 Mi Diario de Metas SMART: 
-            </h2>
+            </h4>
             <div id="left1" class="">
                 <div id="goalcontainer">
                     <p id="taskError"></p>
@@ -172,7 +171,7 @@
                             Todos
                         </button>
                         <button class="btns" id="pendbtn">
-                            Pendiente
+                            Pend.
                         </button>
                         <button class="btns" id="donebtn">
                             Logrado
@@ -183,11 +182,23 @@
         </main>
         <br><br>
         <footer>
+            <p class="normal-text bold-text">*(eSpecífico, Medible, Asignable, Relevante, Tiempo limitado)                    
+            </p>
             <div class="normal-text centered">
                 <a href="rus19023.github.io/goalsapp/feedback-esp">
                     Envíe su opinión o solicite funciones
                 </a>
                 <div id="autofooter" class="footer footer-center "></div>
+            </div>
+            Escanee o toque el código QR o toque el botón para ayudar a mi hermana a sobrevivir este invierno:
+            <br>
+            <br>
+            <div class="col2">
+                <a href="https://www.gofundme.com/f/someone-survive-this-winter-in-the-wilderness/"> 
+                    <img src="/src/img/wanda-gofund.png" alt="QR code to donate to Gofundme">
+                </a>
+                <a class='btns btns-lg' href="https://www.gofundme.com/f/someone-survive-this-winter-in-the-wilderness/">Ayude por favor!
+                </a>
             </div>
         </footer>
         </div>

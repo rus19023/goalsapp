@@ -459,7 +459,6 @@ footer {
 .sharer {
   background: #000;
   border: none;
-  margin: 0;
 }
 
 h1,
@@ -512,6 +511,10 @@ p,
 header,
 section {
   font-family: "Hubballi", sans-serif;
+}
+
+span {
+  margin: auto 0;
 }
 
 div.m-2, div.m-2 span {
@@ -666,13 +669,24 @@ input.inputs, #duedateinput {
 .btns, a.btns {
   cursor: pointer;
   min-width: 4rem;
-  padding: 0.25rem 0.5rem;
-  margin: auto;
+  padding: 0.25rem;
+  margin: auto 5px;
   height: 35px;
   background: #0066cc;
   color: #ffcc00;
   border: 2px solid white;
   border-radius: 0.35rem;
+}
+
+.btns-lg {
+  text-align: center;
+  min-width: 5rem;
+  min-height: 35px;
+  padding: auto 0;
+}
+
+h4 {
+  font-weight: bolder;
 }
 
 .toggle {
@@ -686,11 +700,16 @@ input.inputs, #duedateinput {
 
 #lang {
   height: 35px;
-  padding: 0.35rem 0 0 0;
+  padding: 0.55rem 0 0 0;
   color: #b3ff00;
   background: black;
   font-weight: bold;
-  font-size: larger;
+  font-size: large;
+}
+
+#todoheading {
+  font-size: large;
+  font-weight: bolder;
 }
 
 #right1, #left1 {
@@ -732,6 +751,7 @@ input.inputs, #duedateinput {
   cursor: pointer;
   margin: 0;
   width: 85%;
+  height: 35px;
   padding: 0 0.25rem;
 }
 
@@ -745,10 +765,10 @@ input.inputs, #duedateinput {
 }
 
 .task {
-  max-height: 4.5vh;
+  max-height: 10vh;
   max-width: 100%;
-  padding: 0 0 0 0.25vw;
-  margin: 0;
+  padding: 0.25vh 0.25vw;
+  margin: 0.25vh 0.25vw;
 }
 
 .task-text {
@@ -771,7 +791,6 @@ input.inputs, #duedateinput {
 
 .todo-text, p.todo-text {
   text-align: left;
-  font-weight: bold;
   font-size: medium;
 }
 
@@ -787,16 +806,12 @@ div#tasks, div#sortitems, div#filters {
   cursor: pointer;
 }
 
-#itembox {
-  padding: 0 0 0 2vw;
-}
-
 .itembtns {
   max-height: 30px;
   max-width: 17vw;
   background: #000;
-  font-weight: bold;
-  margin: 0.25rem;
+  margin: auto 0.25rem;
+  border-radius: 8%;
 }
 
 .editbtn, .markbtn, .delbtn {
@@ -833,13 +848,12 @@ div#tasks, div#sortitems, div#filters {
   display: flex;
   border: 2px solid #33ff00;
   border-radius: 4px;
-  padding: 0.75rem;
+  padding: 0.25rem 0;
 }
 
 #srchinput {
   cursor: pointer;
-  margin: 0.25rem 1rem;
-  font-weight: bold;
+  height: 35px;
   background: #33ff00;
   color: #000;
 }
@@ -858,10 +872,10 @@ p {
   margin: auto;
 }
 
-li.listitem {
-  max-height: 15rem;
+li.listitem, li.itembox {
+  max-height: 25rem;
   margin: 0 auto;
-  padding: 0.25rem;
+  padding: 0 0 0 2vw;
   max-width: 100%;
 }
 
