@@ -1,0 +1,199 @@
+:root, p, .FormattedHTMLContent_host__bHqdL Article_text__hqgWf {
+    background: black !important;
+    color-scheme: dark;
+    font-weight: bold;
+    color: beige !important;
+   }
+   
+   html a,
+   html a:visited, 
+   html a:visited > * {
+    color: var(--native-dark-visited-link-color) !important;
+   }
+   
+   .s-image {
+    background: black;
+   }
+   
+   a[ping]:link,
+   a[ping]:link > *,
+   :link:not(cite) {
+    color: var(--native-dark-link-color) !important;
+   }
+   
+   .le-freeze-layer {
+    background: transparent;
+   }
+   
+   html cite,
+   html cite a:link,
+   html cite a:visited {
+    color: var(--native-dark-cite-color) !important;
+   }
+   
+   .ace_content, body, article#main, section#content {
+    color: yellow !important;
+   }
+   
+   td, tr, div, .fromSe, ul, li, .VfPpkd-Bz112c-RLmnJb
+   div#root, div.xb57i2i, .xb57i2i, .a-color-secondary, .ez-toc-section { 
+    background: black !important;
+    color: magenta !important;
+   }
+   
+   pre, pre.shiki, code {
+    color: chartreuse !important;
+   }
+   
+   .md-img,
+   image,
+   figure:empty {
+    opacity: var(--native-dark-opacity) !important;
+   }
+   
+   footer, ol li ql-infobox aside {
+    background: grey !important;
+    color: white !important; 
+   }
+   
+   h3.subject,
+   div.glideDataEditor,
+   p {
+    color: yellow !important;
+   }
+   
+   h2.author,
+   div.stDataFrame,
+   h2.Paragraph,
+   strong,
+   strong span,
+   b,
+   body#tinymce, 
+   div.a-row::before span.a-size-medium.a-color-base.a-text-bold,
+   .textLayer > span
+   {
+    color: turquoise !important;
+   }
+   
+   span.NormalTextRun,
+   em,
+   span,
+   span font,
+   td.account-form-header-logo img,
+   .a-row,
+   .page-container
+   {
+    background: black !important;
+    color: hotpink !important;
+   }
+   
+   #submit_file_button, 
+   button.submit_assignment_link,
+   .a-button-input, 
+   a:before#searchRecordsBtn.ancBtn,
+   span.hideVisually768,
+   a.ancBtn,
+   .btn-block, .btn-primary,
+   a:before,
+   span:before,
+   button.ancBtn,
+   .mfe-app-learn-hub-ylt2td {
+    color: var(--native-dark-cite-color) !important;
+    border: 1px solid yellow !important;
+    border-radius: 1px !important;
+   }
+   
+   .add_another_file_link,
+   p,
+   div.elementToProof,
+   div.divRplyFwdMsg,
+   div.md-h1,
+   .bb,
+   div.bodySection,
+   .fdx-widget-body-container,
+   div#root,
+   p#p1,
+   p#p2,
+   p#p3,
+   p#p4,
+   p#p5,
+   tbody,
+   .pw-post-body-paragraph
+   {
+      color: orange !important;
+   }
+   
+   .cancel_button {
+      color: magenta !important;
+      border: 2px solid magenta !important;;
+      border-radius: 5px !important;
+    }
+   
+   span.fQfxa_biBD, 
+   span.ms-Pivot-text,
+   li, 
+   li strong,
+   li::marker, a.ig-title {
+      color: yellow !important;
+      border: 2px solid yellow 5px !important;
+      font-weight: bold;
+    }
+   
+   .qBMHb_cwos  {
+    color: white;
+    background: #333333;
+   }
+   
+   code, kbd, pre, samp, code *  {
+    background: black;
+    color: chartreuse;
+   }
+   
+   .theme__button___eBgiZ {
+    background: seagreen;
+    color: white;
+    }
+   
+   div.pageactions,
+   div.personView header.pageHeader,
+   button.ancBtn,
+   span.hideVisually768,
+   .bgdark { background: hotpink !important; color: black !important; }
+    
+   a.silver,
+   button.silver,
+   a.silver span,
+   button.silver span
+   a.silver:before span,
+   button.silver:before span,
+   .ancBtnIconOnly480,
+   .ancBtn,
+   .bgdark,
+   #fsSignInModal,
+   .mu-ripple-wrapper,
+   #HeaderRegion  { color: hotpink !important}
+   
+   h1, h2, h3, h4, h5, h6 { color: hotpink !important; }
+   
+   a, a span, a.ig-title, span.item-name a.ig-title, span.ig-header-title { color: turquoise !important; }
+   
+   a:hover { color: yellow; }
+   
+   div, 
+   div.body, 
+   .canvas
+   { background: #333 !important; color: pink !important; }
+   
+   footer { background: navy !important; color: hotpink !important; }
+   
+   div.context_modules div.item-group-condensed div.ig-header span.name { color: orange; }
+   
+   
+   input, 
+   .PrivateSwitchBase-input {
+     opacity: 1;
+     background: pink !important;
+     color: burgundy !important;
+   }
+   
+   p {color: beige !important; }

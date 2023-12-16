@@ -10,4 +10,7 @@
 .venv
 .gitignore
 package-lock.json
+config.js
+codetest.html
+codetest.js
 
