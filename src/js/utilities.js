@@ -102,7 +102,7 @@ export function setFooter() {
         const link = createLink(
             "https://rus19023.github.io/myportfolio/", "My Portfolio");
         writeById("autofooter",
-            "&copy; 2019-2023 | Doris Rush-Lopez, BYU-Idaho, Candidate for Bachelor of Science in Applied Technology, Focus in Cybersecurity using ML/AI<br><br>" + link      
+            "&copy; 2019-2024 | Doris Rush-Lopez, BYU-Idaho, Candidate for Bachelor of Science in Applied Technology, Focus in Cybersecurity using ML/AI<br><br>" + link      
         );
     }
 }

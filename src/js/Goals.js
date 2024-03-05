@@ -36,7 +36,7 @@ export default class GoalList {
         this.taskCount = 0;
         this.parentId = parentId;
         this.goal_error = '';
-        this.searchTerm = qs('#searcherror');
+        this.searchTerm = qs('#srchinput').value;
         this.sortDirection = 'asc';
         this.srchbtn = qs('#srchbtn');
         this.clrsrchbtn = qs('#clrsrchbtn');
@@ -154,6 +154,8 @@ export default class GoalList {
         this.getList();
     }
 
+    // Called by setSearchTerm(), renderTheList(), listAll(), listPending(), listDone()
+    // Calls getGoals(), listSearchFiltered()
     getList() {
         console.log('getList() invoked ');
         // for (var i = 0; i < localStorage.length; i++) {
@@ -161,7 +163,6 @@ export default class GoalList {
         //     var value = localStorage.getItem(key);
         //     console.log(key + ': ' + value);
         // }
-        // Called by renderTheList()
         // Get full list of tasks from storage
         var goalList = getGoals(this.listkey);
         //console.log(`this.listkey: ${this.listkey}`);
@@ -175,8 +176,9 @@ export default class GoalList {
         } else {
             // Filter list by search term if any
             if (this.searchTerm.length > 0) {
-                goalList = this.listSearchFiltered(goalList);
-                console.log('\n goalList (getList srchFilter): ', goalList);
+                var searchList = this.listSearchFiltered(goalList);
+                console.log('\n searchList (getList srchFilter): ', searchList);
+                goalList = searchList;
             }
             let goalFilter = this.filter;
             // console.log('xxx', xxx);
@@ -216,14 +218,14 @@ export default class GoalList {
             if (this.sortval.length > 0) {
                 console.log(` sort invoked, sortval not empty `);
                 //console.log('this.sortval', this.sortval);
-                goalList = this.sortList(filteredList, this.sortval, this.sortDirection);
+                var returnList = this.sortList(filteredList, this.sortval, this.sortDirection);
                 console.log('Goal list is being sorted...');
-                return goalList;
+                return returnList;
             } else {
                 console.log('Goal list is empty!');
             }
         }
-        return goalList;
+        return returnList;
     }
 
     listAll() {
@@ -264,7 +266,7 @@ export default class GoalList {
 
     // Called by 
     checkNull(objEl) {
-        console.log(` checkNull() invoked `);
+        //console.log(` checkNull() invoked `);
         //console.log(objEl ? objEl : null);
         let objText = 'null';
         if (objEl) {
@@ -289,7 +291,6 @@ export default class GoalList {
             console.log(` listSearchFiltered() invoked, searchTerm not blank `);
             let newlist = [];
             list.forEach((goal) => {
-                //const goalCat = goal.category;
                 const goalCat = this.checkNull(goal.category);
                 const catSrch = goal.category.toLowerCase().includes(this.searchTerm.toLowerCase());
                 const taskSrch = goal.task.toLowerCase().includes(this.searchTerm.toLowerCase());
@@ -298,10 +299,11 @@ export default class GoalList {
                 const dueString = goal.duedate;
                 const dueSrch = dueString.toLowerCase().includes(this.searchTerm.toLowerCase());
                 
-                console.log('dateString, dueString:', dateString, dueString);
+                //console.log('dateString, dueString:', dateString, dueString);
                 if (goalCat) {
+                    console.log('catSrch, taskSrch, dateSrch, dueSrch', catSrch, taskSrch, dateSrch, dueSrch);
                     if (catSrch || taskSrch || dateSrch || dueSrch) {
-                        console.log('goal matches:', goal.id, goal.task);
+                        console.log('goal matches:', goal.category, goal.task);
                         newlist.push(goal);
                     }
                 }
@@ -628,9 +630,7 @@ function getGoals(listkey) {
     }
     // Parse the JSON string back into an array
     var goalsArray = readFromLS(listkey);
-    if (goalList) {
-        console.log('Data retrieved:', goalList);
-    } else {
+    if (!goalList) {
         console.log('Data not found in local storage');
     }
     return goalsArray;

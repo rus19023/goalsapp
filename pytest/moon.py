@@ -1,7 +1,13 @@
+import os.path
+import sys
+from defang import defang
+import socket
+from time import sleep
+
 ########## CYBERSTART, MOONBASE ##########
 
 #!/usr/bin/python3
-import sys
+
 
 n = len(sys.argv)
 print('You said the following:')
@@ -44,7 +50,7 @@ with open('/tmp/alien-signal.txt') as myfile:
 #
 
 
-import os.path
+
 
 count = 1
 code = ''
@@ -101,20 +107,57 @@ Tip: Navigate the robot back to base to get the flag.
 # import robot module and use the robot.left(), robot.right(),
 # robot.up() and robot.down() functions
 #
-import robot
+# import robot
 
-robot.down(4)
-robot.right(7)
-robot.up(1)
+# robot.down(4)
+# robot.right(7)
+# robot.up(1)
 
 ##### LEVEL 4 CHALLENGE 3 #####
 
 
 
 ### LEVEL 4 CHALLENGE 4 ###
-import defang
+
+#
+# Alien Signal API listening on http://127.0.0.1:8082
+# Use HTTP GET with x-api-key header to get 
+# signal
+# We have narrowed down the key to be in the 
+# range of 5500 to 5600
+# Note: The script can timeout. If this 
+# occurs try narrowing
+# down your search
+#
+
+import urllib.request, urllib.error, urllib.parse
+
+url = "http://127.0.0.1:8082"
+headers = {}
+n = 50
+a = 5500
+end = 5601
+api_key_range = range(a, end)
+
+for api_key in api_key_range:
+  # print('loop engaged')
+  try:
+    headers = {'x-api-key': api_key}
+    print(headers)    
+    req = urllib.request.Request(url, headers=headers)
+    response = urllib.request.urlopen(req)
+    print(response.read())
+  except req.exceptions.Timeout:
+      print(f"Timeout for API Key: {api_key}")
+  except req.exceptions.RequestException as e:
+      print(f"Error for API Key {api_key}: {e}")
+
+
+
+
 
 # DEFANG USING PYTHON
+
 u="https://www.example.com"
 defang(u, colon=True)
 defang(u, all_dots=True)
@@ -222,14 +265,14 @@ with open("/tmp/cars.txt", "r") as myfile:
  
 ### LEVEL 3 CHALLENGE 2  ###
 
-from time import sleep
+
 
 # Sockets are a way of sending data over a network.
 # There are two main types of sockets, TCP and UDP.
 # Which to use depends on the application you are communicating with.
 
 # You will need to import the socket library first.
-import socket
+
 
 # To make a connection to a TCP server:
 
@@ -514,3 +557,6 @@ capacity = 50
 
 # CHALLENGE 3; Set the value of the people variable to 50.
 #              Then run the same check from CHALLENGE 1 again.
+
+
+
